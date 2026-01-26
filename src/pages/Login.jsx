@@ -11,13 +11,13 @@ const Login = () => {
 
   const [formData, setFormData] = useState({
     username: '',
-    password: ''
+    password: '',
   });
   const [errMsg, setErrMsg] = useState('');
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData(prev => ({ ...prev, [name]: value }));
+    setFormData((prev) => ({ ...prev, [name]: value }));
     if (errMsg) setErrMsg('');
   };
 
@@ -33,18 +33,19 @@ const Login = () => {
     // Construct the payload based on the check
     const loginData = {
       password,
-      ...(isEmail ? { email: username } : { username })
+      ...(isEmail ? { email: username } : { username }),
     };
 
     try {
       const response = await login(loginData).unwrap();
       const userData = response.data;
 
-      dispatch(setCredentials({
-        accessToken: userData.accessToken,
-        user: userData.user
-      }));
-
+      dispatch(
+        setCredentials({
+          accessToken: userData.accessToken,
+          user: userData.user,
+        })
+      );
     } catch (err) {
       console.error('Login failed', err);
       if (!err?.status) {
@@ -65,13 +66,14 @@ const Login = () => {
     <div className="min-h-screen flex items-center justify-center bg-gray-50">
       <div className="max-w-md w-full space-y-8 p-8 bg-white shadow-lg rounded-xl">
         <div className="text-center">
-          <h2 className="mt-6 text-3xl font-extrabold text-gray-900">
-            Log in
-          </h2>
+          <h2 className="mt-6 text-3xl font-extrabold text-gray-900">Log in</h2>
         </div>
 
         {errMsg && (
-          <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
+          <div
+            className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative"
+            role="alert"
+          >
             <span className="block sm:inline">{errMsg}</span>
           </div>
         )}
