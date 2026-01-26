@@ -29,4 +29,8 @@ export const { setCredentials, setAccessToken, clearAuth } = authSlice.actions;
 export const selectAccessToken = (state) => state.auth.accessToken;
 export const selectUser = (state) => state.auth.user;
 
+export const selectAuthStatus = (state) => !!state.auth.accessToken;
+export const selectUserRole = (state) => state.auth.user?.role || null;
+
+
 export default authSlice.reducer;

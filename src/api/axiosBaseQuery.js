@@ -46,6 +46,17 @@ const axiosBaseQuery =
             const isAxios = axios.isAxiosError?.(err);
             const status = isAxios ? err?.response?.status : undefined;
 
+            if (status === 401 && url.includes('/login')) {
+                return {
+                    error: {
+                        status: 401,
+                        data: err?.response?.data ?? {
+                            message: 'Unauthorized',
+                        },
+                    },
+                };
+            }
+
             if (status !== 401) {
                 const fallbackData = isAxios
                     ? err?.response?.data
