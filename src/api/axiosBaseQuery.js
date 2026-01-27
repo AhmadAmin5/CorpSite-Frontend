@@ -11,7 +11,6 @@ let isRefreshing = false;
 let waiters = [];
 const REFRESH_TIMEOUT_MS = 15_000;
 
-// Custom RTK Base Query
 const axiosBaseQuery =
   ({ prepareHeaders } = {}) =>
   async (

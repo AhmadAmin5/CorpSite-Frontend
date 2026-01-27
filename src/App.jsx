@@ -1,25 +1,14 @@
 import { Outlet } from 'react-router-dom';
 import './App.css';
-import { useSelector } from 'react-redux';
-import { selectUser } from './features/auth/authSlice';
+import useTheme from './hooks/useTheme.js';
 
-function App() {
-  const user = useSelector(selectUser);
-
-  if (user)
-    return (
-      <div>
-        <h1>Welcome back {user.email}</h1>
-        <Outlet />
-      </div>
-    );
-  else
-    return (
-      <div>
-        <h1>No User</h1>
-        <Outlet />
-      </div>
-    );
-}
+const App = () => {
+  useTheme();
+  return (
+    <div className="bg-(--background) text-(--foreground) transition-colors duration-200">
+      <Outlet />
+    </div>
+  );
+};
 
 export default App;

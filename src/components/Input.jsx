@@ -1,5 +1,4 @@
-// code/components/Input.jsx
-import React, { forwardRef } from 'react';
+import { forwardRef } from 'react';
 
 const Input = forwardRef(
   (
@@ -13,6 +12,7 @@ const Input = forwardRef(
       error,
       required = false,
       className = '',
+      ...props
     },
     ref
   ) => {
@@ -21,9 +21,9 @@ const Input = forwardRef(
         {label && (
           <label
             htmlFor={name}
-            className="block text-sm font-medium text-gray-700 mb-1"
+            className="block text-sm font-medium text-(--foreground) mb-1"
           >
-            {label} {required && <span className="text-red-500">*</span>}
+            {label} {required && <span className="text-error">*</span>}
           </label>
         )}
         <input
@@ -31,17 +31,19 @@ const Input = forwardRef(
           id={name}
           name={name}
           type={type}
-          value={value}
-          onChange={onChange}
           placeholder={placeholder}
           required={required}
-          className={`w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 transition-colors duration-200 ${
-            error
-              ? 'border-red-500 focus:border-red-500 focus:ring-red-200'
-              : 'border-gray-300 focus:border-blue-500 focus:ring-blue-200'
-          }`}
+          onChange={onChange}
+          {...props}
+          className={`w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 transition-colors duration-200 
+            bg-(--background) text-(--foreground)
+            ${
+              error
+                ? 'border-error focus:border-error focus:ring-error/20'
+                : 'border-(--border) focus:border-primary focus:ring-primary/20'
+            }`}
         />
-        {error && <p className="mt-1 text-sm text-red-600">{error}</p>}
+        {error && <p className="mt-1 text-sm text-error">{error}</p>}
       </div>
     );
   }

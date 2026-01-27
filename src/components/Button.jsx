@@ -1,6 +1,3 @@
-// code/components/Button.jsx
-import React from 'react';
-
 const Button = ({
   children,
   type = 'button',
@@ -8,15 +5,31 @@ const Button = ({
   disabled = false,
   className = '',
   variant = 'primary',
+  size = 'md',
 }) => {
   const baseStyle =
-    'px-4 py-2 rounded-lg font-medium transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed';
+    'inline-flex items-center justify-center rounded-lg font-medium transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed';
 
   const variants = {
-    primary: 'bg-blue-600 text-white hover:bg-blue-700 focus:ring-blue-500',
+    primary:
+      'bg-primary text-primary-content hover:bg-(--color-primary-hover) focus:ring-primary',
+
     secondary:
-      'bg-gray-200 text-gray-800 hover:bg-gray-300 focus:ring-gray-500',
-    danger: 'bg-red-600 text-white hover:bg-red-700 focus:ring-red-500',
+      'bg-secondary text-secondary-content hover:bg-(--color-secondary-hover) focus:ring-secondary',
+
+    danger:
+      'bg-error text-error-content hover:bg-(--color-error-hover) focus:ring-error',
+
+    success:
+      'bg-success text-success-content hover:bg-(--color-success-hover) focus:ring-success',
+
+    ghost: 'bg-transparent text-(--foreground) hover:bg-(--foreground)/10',
+  };
+
+  const sizes = {
+    sm: 'px-3 py-1.5 text-sm',
+    md: 'px-4 py-2 text-base',
+    lg: 'px-6 py-3 text-lg',
   };
 
   return (
@@ -24,7 +37,7 @@ const Button = ({
       type={type}
       onClick={onClick}
       disabled={disabled}
-      className={`${baseStyle} ${variants[variant]} ${className}`}
+      className={`${baseStyle} ${variants[variant]} ${sizes[size]} ${className}`}
     >
       {children}
     </button>

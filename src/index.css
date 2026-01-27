@@ -1,1 +1,58 @@
 @import 'tailwindcss';
+
+@theme {
+  --color-primary: #2563eb;
+  --color-primary-hover: #1d4ed8;
+  --color-primary-content: #ffffff;
+
+  --color-secondary: #475569;
+  --color-secondary-hover: #334155;
+  --color-secondary-content: #f8fafc;
+
+  --color-accent: #f59e0b;
+  --color-accent-hover: #d97706;
+  --color-accent-content: #ffffff;
+
+  /* --- FEEDBACK COLORS --- */
+
+  --color-error: #dc2626;
+  --color-error-hover: #b91c1c;
+  --color-error-content: #ffffff;
+
+  --color-success: #16a34a;
+  --color-success-hover: #15803d;
+  --color-success-content: #ffffff;
+
+  --color-warning: #ca8a04;
+  --color-warning-hover: #a16207;
+  --color-warning-content: #ffffff;
+
+  --font-sans: 'Inter', sans-serif;
+}
+
+/* --- SEMANTIC VARIABLES (Light/Dark Mode) --- */
+:root {
+  --background: #ffffff;
+  --foreground: #0f172a;
+
+  --card: #f8fafc;
+  --card-foreground: #0f172a;
+  --border: #e2e8f0;
+
+  --destructive: #fee2e2;
+  --destructive-foreground: #b42b2b;
+  --destructive-border: #fca5a5;
+}
+
+.dark {
+  --background: #0f172a;
+  --foreground: #f8fafc;
+
+  --card: #1e293b;
+  --card-foreground: #f8fafc;
+  --border: #334155;
+
+  --destructive: #450a0a;
+  --destructive-foreground: #fecaca;
+  --destructive-border: #7f1d1d;
+}
