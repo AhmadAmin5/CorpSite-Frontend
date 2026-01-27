@@ -43,7 +43,7 @@ const AdminSidebar = () => {
 
   return (
     <aside className="w-64 bg-(--card) border-r border-(--border) hidden md:flex flex-col h-[calc(100vh-4rem)] sticky top-16">
-      <nav className="flex-grow p-4 space-y-1 overflow-y-auto">
+      <nav className="grow p-4 space-y-1 overflow-y-auto">
         {navItems.map((item) => (
           <NavLink
             key={item.path}

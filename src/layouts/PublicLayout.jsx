@@ -9,7 +9,7 @@ const PublicLayout = () => {
     <div className="flex flex-col min-h-screen">
       <PublicHeader />
 
-      <main className="flex-grow">
+      <main className="grow">
         <Outlet />
       </main>
 

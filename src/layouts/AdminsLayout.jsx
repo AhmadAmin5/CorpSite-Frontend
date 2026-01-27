@@ -5,7 +5,7 @@ const AdminsLayout = () => {
     <div className="flex flex-col min-h-screen">
       <AdminHeader />
 
-      <main className="flex-grow flex flex-col">
+      <main className="grow flex flex-col">
         <Outlet />
       </main>
 
