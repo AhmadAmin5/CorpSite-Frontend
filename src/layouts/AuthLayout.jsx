@@ -15,7 +15,7 @@ const AuthLayout = ({ children, authentication = true, roles = [] }) => {
     if (authentication && !authStatus) {
       navigate('/login');
     } else if (!authentication && authStatus) {
-      navigate('/admin/', {replace: true});
+      navigate('/admin/', { replace: true });
     } else if (
       authentication &&
       roles.length > 0 &&

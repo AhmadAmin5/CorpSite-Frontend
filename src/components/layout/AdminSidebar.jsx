@@ -13,7 +13,7 @@ import {
   Settings,
   LogOut,
   MessageSquare,
-  X
+  X,
 } from 'lucide-react';
 
 const AdminSidebar = ({ isOpen, onClose }) => {
@@ -40,28 +40,38 @@ const AdminSidebar = ({ isOpen, onClose }) => {
     { name: 'Media', path: '/admin/media', icon: ImageIcon },
     { name: 'Inquiries', path: '/admin/inquiries', icon: MessageSquare },
     { name: 'Users', path: '/admin/users', icon: Users, role: 'admin' },
-    { name: 'Settings', path: '/admin/settings', icon: Settings, role: 'admin' },
+    {
+      name: 'Settings',
+      path: '/admin/settings',
+      icon: Settings,
+      role: 'admin',
+    },
   ];
 
   return (
     <>
       {isOpen && (
-        <div 
+        <div
           className="fixed inset-0 bg-black/50 z-30 md:hidden"
           onClick={onClose}
         />
       )}
 
-      <aside className={`
+      <aside
+        className={`
         bg-(--card) border-r border-(--border) flex flex-col 
         h-[calc(100vh-4rem)] 
         fixed md:sticky top-16 left-0 z-40
         w-64 transition-transform duration-300 ease-in-out
         ${isOpen ? 'translate-x-0' : '-translate-x-full md:translate-x-0'}
-      `}>
+      `}
+      >
         <div className="md:hidden p-4 flex justify-between items-center border-b border-(--border)">
           <span className="font-semibold text-(--foreground)">Menu</span>
-          <button onClick={onClose} className="p-1 hover:bg-primary/10 rounded text-(--foreground)">
+          <button
+            onClick={onClose}
+            className="p-1 hover:bg-primary/10 rounded text-(--foreground)"
+          >
             <X className="w-5 h-5" />
           </button>
         </div>

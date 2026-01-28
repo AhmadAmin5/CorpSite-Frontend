@@ -50,19 +50,16 @@ const LoginForm = () => {
     } catch (err) {
       if (!err?.status || err.status == 'FETCH_ERROR')
         setErrMsg('No Server Response');
-      else if (err.status === 400)
-        setErrMsg('Invalid Credentials');
+      else if (err.status === 400) setErrMsg('Invalid Credentials');
       else if (err.status === 401) {
-        if(err.data.errors[0].code==="INVALID_CREDIENTIALS")
-          setErrMsg('Wrong password')
-        else if(err.data.errors[0].code==="NOT_ACTIVATED")
+        if (err.data.errors[0].code === 'INVALID_CREDIENTIALS')
+          setErrMsg('Wrong password');
+        else if (err.data.errors[0].code === 'NOT_ACTIVATED')
           setErrMsg('Account not active yet. Contact administration.');
-        else if(err.data.errors[0].code==='BLOCKED')
-          setErrMsg('Account Blocked. Contact administration')
-      } else if (err.status === 404)
-        setErrMsg('User not found');
-      else
-        setErrMsg('Login Failed');
+        else if (err.data.errors[0].code === 'BLOCKED')
+          setErrMsg('Account Blocked. Contact administration');
+      } else if (err.status === 404) setErrMsg('User not found');
+      else setErrMsg('Login Failed');
     }
   };
 
@@ -71,9 +68,7 @@ const LoginForm = () => {
       <div className="text-center flex flex-col items-center">
         <Logo iconOnly={true} size={60} />
         {/* 3. Text: Uses var(--foreground) so it turns white in dark mode */}
-        <h2 className="mt-6 text-3xl font-bold text-(--foreground)">
-          Log in
-        </h2>
+        <h2 className="mt-6 text-3xl font-bold text-(--foreground)">Log in</h2>
       </div>
 
       {errMsg && (

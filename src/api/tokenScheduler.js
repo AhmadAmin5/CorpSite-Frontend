@@ -12,14 +12,14 @@ const readExp = (jwt) => {
   } catch {
     return null;
   }
-}
+};
 
 const clearProactiveRefresh = () => {
   if (timerId) {
     clearTimeout(timerId);
     timerId = null;
   }
-}
+};
 
 const scheduleProactiveRefresh = (store, token) => {
   clearProactiveRefresh();
@@ -44,6 +44,6 @@ const scheduleProactiveRefresh = (store, token) => {
       store.dispatch(clearAuth());
     }
   }, ms);
-}
+};
 
-export default scheduleProactiveRefresh
+export default scheduleProactiveRefresh;

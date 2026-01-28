@@ -2,10 +2,9 @@ import { createBrowserRouter, Navigate } from 'react-router-dom';
 
 //TODO Imlement Lazy load
 
-
 import App from '../App.jsx';
 
-import {Unauthorized} from '../components';
+import { Unauthorized } from '../components';
 
 import AuthLayout from '../layouts/AuthLayout.jsx';
 import PublicLayout from '../layouts/PublicLayout.jsx';
@@ -16,8 +15,8 @@ import Login from '../pages/auth/Login.jsx';
 import About from '../pages/public/About.jsx';
 import Home from '../pages/public/Home.jsx';
 
-
 import Dashboard from '../pages/admin/Dashboard.jsx';
+import Users from '../pages/admin/Users.jsx';
 
 const router = createBrowserRouter([
   {
@@ -50,13 +49,16 @@ const router = createBrowserRouter([
       // 3. Protected Admin Routes
       {
         path: 'admin',
-        element: <AuthLayout authentication={true} roles={['admin', 'manager']} />,
+        element: (
+          <AuthLayout authentication={true} roles={['admin', 'manager']} />
+        ),
         children: [
           {
             element: <AdminsLayout />,
             children: [
               { index: true, element: <Navigate to="dashboard" replace /> },
               { path: 'dashboard', element: <Dashboard /> },
+              { path: 'users', element: <Users /> },
             ],
           },
         ],

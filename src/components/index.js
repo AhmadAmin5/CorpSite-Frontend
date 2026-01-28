@@ -3,7 +3,7 @@ import Button from './ui/Button';
 import Input from './ui/Input';
 
 import Loading from './feedback/Loading';
-import Unauthorized from './feedback/Unauthorized'
+import Unauthorized from './feedback/Unauthorized';
 
 import AdminHeader from './layout/AdminHeader';
 import PublicHeader from './layout/PublicHeader';
@@ -21,5 +21,5 @@ export {
   AdminFooter,
   PublicFooter,
   AdminSidebar,
-  Unauthorized
+  Unauthorized,
 };
