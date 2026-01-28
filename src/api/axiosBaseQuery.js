@@ -1,11 +1,12 @@
 import axios from 'axios';
-import { axiosInstance } from './axios';
+import axiosInstance from './axios';
+import scheduleProactiveRefresh from './tokenScheduler';
+
 import {
   setAccessToken,
   clearAuth,
   selectAccessToken,
 } from '../features/auth/authSlice';
-import { scheduleProactiveRefresh } from '../features/auth/tokenScheduler';
 
 let isRefreshing = false;
 let waiters = [];

@@ -1,17 +1,23 @@
 import { createBrowserRouter, Navigate } from 'react-router-dom';
-import AuthLayout from '../layouts/AuthLayout.jsx';
-import PublicLayout from '../layouts/PublicLayout.jsx';
-import AdminsLayout from '../layouts/AdminsLayout.jsx';
 
 //TODO Imlement Lazy load
 
 
 import App from '../App.jsx';
-import Login from '../pages/Login.jsx';
-import About from '../pages/About.jsx';
-import Home from '../pages/Home.jsx';
-import Unauthorized from '../pages/Unauthorized.jsx';
-import Dashboard from '../pages/Dashboard.jsx';
+
+import {Unauthorized} from '../components';
+
+import AuthLayout from '../layouts/AuthLayout.jsx';
+import PublicLayout from '../layouts/PublicLayout.jsx';
+import AdminsLayout from '../layouts/AdminsLayout.jsx';
+
+import Login from '../pages/auth/Login.jsx';
+
+import About from '../pages/public/About.jsx';
+import Home from '../pages/public/Home.jsx';
+
+
+import Dashboard from '../pages/admin/Dashboard.jsx';
 
 const router = createBrowserRouter([
   {

@@ -1,9 +1,9 @@
-import { setAccessToken, clearAuth } from './authSlice.js';
-import { axiosInstance } from '../../api/axios';
+import { setAccessToken, clearAuth } from '../features/auth/authSlice.js';
+import axiosInstance from './axios.js';
 
 let timerId = null;
 
-function readExp(jwt) {
+const readExp = (jwt) => {
   if (!jwt) return null;
   try {
     const base64 = jwt.split('.')[1];
@@ -14,14 +14,14 @@ function readExp(jwt) {
   }
 }
 
-export function clearProactiveRefresh() {
+const clearProactiveRefresh = () => {
   if (timerId) {
     clearTimeout(timerId);
     timerId = null;
   }
 }
 
-export function scheduleProactiveRefresh(store, token) {
+const scheduleProactiveRefresh = (store, token) => {
   clearProactiveRefresh();
   const exp = readExp(token);
   if (!exp) return;
@@ -45,3 +45,5 @@ export function scheduleProactiveRefresh(store, token) {
     }
   }, ms);
 }
+
+export default scheduleProactiveRefresh

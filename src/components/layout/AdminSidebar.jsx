@@ -1,8 +1,9 @@
 import React from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import { useLogoutMutation } from '../services/authApi';
-import { clearAuth } from '../features/auth/authSlice';
+import { useLogoutMutation } from '../../features/auth/authApi';
+import { clearAuth } from '../../features/auth/authSlice';
+
 import {
   LayoutDashboard,
   FileText,

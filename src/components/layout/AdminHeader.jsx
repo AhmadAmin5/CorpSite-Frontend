@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import { useSelector } from 'react-redux';
-import { selectUser } from '../features/auth/authSlice';
-import useTheme from '../hooks/useTheme';
-import Logo from './Logo';
+import { selectUser } from '../../features/auth/authSlice';
+import useTheme from '../../hooks/useTheme';
+import Logo from '../ui/Logo';
 
 import { Sun, Moon, User, Menu } from 'lucide-react';
 

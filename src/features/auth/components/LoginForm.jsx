@@ -1,11 +1,11 @@
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useDispatch } from 'react-redux';
-import { useLoginMutation } from '../services/authApi';
-import { setCredentials } from '../features/auth/authSlice';
-import { Button, Input, Logo } from '../components';
+import { useLoginMutation } from '../authApi';
+import { setCredentials } from '../authSlice';
+import { Button, Input, Logo } from '../../../components';
 
-const Login = () => {
+const LoginForm = () => {
   const dispatch = useDispatch();
   const [login, { isLoading }] = useLoginMutation();
 
@@ -119,4 +119,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default LoginForm;
