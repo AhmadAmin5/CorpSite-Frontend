@@ -1,10 +1,14 @@
-import { Login as LoginComponent } from '../components';
+import { Login as LoginComponent, AdminHeader } from '../components';
 
 const Login = () => {
   return (
-    <div className="grow flex items-center justify-center w-full p-4">
-      <LoginComponent />
-    </div>
+    <>
+      <AdminHeader />
+      
+      <div className="grow flex items-center justify-center w-full p-4">
+        <LoginComponent />
+      </div>
+    </>
   );
 };
 

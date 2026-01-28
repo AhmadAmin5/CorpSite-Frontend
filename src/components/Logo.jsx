@@ -1,15 +1,15 @@
 import { Link } from 'react-router-dom';
 
-const Logo = ({ className = '', iconOnly = false }) => {
+const Logo = ({ className = '', iconOnly = false, size = 32 }) => {
   return (
     <Link to="/" className={`flex items-center gap-2 ${className}`}>
       <svg
-        width="32"
-        height="32"
+        width={size}
+        height={size}
         viewBox="0 0 32 32"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
-        className="text-primary flex-shrink-0"
+        className="text-primary shrink-0"
       >
         <rect
           x="4"

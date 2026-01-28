@@ -1,13 +1,10 @@
-import { lazy, Suspense } from 'react';
-import { createBrowserRouter } from 'react-router-dom';
-
+import { createBrowserRouter, Navigate } from 'react-router-dom';
 import AuthLayout from '../layouts/AuthLayout.jsx';
-import Adminslayout from '../layouts/AdminsLayout.jsx';
 import PublicLayout from '../layouts/PublicLayout.jsx';
-import AdminPanelLayout from '../layouts/AdminPanelLayout.jsx';
+import AdminsLayout from '../layouts/AdminsLayout.jsx';
 
+//TODO Imlement Lazy load
 
-// TODO Implement Lazyload
 
 import App from '../App.jsx';
 import Login from '../pages/Login.jsx';
@@ -21,59 +18,39 @@ const router = createBrowserRouter([
     path: '/',
     element: <App />,
     children: [
-      //Public
+      // 1. Public Routes
       {
         element: <PublicLayout />,
         children: [
-          {
-            path: '/',
-            element: <Home />,
-          },
-          {
-            path: 'about',
-            element: <About />,
-          },
+          { path: '/', element: <Home /> },
+          { path: 'about', element: <About /> },
         ],
       },
 
-      //Admins
+      // 2. Auth Routes (Login) - No Admin Layout
       {
-        element: <Adminslayout />,
-        children: [
-          //Public
-          {
-            path: 'login',
-            element: (
-              <AuthLayout authentication={false}>
-                <Login />
-              </AuthLayout>
-            ),
-          },
-          {
-            path: 'unauthorized',
-            element: <Unauthorized />,
-          },
+        path: 'login',
+        element: (
+          <AuthLayout authentication={false}>
+            <Login />
+          </AuthLayout>
+        ),
+      },
+      {
+        path: 'unauthorized',
+        element: <Unauthorized />,
+      },
 
-          //Private
+      // 3. Protected Admin Routes
+      {
+        path: 'admin',
+        element: <AuthLayout authentication={true} roles={['admin', 'manager']} />,
+        children: [
           {
-            element: (
-              <AuthLayout authentication={true} roles={['admin', 'manager']} />
-            ),
+            element: <AdminsLayout />,
             children: [
-              {
-                path: 'admin',
-                element: <AdminPanelLayout />,
-                children: [
-                  {
-                    index: true,
-                    element: <Dashboard />,
-                  },
-                  {
-                    path: 'dashboard',
-                    element: <Dashboard />,
-                  },
-                ],
-              },
+              { index: true, element: <Navigate to="dashboard" replace /> },
+              { path: 'dashboard', element: <Dashboard /> },
             ],
           },
         ],
