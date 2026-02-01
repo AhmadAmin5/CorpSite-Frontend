@@ -36,7 +36,8 @@ const Toast = ({ id, type = 'info', message, onClose, duration = 3000 }) => {
   const variant = variants[type] || variants.info;
 
   return (
-    <div className={`
+    <div
+      className={`
       relative flex items-center w-full p-4 gap-3 
       rounded-lg shadow-lg border border-(--border)
       bg-(--card) text-(--foreground)
@@ -46,14 +47,9 @@ const Toast = ({ id, type = 'info', message, onClose, duration = 3000 }) => {
       onMouseEnter={() => setIsPaused(true)}
       onMouseLeave={() => setIsPaused(false)}
     >
+      <div className="shrink-0">{variant.icon}</div>
 
-      <div className="shrink-0">
-        {variant.icon}
-      </div>
-
-      <div className="flex-1 text-sm font-medium">
-        {message}
-      </div>
+      <div className="flex-1 text-sm font-medium">{message}</div>
 
       <button
         onClick={() => onClose(id)}

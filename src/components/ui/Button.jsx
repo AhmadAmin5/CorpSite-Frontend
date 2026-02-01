@@ -25,7 +25,7 @@ const Button = ({
     success:
       'bg-success text-success-content hover:bg-(--color-success-hover) focus-visible:ring-success',
 
-    ghost: 
+    ghost:
       'bg-transparent text-(--foreground) hover:bg-(--foreground)/10 focus-visible:ring-(--foreground)',
   };
 

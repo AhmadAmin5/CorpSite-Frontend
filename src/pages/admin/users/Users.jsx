@@ -32,9 +32,9 @@ const Users = () => {
       await deleteUser(selectedUser._id).unwrap();
       setIsDeleteDialogOpen(false);
       setSelectedUser(null);
-      toast.success("User deleted successfully");
+      toast.success('User deleted successfully');
     } catch (error) {
-      toast.error("Failed to delete user");
+      toast.error('Failed to delete user');
     }
   };
 

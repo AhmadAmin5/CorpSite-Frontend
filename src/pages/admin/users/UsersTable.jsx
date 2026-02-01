@@ -4,7 +4,7 @@ import { Button } from '../../../components';
 import useToast from '../../../context/ToastContext';
 import UsersTableSkeleton from './UsersTableSkeleton';
 import UserStatusBadge from './UserStatusBadge'; // Imported
-import UserRoleBadge from './UserRoleBadge';     // Imported
+import UserRoleBadge from './UserRoleBadge'; // Imported
 import {
   Edit,
   Trash2,
@@ -122,7 +122,7 @@ const UsersTable = ({ onEdit, onDelete }) => {
                         </div>
                       </div>
                     </td>
-                    
+
                     <td className="px-6 py-4">
                       <UserRoleBadge role={user.role} />
                     </td>
@@ -137,7 +137,6 @@ const UsersTable = ({ onEdit, onDelete }) => {
 
                     <td className="px-6 py-4 text-right">
                       <div className="flex justify-end gap-2 opacity-30 group-hover:opacity-100 transition-opacity">
-                        
                         {!user.isActivated &&
                           !user.isBlocked &&
                           !isExpired(user.invitationExpiry) && (

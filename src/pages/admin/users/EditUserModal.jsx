@@ -38,10 +38,9 @@ const EditUserModal = ({ isOpen, onClose, user }) => {
     try {
       await updateUser({ id: user._id, ...data }).unwrap();
     } catch (err) {
-      toast.error("Failed to edit user");
+      toast.error('Failed to edit user');
     }
   };
-
 
   return (
     <Modal

@@ -16,21 +16,17 @@ const AuthLayout = ({ children, authentication = true, roles = [] }) => {
     // A. REQUIRED AUTH: User is NOT logged in
     if (authentication && !authStatus) {
       // Redirect to login, but REMEMBER where they were coming from
-      navigate('/login', { 
+      navigate('/login', {
         state: { from: location }, // <--- The Magic Fix
-        replace: true 
+        replace: true,
       });
-    } 
+    }
     // B. PUBLIC ONLY: User IS logged in (e.g. visiting /login while active)
     else if (!authentication && authStatus) {
       navigate('/admin/dashboard', { replace: true });
-    } 
+    }
     // C. ROLE MISMATCH: Logged in, but wrong role
-    else if (
-      authentication &&
-      roles.length > 0 &&
-      !roles.includes(userRole)
-    ) {
+    else if (authentication && roles.length > 0 && !roles.includes(userRole)) {
       navigate('/unauthorized', { replace: true }); // <--- Add replace
     }
     // D. ALL GOOD

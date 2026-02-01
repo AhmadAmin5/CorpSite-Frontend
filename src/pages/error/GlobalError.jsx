@@ -9,16 +9,12 @@ const GlobalError = () => {
 
   const isChunkError = error?.name === 'ChunkLoadError';
   const title = isChunkError ? 'Update Available' : 'Application Error';
-  const description = isChunkError 
+  const description = isChunkError
     ? 'A new version of the app is available. Please reload.'
     : 'Something unexpected went wrong. Contact administration.';
 
   return (
-    <ErrorLayout
-      icon={AlertTriangle}
-      title={title}
-      description={description}
-    >
+    <ErrorLayout icon={AlertTriangle} title={title} description={description}>
       {error && (
         <div className="max-w-sm mx-auto mt-4 text-left">
           <button

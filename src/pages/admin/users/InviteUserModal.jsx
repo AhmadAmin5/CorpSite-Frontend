@@ -3,7 +3,7 @@ import { useInviteUserMutation } from '../../../features/users/usersApi';
 import { Modal, Input, Button, Select, Spinner } from '../../../components';
 import { useEffect } from 'react';
 import { ROLE_OPTIONS } from '../../../config/roles.js';
-import useToast from '../../../context/ToastContext.jsx'
+import useToast from '../../../context/ToastContext.jsx';
 
 const isExpired = (expiryDate) => new Date(expiryDate) < new Date();
 
@@ -28,14 +28,14 @@ const InviteUserModal = ({ isOpen, onClose }) => {
   const onSubmit = async (data) => {
     try {
       const response = await inviteUser(data).unwrap();
-      toast.success("User Created");
+      toast.success('User Created');
       handleCopyLink(response.data.user);
     } catch (err) {
-      toast.error("Failed to create user");
+      toast.error('Failed to create user');
     }
   };
 
-    const handleCopyLink = async (user) => {
+  const handleCopyLink = async (user) => {
     if (isExpired(user.invitationExpiry)) return;
     const baseURL = window.location.origin;
     const link = `${baseURL}/activate-account?token=${user.invitationToken}`;

@@ -19,6 +19,7 @@ import Home from '../pages/public/Home.jsx';
 
 import Dashboard from '../pages/admin/Dashboard.jsx';
 import Users from '../pages/admin/users/Users.jsx';
+import Media from '../pages/admin/media/Media.jsx';
 
 import { ROLES } from '../config/roles.js';
 
@@ -26,7 +27,7 @@ const router = createBrowserRouter([
   {
     path: '/',
     element: <App />,
-    errorElement: <GlobalError/>,
+    errorElement: <GlobalError />,
     children: [
       // 1. Public Routes
       {
@@ -63,11 +64,11 @@ const router = createBrowserRouter([
               { index: true, element: <Navigate to="dashboard" replace /> },
               { path: 'dashboard', element: <Dashboard /> },
               { path: 'users', element: <Users /> },
+              { path: 'media', element: <Media /> },
             ],
           },
         ],
       },
-
 
       {
         path: 'unauthorized',
@@ -76,8 +77,8 @@ const router = createBrowserRouter([
 
       {
         path: '*',
-        element: <NotFound/>
-      }
+        element: <NotFound />,
+      },
     ],
   },
 ]);

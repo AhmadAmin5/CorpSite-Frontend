@@ -23,6 +23,9 @@ const axiosBaseQuery =
 
     let finalHeaders = { ...(headers || {}) };
     if (token) finalHeaders.Authorization = `Bearer ${token}`;
+    if (data instanceof FormData) {
+      finalHeaders['Content-Type'] = undefined;
+    }
     if (typeof prepareHeaders === 'function') {
       const maybe = prepareHeaders(finalHeaders, {
         getState,

@@ -6,14 +6,14 @@ const variants = {
   neutral: 'bg-(--secondary)/10 text-(--secondary) border-(--border)',
 };
 
-const Badge = ({ 
-  children, 
-  variant = 'neutral', 
-  icon: Icon, 
-  className = '' 
+const Badge = ({
+  children,
+  variant = 'neutral',
+  icon: Icon,
+  className = '',
 }) => {
   return (
-    <span 
+    <span
       className={`
         inline-flex items-center gap-1.5 px-2.5 py-0.5 
         rounded-full text-xs font-medium border 

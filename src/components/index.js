@@ -31,5 +31,5 @@ export {
   Spinner,
   Skeleton,
   ConfirmationDialog,
-  StatusBadge
+  StatusBadge,
 };
