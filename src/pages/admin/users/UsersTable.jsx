@@ -3,8 +3,8 @@ import { useGetUsersQuery } from '../../../features/users/usersApi';
 import { Button } from '../../../components';
 import useToast from '../../../context/ToastContext';
 import UsersTableSkeleton from './UsersTableSkeleton';
-import UserStatusBadge from './UserStatusBadge'; // Imported
-import UserRoleBadge from './UserRoleBadge'; // Imported
+import UserStatusBadge from './UserStatusBadge';
+import UserRoleBadge from './UserRoleBadge';
 import {
   Edit,
   Trash2,
@@ -14,10 +14,18 @@ import {
   Link,
   Check,
 } from 'lucide-react';
+import { useSelector } from 'react-redux';
+import { selectUser } from '../../../features/auth/authSlice';
 
 const isExpired = (expiryDate) => new Date(expiryDate) < new Date();
 
-const UsersTable = ({ onEdit, onDelete }) => {
+const UsersTable = ({
+  searchQuery,
+  roleFilter,
+  statusFilter,
+  onEdit,
+  onDelete,
+}) => {
   const toast = useToast();
   const [page, setPage] = useState(1);
   const [copiedStates, setCopiedStates] = useState({});
@@ -26,7 +34,12 @@ const UsersTable = ({ onEdit, onDelete }) => {
   const { data, isLoading, isError, error, isFetching } = useGetUsersQuery({
     page,
     limit,
+    search: searchQuery,
+    role: roleFilter,
+    status: statusFilter,
   });
+
+  const thisUser = useSelector(selectUser);
 
   const handleCopyLink = async (user) => {
     if (isExpired(user.invitationExpiry)) return;
@@ -71,8 +84,8 @@ const UsersTable = ({ onEdit, onDelete }) => {
       <div className="overflow-x-auto grow">
         <table className="w-full text-left border-collapse">
           <thead>
-            <tr className="bg-(--secondary)/5 border-b border-(--border) text-xs uppercase text-(--secondary)">
-              <th className="px-6 py-4 font-semibold">User</th>
+            <tr className="bg-(--secondary)/5 border-b border-(--border) text-xs uppercase text-(--secondary) text-center">
+              <th className="px-6 py-4 font-semibold text-left">User</th>
               <th className="px-6 py-4 font-semibold">Role</th>
               <th className="px-6 py-4 font-semibold">Status</th>
               <th className="px-6 py-4 font-semibold text-right">Actions</th>
@@ -85,7 +98,7 @@ const UsersTable = ({ onEdit, onDelete }) => {
                   colSpan="4"
                   className="px-6 py-12 text-center text-(--secondary)"
                 >
-                  No users found.
+                  No users found matching your criteria.
                 </td>
               </tr>
             ) : (
@@ -115,6 +128,7 @@ const UsersTable = ({ onEdit, onDelete }) => {
                         <div>
                           <div className="font-medium text-(--foreground)">
                             {user.fullName || 'No Name'}
+                            {user._id == thisUser._id && ' (You)'}
                           </div>
                           <div className="text-sm text-(--secondary)">
                             {user.email}
@@ -123,11 +137,11 @@ const UsersTable = ({ onEdit, onDelete }) => {
                       </div>
                     </td>
 
-                    <td className="px-6 py-4">
+                    <td className="px-6 py-4 text-center">
                       <UserRoleBadge role={user.role} />
                     </td>
 
-                    <td className="px-6 py-4">
+                    <td className="px-6 py-4 text-center">
                       <UserStatusBadge
                         isBlocked={user.isBlocked}
                         isActivated={user.isActivated}

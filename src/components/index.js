@@ -16,6 +16,8 @@ import AdminFooter from './layout/AdminFooter';
 import PublicFooter from './layout/PublicFooter';
 import AdminSidebar from './layout/AdminSidebar';
 
+import MediaPickerModal from './media/MediaPickerModal';
+
 export {
   Logo,
   Button,
@@ -32,4 +34,5 @@ export {
   Skeleton,
   ConfirmationDialog,
   StatusBadge,
+  MediaPickerModal,
 };

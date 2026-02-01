@@ -30,7 +30,8 @@ const ConfirmationDialog = ({
         </div>
 
         <h3 className="text-lg font-bold text-(--foreground) mb-2">{title}</h3>
-        <p className="text-(--secondary) text-sm mb-6">{message}</p>
+
+        <p className="text-(--foreground) opacity-70 text-sm mb-6">{message}</p>
 
         <div className="flex gap-3 w-full">
           <Button

@@ -20,6 +20,9 @@ import Home from '../pages/public/Home.jsx';
 import Dashboard from '../pages/admin/Dashboard.jsx';
 import Users from '../pages/admin/users/Users.jsx';
 import Media from '../pages/admin/media/Media.jsx';
+import Posts from '../pages/admin/posts/Posts.jsx';
+import CreatePost from '../pages/admin/posts/CreatePost.jsx';
+import EditPost from '../pages/admin/posts/EditPost.jsx';
 
 import { ROLES } from '../config/roles.js';
 
@@ -65,6 +68,9 @@ const router = createBrowserRouter([
               { path: 'dashboard', element: <Dashboard /> },
               { path: 'users', element: <Users /> },
               { path: 'media', element: <Media /> },
+              { path: 'posts', element: <Posts /> },
+              { path: 'posts/create', element: <CreatePost /> },
+              { path: 'posts/edit/:id', element: <EditPost /> },
             ],
           },
         ],

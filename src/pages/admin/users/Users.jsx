@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Plus, Search } from 'lucide-react';
-import { Button, Input, ConfirmationDialog } from '../../../components';
+import { Button, Input, ConfirmationDialog, Select } from '../../../components';
 import UsersTable from './UsersTable';
 import InviteUserModal from './InviteUserModal';
 import EditUserModal from './EditUserModal';
@@ -14,6 +14,11 @@ const Users = () => {
   const [isDeleteDialogOpen, setIsDeleteDialogOpen] = useState(false);
 
   const [selectedUser, setSelectedUser] = useState(null);
+
+  // Filter States
+  const [searchQuery, setSearchQuery] = useState('');
+  const [roleFilter, setRoleFilter] = useState('all');
+  const [statusFilter, setStatusFilter] = useState('all');
 
   const [deleteUser, { isLoading: isDeleting }] = useDeleteUserMutation();
 
@@ -38,7 +43,21 @@ const Users = () => {
     }
   };
 
-  const [searchQuery, setSearchQuery] = useState('');
+  // Define Filter Options
+  const roleOptions = [
+    { value: 'all', label: 'All Roles' },
+    { value: 'admin', label: 'Admin' },
+    { value: 'manager', label: 'Manager' },
+    { value: 'editor', label: 'Editor' },
+    { value: 'viewer', label: 'Viewer' },
+  ];
+
+  const statusOptions = [
+    { value: 'all', label: 'All Status' },
+    { value: 'active', label: 'Active' },
+    { value: 'invited', label: 'Invited (Pending)' },
+    { value: 'blocked', label: 'Blocked' },
+  ];
 
   return (
     <div className="space-y-6">
@@ -59,8 +78,8 @@ const Users = () => {
         </Button>
       </div>
 
-      <div className="bg-(--card) p-4 rounded-xl border border-(--border) shadow-sm flex flex-col md:flex-row gap-4 justify-between items-center">
-        <div className="relative w-full md:w-96">
+      <div className="bg-(--card) p-4 rounded-xl border border-(--border) shadow-sm flex flex-col md:flex-row gap-4">
+        <div className="relative grow md:max-w-md">
           <div className="absolute left-3 top-1/2 -translate-y-1/2 text-(--secondary)">
             <Search className="w-4 h-4" />
           </div>
@@ -69,16 +88,37 @@ const Users = () => {
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             inputClassName="pl-10"
+            className="w-full"
           />
         </div>
 
-        {/* Filter Placeholders */}
-        <div className="flex items-center gap-2 w-full md:w-auto">
-          {/* Add filters */}
+        <div className="flex flex-col md:flex-row gap-4 w-full md:w-auto">
+          <div className="w-full md:w-48">
+            <Select
+              value={roleFilter}
+              onChange={setRoleFilter}
+              options={roleOptions}
+              placeholder="Filter by Role"
+            />
+          </div>
+          <div className="w-full md:w-48">
+            <Select
+              value={statusFilter}
+              onChange={setStatusFilter}
+              options={statusOptions}
+              placeholder="Filter by Status"
+            />
+          </div>
         </div>
       </div>
 
-      <UsersTable onEdit={handleEditUser} onDelete={handleDeleteUser} />
+      <UsersTable
+        searchQuery={searchQuery}
+        roleFilter={roleFilter}
+        statusFilter={statusFilter}
+        onEdit={handleEditUser}
+        onDelete={handleDeleteUser}
+      />
 
       {isInviteModalOpen && (
         <InviteUserModal

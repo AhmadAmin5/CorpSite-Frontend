@@ -11,10 +11,28 @@ const usersApi = apiSlice.injectEndpoints({
     }),
 
     getUsers: builder.query({
-      query: ({ page = 1, limit = 10 }) => ({
-        url: `/user?page=${page}&limit=${limit}`,
-        method: 'get',
-      }),
+      query: ({
+        page = 1,
+        limit = 10,
+        search = '',
+        role = '',
+        status = '',
+      }) => {
+        // Build query params
+        const params = new URLSearchParams({
+          page,
+          limit,
+        });
+
+        if (search) params.append('search', search);
+        if (role && role !== 'all') params.append('role', role);
+        if (status && status !== 'all') params.append('status', status);
+
+        return {
+          url: `/user?${params.toString()}`,
+          method: 'get',
+        };
+      },
       providesTags: (result) =>
         result
           ? [
