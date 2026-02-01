@@ -3,7 +3,7 @@ import { useForm } from 'react-hook-form';
 import { useDispatch } from 'react-redux';
 import { useLoginMutation } from '../authApi';
 import { setCredentials } from '../authSlice';
-import { Button, Input, Logo } from '../../../components';
+import { Button, Input, Logo, Spinner } from '../../../components';
 
 const LoginForm = () => {
   const dispatch = useDispatch();
@@ -17,8 +17,8 @@ const LoginForm = () => {
     // TODO Remove this
     defaultValues: import.meta.env.DEV
       ? {
-          identifier: 'admin',
-          password: 'admin',
+          identifier: 'ahmad',
+          password: 'Ahmad.123456',
         }
       : {},
   });
@@ -67,7 +67,6 @@ const LoginForm = () => {
     <div className="max-w-md w-full space-y-8 p-8 bg-(--card) border border-(--border) shadow-lg rounded-xl">
       <div className="text-center flex flex-col items-center">
         <Logo iconOnly={true} size={60} />
-        {/* 3. Text: Uses var(--foreground) so it turns white in dark mode */}
         <h2 className="mt-6 text-3xl font-bold text-(--foreground)">Log in</h2>
       </div>
 
@@ -107,6 +106,7 @@ const LoginForm = () => {
           disabled={isLoading}
           className="w-full flex justify-center bg-primary text-primary-content hover:brightness-90"
         >
+          {isLoading && <Spinner size="sm" />}
           {isLoading ? 'Logging in...' : 'Log In'}
         </Button>
       </form>

@@ -11,7 +11,8 @@ const Input = forwardRef(
       label,
       error,
       required = false,
-      className = '',
+      className = '', // outer DIV
+      inputClassName = '', // input component
       ...props
     },
     ref
@@ -41,7 +42,7 @@ const Input = forwardRef(
               error
                 ? 'border-error focus:border-error focus:ring-error/20'
                 : 'border-(--border) focus:border-primary focus:ring-primary/20'
-            }`}
+            } ${inputClassName}`}
         />
         {error && <p className="mt-1 text-sm text-error">{error}</p>}
       </div>

@@ -4,24 +4,29 @@ import { createBrowserRouter, Navigate } from 'react-router-dom';
 
 import App from '../App.jsx';
 
-import { Unauthorized } from '../components';
-
 import AuthLayout from '../layouts/AuthLayout.jsx';
 import PublicLayout from '../layouts/PublicLayout.jsx';
 import AdminsLayout from '../layouts/AdminsLayout.jsx';
 
 import Login from '../pages/auth/Login.jsx';
 
+import GlobalError from '../Pages/error/GlobalError.jsx';
+import NotFound from '../pages/error/NotFound.jsx';
+import Unauthorized from '../pages/error/Unauthorized.jsx';
+
 import About from '../pages/public/About.jsx';
 import Home from '../pages/public/Home.jsx';
 
 import Dashboard from '../pages/admin/Dashboard.jsx';
-import Users from '../pages/admin/Users.jsx';
+import Users from '../pages/admin/users/Users.jsx';
+
+import { ROLES } from '../config/roles.js';
 
 const router = createBrowserRouter([
   {
     path: '/',
     element: <App />,
+    errorElement: <GlobalError/>,
     children: [
       // 1. Public Routes
       {
@@ -41,16 +46,15 @@ const router = createBrowserRouter([
           </AuthLayout>
         ),
       },
-      {
-        path: 'unauthorized',
-        element: <Unauthorized />,
-      },
 
       // 3. Protected Admin Routes
       {
         path: 'admin',
         element: (
-          <AuthLayout authentication={true} roles={['admin', 'manager']} />
+          <AuthLayout
+            authentication={true}
+            roles={[ROLES.ADMIN, ROLES.MANAGER]}
+          />
         ),
         children: [
           {
@@ -63,6 +67,17 @@ const router = createBrowserRouter([
           },
         ],
       },
+
+
+      {
+        path: 'unauthorized',
+        element: <Unauthorized />,
+      },
+
+      {
+        path: '*',
+        element: <NotFound/>
+      }
     ],
   },
 ]);

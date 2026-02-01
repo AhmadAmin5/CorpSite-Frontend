@@ -1,8 +1,8 @@
-import React from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { useLogoutMutation } from '../../features/auth/authApi';
 import { clearAuth } from '../../features/auth/authSlice';
+import { Spinner } from '../../components';
 
 import {
   LayoutDashboard,
@@ -19,7 +19,7 @@ import {
 const AdminSidebar = ({ isOpen, onClose }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const [logout] = useLogoutMutation();
+  const [logout, { isLoading }] = useLogoutMutation();
 
   const handleLogout = async () => {
     try {
@@ -101,7 +101,7 @@ const AdminSidebar = ({ isOpen, onClose }) => {
             onClick={handleLogout}
             className="flex items-center gap-3 w-full px-3 py-2.5 rounded-lg text-sm font-medium text-error hover:bg-error/10 transition-colors"
           >
-            <LogOut className="w-5 h-5" />
+            {isLoading ? <Spinner /> : <LogOut className="w-5 h-5" />}
             Logout
           </button>
         </div>
