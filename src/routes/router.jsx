@@ -23,6 +23,9 @@ import Media from '../pages/admin/media/Media.jsx';
 import Posts from '../pages/admin/posts/Posts.jsx';
 import CreatePost from '../pages/admin/posts/CreatePost.jsx';
 import EditPost from '../pages/admin/posts/EditPost.jsx';
+import Pages from '../pages/admin/pages/Pages.jsx';
+import CreatePage from '../pages/admin/pages/CreatePage.jsx';
+import EditPage from '../pages/admin/pages/EditPage.jsx';
 
 import { ROLES } from '../config/roles.js';
 
@@ -71,6 +74,9 @@ const router = createBrowserRouter([
               { path: 'posts', element: <Posts /> },
               { path: 'posts/create', element: <CreatePost /> },
               { path: 'posts/edit/:id', element: <EditPost /> },
+              { path: 'pages', element: <Pages /> },
+              { path: 'pages/create', element: <CreatePage /> },
+              { path: 'pages/edit/:id', element: <EditPage /> },
             ],
           },
         ],
