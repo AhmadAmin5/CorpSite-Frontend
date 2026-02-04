@@ -1,6 +1,6 @@
 import { format } from 'date-fns';
 import { User as UserIcon, ImageIcon, Edit, Trash2, Eye } from 'lucide-react';
-import {Button} from '../';
+import { Button } from '../';
 
 export const InfoCell = ({
   imgUrl,
@@ -73,12 +73,7 @@ export const DateCell = ({ date, formatStr = 'MMM d, yyyy' }) => (
   </span>
 );
 
-export const ActionsCell = ({
-  onEdit,
-  onDelete,
-  onView,
-  customActions,
-}) => {
+export const ActionsCell = ({ onEdit, onDelete, onView, customActions }) => {
   return (
     <div className="flex justify-end gap-1 opacity-60 group-hover:opacity-100 transition-opacity">
       {customActions}

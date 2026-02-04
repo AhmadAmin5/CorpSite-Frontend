@@ -16,17 +16,18 @@ const AuthLayout = ({ children, authentication = true, roles = [] }) => {
     if (authentication && !authStatus) {
       // Redirect to login, but REMEMBER where they were coming from
       navigate('/login', {
-        state: { from: location }, 
+        state: { from: location },
         replace: true,
       });
-    }
-    else if (!authentication && authStatus) {
+    } else if (!authentication && authStatus) {
       navigate('/admin/dashboard', { replace: true });
-    }
-    else if (authentication && roles.length > 0 && !roles.includes(userRole)) {
+    } else if (
+      authentication &&
+      roles.length > 0 &&
+      !roles.includes(userRole)
+    ) {
       navigate('/unauthorized', { replace: true });
-    }
-    else {
+    } else {
       setLoader(false);
     }
   }, [authStatus, userRole, navigate, authentication, roles, location]);

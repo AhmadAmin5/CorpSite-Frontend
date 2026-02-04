@@ -6,10 +6,12 @@ const useTheme = () => {
       const savedTheme = localStorage.getItem('theme');
       if (savedTheme) {
         return savedTheme;
+      } else {
+        return 'light';
       }
-      if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
-        return 'dark';
-      }
+      // if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+      //   return 'dark';
+      // }
     }
     return 'light';
   });

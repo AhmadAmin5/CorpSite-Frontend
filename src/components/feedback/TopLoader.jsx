@@ -20,7 +20,7 @@ const TopLoader = () => {
             return prev < 90 ? prev + Math.random() * 5 : prev;
           });
         }, 500);
-      }, 200); 
+      }, 200);
     } else {
       clearTimeout(delayTimer);
 
