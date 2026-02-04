@@ -8,6 +8,7 @@ import { Button, Input, Logo, Spinner } from '../../../components';
 const LoginForm = () => {
   const dispatch = useDispatch();
   const [login, { isLoading }] = useLoginMutation();
+  const [isLoggedIn, SetisLoggedIn] = useState(false)
 
   const {
     register,
@@ -40,6 +41,7 @@ const LoginForm = () => {
     try {
       const response = await login(loginData).unwrap();
       const userData = response.data;
+      SetisLoggedIn(true);
 
       dispatch(
         setCredentials({
@@ -103,11 +105,12 @@ const LoginForm = () => {
         </div>
         <Button
           type="submit"
+          variant={isLoggedIn? "success" : "primary"}
           disabled={isLoading}
-          className="w-full flex justify-center bg-primary text-primary-content hover:brightness-90"
+          className="w-full flex justify-center"
         >
           {isLoading && <Spinner size="sm" />}
-          {isLoading ? 'Logging in...' : 'Log In'}
+          {isLoggedIn ? "Logged in" : isLoading ? 'Logging in...' : 'Log In'}
         </Button>
       </form>
     </div>

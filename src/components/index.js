@@ -19,6 +19,7 @@ import Modal from './dialog/Modal';
 import ConfirmationDialog from './dialog/ConfirmationDialog';
 
 import Loading from './feedback/Loading';
+import TopLoader from './feedback/TopLoader';
 
 import AdminHeader from './layout/AdminHeader';
 import PublicHeader from './layout/PublicHeader';
@@ -34,7 +35,7 @@ export { Table, UserCell, InfoCell, DateCell, BadgeCell, ActionsCell };
 
 export { Modal, ConfirmationDialog };
 
-export { Loading };
+export { Loading, TopLoader };
 
 export { AdminHeader, PublicHeader, AdminFooter, PublicFooter, AdminSidebar };
 
