@@ -6,7 +6,7 @@ import {
   useCreateCategoryMutation,
   useUpdateCategoryMutation,
   useDeleteCategoryMutation,
-} from '../../../features/categories/categoriesApi';
+} from '../../categories/categoriesApi';
 import {
   Modal,
   Button,
@@ -158,7 +158,7 @@ const ManageCategoriesModal = ({ isOpen, onClose }) => {
         </form>
 
         {/* List Section */}
-        <div className="max-h-[400px] overflow-y-auto border rounded-lg border-(--border)">
+        <div className="max-h-100 overflow-y-auto border rounded-lg border-(--border)">
           {isLoading ? (
             <div className="p-4 text-center">
               <Spinner />
@@ -169,7 +169,7 @@ const ManageCategoriesModal = ({ isOpen, onClose }) => {
             </div>
           ) : (
             <table className="w-full text-sm text-left">
-              <thead className="bg-(--secondary)/5 text-(--secondary) font-semibold sticky top-0 bg-(--card)">
+              <thead className="bg-(--secondary)/5 text-(--secondary) font-semibold sticky top-0">
                 <tr>
                   <th className="p-3 border-b border-(--border)">Name</th>
                   <th className="p-3 border-b border-(--border)">Slug</th>

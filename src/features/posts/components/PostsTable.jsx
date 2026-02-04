@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useGetPostsQuery } from '../../../features/posts/postsApi';
+import { useGetPostsQuery } from '../postsApi';
 import {
   Table,
   InfoCell,
@@ -10,7 +10,7 @@ import {
 } from '../../../components';
 import PostStatusBadge from './PostStatusBadge';
 import { useSelector } from 'react-redux';
-import { selectUser } from '../../../features/auth/authSlice';
+import { selectUser } from '../../auth/authSlice';
 
 const PostsTable = ({
   searchQuery,

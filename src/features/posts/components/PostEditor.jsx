@@ -48,7 +48,7 @@ const PostEditor = ({ initialData, onSubmit, isSaving }) => {
   const navigate = useNavigate();
   const currentUser = useSelector(selectUser);
   const author = initialData?.author || currentUser;
-  console.log(author);  
+  console.log(author);
 
   const [isMediaModalOpen, setIsMediaModalOpen] = useState(false);
   const [mediaPickerContext, setMediaPickerContext] = useState('featured'); // 'featured' or 'editor'
@@ -157,7 +157,7 @@ const PostEditor = ({ initialData, onSubmit, isSaving }) => {
       ? window.location.origin
       : 'https://yoursite.com';
 
-return (
+  return (
     <FormProvider {...methods}>
       <form
         onSubmit={handleSubmit(onFormSubmit)}

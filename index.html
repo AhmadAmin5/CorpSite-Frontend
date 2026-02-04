@@ -9,9 +9,6 @@
     <script>
       (function () {
         const savedTheme = localStorage.getItem('theme');
-        const sysDark = window.matchMedia(
-          '(prefers-color-scheme: dark)'
-        ).matches;
         if (savedTheme === 'dark' || (!savedTheme && sysDark)) {
           document.documentElement.classList.add('dark');
         } else {

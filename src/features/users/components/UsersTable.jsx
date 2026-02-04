@@ -1,13 +1,12 @@
 import { useState } from 'react';
-import { useGetUsersQuery } from '../../../features/users/usersApi';
+import { useGetUsersQuery } from '../usersApi';
 import { Button, Table, UserCell, ActionsCell } from '../../../components';
 import useToast from '../../../context/ToastContext';
-import UsersTableSkeleton from './UsersTableSkeleton';
 import UserStatusBadge from './UserStatusBadge';
 import UserRoleBadge from './UserRoleBadge';
 import { Link, Check } from 'lucide-react';
 import { useSelector } from 'react-redux';
-import { selectUser } from '../../../features/auth/authSlice';
+import { selectUser } from '../../auth/authSlice';
 
 const isExpired = (expiryDate) => new Date(expiryDate) < new Date();
 

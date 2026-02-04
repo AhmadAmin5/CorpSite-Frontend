@@ -4,7 +4,7 @@ import { Plus, Search } from 'lucide-react';
 import { Button, Input, ConfirmationDialog, Select } from '../../../components';
 import { useDeletePageMutation } from '../../../features/pages/pagesApi';
 import useToast from '../../../context/ToastContext';
-import PagesTable from './PagesTable';
+import { PagesTable } from '../../../features/pages/components';
 
 const Pages = () => {
   const navigate = useNavigate();

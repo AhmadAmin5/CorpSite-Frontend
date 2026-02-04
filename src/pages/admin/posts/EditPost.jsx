@@ -3,7 +3,7 @@ import {
   useGetPostQuery,
   useUpdatePostMutation,
 } from '../../../features/posts/postsApi';
-import PostEditor from '../../../features/posts/components/PostEditor';
+import { PostEditor } from '../../../features/posts/components/';
 import { Loading, Button } from '../../../components';
 import { AlertTriangle } from 'lucide-react';
 import useToast from '../../../context/ToastContext';

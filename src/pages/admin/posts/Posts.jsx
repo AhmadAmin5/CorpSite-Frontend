@@ -5,8 +5,10 @@ import { Button, Input, ConfirmationDialog, Select } from '../../../components';
 import { useDeletePostMutation } from '../../../features/posts/postsApi';
 import { useGetCategoriesQuery } from '../../../features/categories/categoriesApi';
 import useToast from '../../../context/ToastContext';
-import PostsTable from './PostsTable';
-import ManageCategoriesModal from './ManageCategoriesModal';
+import {
+  PostsTable,
+  ManageCategoriesModal,
+} from '../../../features/posts/components/';
 
 const Posts = () => {
   const navigate = useNavigate();

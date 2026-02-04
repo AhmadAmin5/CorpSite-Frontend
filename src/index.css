@@ -47,6 +47,20 @@
 }
 
 .dark {
+  --background: #09090b;
+  --foreground: #fafafa;
+  --card: #18181b;
+  --card-foreground: #fafafa;
+
+  --border: #27272a;
+
+  --destructive: #450a0a;
+  --destructive-foreground: #fecaca;
+  --destructive-border: #7f1d1d;
+}
+
+/*
+.dark {
   --background: #0f172a;
   --foreground: #f8fafc;
 
@@ -58,3 +72,4 @@
   --destructive-foreground: #fecaca;
   --destructive-border: #7f1d1d;
 }
+*/

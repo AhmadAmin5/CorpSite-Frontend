@@ -1,6 +1,12 @@
 import { useForm, Controller } from 'react-hook-form';
-import { useInviteUserMutation } from '../../../features/users/usersApi';
-import { Modal, Input, Button, Select, Spinner } from '../../../components';
+import { useInviteUserMutation } from '../usersApi.js';
+import {
+  Modal,
+  Input,
+  Button,
+  Select,
+  Spinner,
+} from '../../../components/index.js';
 import { useEffect } from 'react';
 import { ROLE_OPTIONS } from '../../../config/roles.js';
 import useToast from '../../../context/ToastContext.jsx';

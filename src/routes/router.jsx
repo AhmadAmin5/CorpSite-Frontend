@@ -76,7 +76,7 @@ const router = createBrowserRouter([
               },
               {
                 path: 'users',
-                lazy: lazyLoad(() => import('../pages/admin/users/Users.jsx')),
+                lazy: lazyLoad(() => import('../pages/admin/Users.jsx')),
               },
               {
                 path: 'media',

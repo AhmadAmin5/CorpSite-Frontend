@@ -12,7 +12,7 @@ const Table = ({
 }) => {
   return (
     <div className="bg-(--card) rounded-xl border border-(--border) shadow-sm overflow-hidden flex flex-col h-full">
-      <div className="overflow-x-auto grow">
+      <div className="px-6 overflow-x-auto grow">
         <table className="w-full text-left border-collapse">
           <thead>
             <tr className="bg-(--secondary)/5 border-b border-(--border) text-xs uppercase text-(--secondary)">
@@ -63,7 +63,7 @@ const Table = ({
                   {columns.map((col, colIndex) => (
                     <td
                       key={colIndex}
-                      className={`px-6 py-4 align-middle ${col.className || ''}`}
+                      className={`px-2 py-4 align-middle ${col.className || ''}`}
                     >
                       {col.render ? col.render(row) : row[col.accessor]}
                     </td>

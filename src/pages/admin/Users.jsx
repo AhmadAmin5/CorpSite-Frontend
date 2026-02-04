@@ -1,11 +1,13 @@
 import { useState } from 'react';
 import { Plus, Search } from 'lucide-react';
-import { Button, Input, ConfirmationDialog, Select } from '../../../components';
-import UsersTable from './UsersTable';
-import InviteUserModal from './InviteUserModal';
-import EditUserModal from './EditUserModal';
-import { useDeleteUserMutation } from '../../../features/users/usersApi';
-import useToast from '../../../context/ToastContext';
+import { Button, Input, ConfirmationDialog, Select } from '../../components';
+import {
+  UsersTable,
+  InviteUserModal,
+  EditUserModal,
+} from '../../features/users/components';
+import { useDeleteUserMutation } from '../../features/users/usersApi';
+import useToast from '../../context/ToastContext';
 
 const Users = () => {
   const toast = useToast();

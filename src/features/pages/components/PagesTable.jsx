@@ -1,9 +1,9 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { FileText, Link as LinkIcon } from 'lucide-react';
-import { useGetPagesQuery } from '../../../features/pages/pagesApi';
+import { useGetPagesQuery } from '../pagesApi';
 import { Table, DateCell, ActionsCell } from '../../../components';
-import PostStatusBadge from '../posts/PostStatusBadge';
+import PostStatusBadge from '../../posts/components/PostStatusBadge';
 
 const PagesTable = ({ searchQuery, statusFilter, onDelete }) => {
   const navigate = useNavigate();

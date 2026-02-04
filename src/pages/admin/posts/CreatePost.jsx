@@ -1,5 +1,5 @@
 import { useNavigate } from 'react-router-dom';
-import PostEditor from '../../../features/posts/components/PostEditor';
+import { PostEditor } from '../../../features/posts/components';
 import { useCreatePostMutation } from '../../../features/posts/postsApi';
 import useToast from '../../../context/ToastContext';
 
