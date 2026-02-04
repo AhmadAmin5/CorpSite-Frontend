@@ -4,7 +4,7 @@ const authApi = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
     login: builder.mutation({
       query: (body) => ({
-        url: '/user/login',
+        url: '/auth/login',
         method: 'post',
         data: body,
       }),
@@ -13,7 +13,7 @@ const authApi = apiSlice.injectEndpoints({
 
     logout: builder.mutation({
       query: () => ({
-        url: '/user/logout',
+        url: '/auth/logout',
         method: 'post',
       }),
       invalidatesTags: ['Me', 'Auth'],

@@ -7,12 +7,10 @@ const Button = ({
   variant = 'primary',
   size = 'md',
 }) => {
-  // FIXED: Changed 'focus:' to 'focus-visible:'
   const baseStyle =
     'inline-flex items-center justify-center rounded-lg font-medium transition-colors duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed';
 
   const variants = {
-    // FIXED: Changed 'focus:' to 'focus-visible:' for colors too
     primary:
       'bg-primary text-primary-content hover:bg-(--color-primary-hover) focus-visible:ring-primary',
 

@@ -30,7 +30,6 @@ const PostsTable = ({
     category: categoryFilter,
   });
 
-  // --- MODULAR COLUMNS ---
   const columns = [
     {
       header: 'Post',

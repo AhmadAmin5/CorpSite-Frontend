@@ -15,7 +15,6 @@ const Users = () => {
 
   const [selectedUser, setSelectedUser] = useState(null);
 
-  // Filter States
   const [searchQuery, setSearchQuery] = useState('');
   const [roleFilter, setRoleFilter] = useState('all');
   const [statusFilter, setStatusFilter] = useState('all');
@@ -43,7 +42,6 @@ const Users = () => {
     }
   };
 
-  // Define Filter Options
   const roleOptions = [
     { value: 'all', label: 'All Roles' },
     { value: 'admin', label: 'Admin' },

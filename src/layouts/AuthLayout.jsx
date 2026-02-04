@@ -13,29 +13,24 @@ const AuthLayout = ({ children, authentication = true, roles = [] }) => {
   const userRole = useSelector(selectUserRole);
 
   useEffect(() => {
-    // A. REQUIRED AUTH: User is NOT logged in
     if (authentication && !authStatus) {
       // Redirect to login, but REMEMBER where they were coming from
       navigate('/login', {
-        state: { from: location }, // <--- The Magic Fix
+        state: { from: location }, 
         replace: true,
       });
     }
-    // B. PUBLIC ONLY: User IS logged in (e.g. visiting /login while active)
     else if (!authentication && authStatus) {
       navigate('/admin/dashboard', { replace: true });
     }
-    // C. ROLE MISMATCH: Logged in, but wrong role
     else if (authentication && roles.length > 0 && !roles.includes(userRole)) {
-      navigate('/unauthorized', { replace: true }); // <--- Add replace
+      navigate('/unauthorized', { replace: true });
     }
-    // D. ALL GOOD
     else {
       setLoader(false);
     }
   }, [authStatus, userRole, navigate, authentication, roles, location]);
 
-  // 3. Better Loading UI
   return loader ? (
     <div className="min-h-screen w-full flex flex-col items-center justify-center bg-(--background) gap-3">
       <Spinner size="lg" />

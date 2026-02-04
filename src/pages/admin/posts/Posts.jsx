@@ -1,12 +1,12 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Plus, Search, Tag } from 'lucide-react'; // Import Tag icon
+import { Plus, Search, Tag } from 'lucide-react';
 import { Button, Input, ConfirmationDialog, Select } from '../../../components';
 import { useDeletePostMutation } from '../../../features/posts/postsApi';
-import { useGetCategoriesQuery } from '../../../features/categories/categoriesApi'; // Import categories query
+import { useGetCategoriesQuery } from '../../../features/categories/categoriesApi';
 import useToast from '../../../context/ToastContext';
 import PostsTable from './PostsTable';
-import ManageCategoriesModal from './ManageCategoriesModal'; // Import Modal
+import ManageCategoriesModal from './ManageCategoriesModal';
 
 const Posts = () => {
   const navigate = useNavigate();
@@ -15,12 +15,11 @@ const Posts = () => {
   const [searchQuery, setSearchQuery] = useState('');
   const [statusFilter, setStatusFilter] = useState('all');
   const [categoryFilter, setCategoryFilter] = useState('all');
-  const [isCategoryModalOpen, setIsCategoryModalOpen] = useState(false); // Modal state
+  const [isCategoryModalOpen, setIsCategoryModalOpen] = useState(false);
 
   const [postToDelete, setPostToDelete] = useState(null);
   const [deletePost, { isLoading: isDeleting }] = useDeletePostMutation();
 
-  // Fetch categories for filter
   const { data: categoryData } = useGetCategoriesQuery();
 
   const handleDelete = async () => {

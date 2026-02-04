@@ -177,7 +177,7 @@ function withTimeout(
 }
 
 async function doRefresh(store, signal) {
-  const res = await axiosInstance.post('/user/refresh', undefined, {
+  const res = await axiosInstance.post('/auth/refresh', undefined, {
     signal,
     timeout: REFRESH_TIMEOUT_MS,
   });

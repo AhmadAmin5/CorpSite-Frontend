@@ -1,8 +1,6 @@
 import { useEffect, useState } from 'react';
 import { X, CheckCircle, AlertTriangle, Info, AlertCircle } from 'lucide-react';
 
-// 1. USE YOUR THEME COLORS
-// We use 'text-success' instead of 'text-green-600' to match your index.css
 const variants = {
   success: {
     icon: <CheckCircle className="w-5 h-5 text-success" />,

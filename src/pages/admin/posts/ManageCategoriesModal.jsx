@@ -21,7 +21,6 @@ const ManageCategoriesModal = ({ isOpen, onClose }) => {
   const [editingId, setEditingId] = useState(null);
   const [deleteId, setDeleteId] = useState(null);
 
-  // API
   const { data, isLoading } = useGetCategoriesQuery();
   const [createCategory, { isLoading: isCreating }] =
     useCreateCategoryMutation();
@@ -47,12 +46,9 @@ const ManageCategoriesModal = ({ isOpen, onClose }) => {
     },
   });
 
-  // Watch name for auto-slug generation
   const watchedName = watch('name');
 
   useEffect(() => {
-    // Only auto-generate if we are NOT editing an existing one (to avoid changing established URLs)
-    // AND the user hasn't manually modified the slug field yet
     if (!editingId && watchedName && !dirtyFields.slug) {
       const slug = watchedName
         .toLowerCase()
@@ -67,11 +63,11 @@ const ManageCategoriesModal = ({ isOpen, onClose }) => {
       if (editingId) {
         await updateCategory({ id: editingId, ...data }).unwrap();
         toast.success('Category updated');
-        handleCancelEdit(); // Reset form state
+        handleCancelEdit();
       } else {
         await createCategory(data).unwrap();
         toast.success('Category added');
-        reset(); // Clear form for next entry
+        reset();
       }
     } catch (err) {
       toast.error(err?.data?.message || 'Failed to save category');

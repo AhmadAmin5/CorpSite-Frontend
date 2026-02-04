@@ -1,5 +1,5 @@
 import { Globe, FileEdit, Archive, Lock } from 'lucide-react';
-import { StatusBadge } from '../../../components'; // Import the generic badge
+import { StatusBadge } from '../../../components';
 
 const PostStatusBadge = ({ status }) => {
   const config = {
@@ -19,7 +19,7 @@ const PostStatusBadge = ({ status }) => {
       label: 'Archived',
     },
     private: {
-      variant: 'info', // Uses your blue 'info' theme
+      variant: 'info',
       icon: Lock,
       label: 'Private',
     },

@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { useForm, Controller } from 'react-hook-form';
 import { useSelector } from 'react-redux';
 import { selectUser } from '../../../features/auth/authSlice';
-import { useGetCategoriesQuery } from '../../../features/categories/categoriesApi'; // Import
+import { useGetCategoriesQuery } from '../../../features/categories/categoriesApi';
 import {
   ArrowLeft,
   Save,
@@ -21,7 +21,6 @@ import {
   ChevronUp,
 } from 'lucide-react';
 
-// BlockNote Imports
 import { BlockNoteView } from '@blocknote/mantine';
 import {
   useCreateBlockNote,
@@ -70,10 +69,8 @@ const PostEditor = ({ initialData, onSubmit, isSaving }) => {
 
   const thisUser = useSelector(selectUser);
 
-  // Feature State: SEO Accordion
   const [isSeoOpen, setIsSeoOpen] = useState(false);
 
-  // Feature State: Stats
   const [stats, setStats] = useState({ words: 0, time: 0 });
 
   const {
@@ -127,7 +124,6 @@ const PostEditor = ({ initialData, onSubmit, isSaving }) => {
 
   */
 
-  // 3. Clear Draft on Submit
   const handleFormSubmit = async (data) => {
     // localStorage.removeItem(DRAFT_KEY);
     const blocks = editor.document;
@@ -155,7 +151,6 @@ const PostEditor = ({ initialData, onSubmit, isSaving }) => {
     }
   }, [watchedTitle, initialData, isDirty.slug, setValue]);
 
-  // --- Editor Setup ---
   const editor = useCreateBlockNote({
     initialContent: initialData?.content
       ? typeof initialData.content === 'string'
@@ -173,7 +168,6 @@ const PostEditor = ({ initialData, onSubmit, isSaving }) => {
       const cleanup = editor.onEditorContentChange(() => {
         handleEditorChange();
       });
-      // Initial calc
       handleEditorChange();
       return cleanup;
     }
@@ -225,10 +219,8 @@ const PostEditor = ({ initialData, onSubmit, isSaving }) => {
     setIsMediaModalOpen(true);
   };
 
-  // --- FEATURE: Live Preview ---
   const handlePreview = () => {
     const slug = watchedSlug || 'preview';
-    // Opens in new tab
     window.open(`/blog/${slug}`, '_blank');
   };
 

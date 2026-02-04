@@ -1,9 +1,7 @@
 import { format } from 'date-fns';
 import { User as UserIcon, ImageIcon, Edit, Trash2, Eye } from 'lucide-react';
-import Button from '../ui/Button';
+import {Button} from '../';
 
-// 1. Info Cell (Image + Title + Subtitle)
-// Used for: Users, Posts with thumbnails, etc.
 export const InfoCell = ({
   imgUrl,
   imgPlaceholder,
@@ -75,12 +73,11 @@ export const DateCell = ({ date, formatStr = 'MMM d, yyyy' }) => (
   </span>
 );
 
-// 5. Actions Cell (Standardizes the buttons on the right)
 export const ActionsCell = ({
   onEdit,
   onDelete,
   onView,
-  customActions, // Allow injecting extra buttons (like Copy Link)
+  customActions,
 }) => {
   return (
     <div className="flex justify-end gap-1 opacity-60 group-hover:opacity-100 transition-opacity">
@@ -90,14 +87,14 @@ export const ActionsCell = ({
         <Button
           size="sm"
           variant="ghost"
-          className="text-(--secondary) hover:text-primary w-8 h-8 p-0"
+          className="text-(--secondary) hover:text-primary w-10 h-10 p-0"
           title="View"
           onClick={(e) => {
             e.stopPropagation();
             onView();
           }}
         >
-          <Eye className="w-4 h-4" />
+          <Eye className="w-6 h-6" />
         </Button>
       )}
 
@@ -105,14 +102,14 @@ export const ActionsCell = ({
         <Button
           size="sm"
           variant="ghost"
-          className="text-(--secondary) hover:text-primary w-8 h-8 p-0"
+          className="text-(--secondary) hover:text-primary w-10 h-10 p-0"
           title="Edit"
           onClick={(e) => {
             e.stopPropagation();
             onEdit();
           }}
         >
-          <Edit className="w-4 h-4" />
+          <Edit className="w-6 h-6" />
         </Button>
       )}
 
@@ -120,14 +117,14 @@ export const ActionsCell = ({
         <Button
           size="sm"
           variant="ghost"
-          className="text-(--secondary) hover:text-error hover:bg-error/10 w-8 h-8 p-0"
+          className="text-(--secondary) hover:text-error hover:bg-error/10 w-10 h-10 p-0"
           title="Delete"
           onClick={(e) => {
             e.stopPropagation();
             onDelete();
           }}
         >
-          <Trash2 className="w-4 h-4" />
+          <Trash2 className="w-6 h-6" />
         </Button>
       )}
     </div>

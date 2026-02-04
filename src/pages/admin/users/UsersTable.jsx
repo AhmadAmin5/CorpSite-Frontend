@@ -75,7 +75,6 @@ const UsersTable = ({
           onEdit={() => onEdit(user)}
           onDelete={() => onDelete(user)}
           customActions={
-            // Inject the specific "Copy Link" button here
             !user.isActivated &&
             !user.isBlocked &&
             !isExpired(user.invitationExpiry) && (
@@ -99,7 +98,6 @@ const UsersTable = ({
     },
   ];
 
-  // if (isLoading) return <UsersTableSkeleton />;
   if (isError)
     return (
       <div className="p-6 text-center text-error">Failed to load users</div>
