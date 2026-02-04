@@ -1,7 +1,7 @@
 import { AlertTriangle } from 'lucide-react';
-import Modal from './Modal';
-import Button from './Button';
-import Spinner from './Spinner';
+import { Modal } from '../';
+import { Button } from '../';
+import { Spinner } from '../';
 
 const ConfirmationDialog = ({
   isOpen,
