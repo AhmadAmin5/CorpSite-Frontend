@@ -73,7 +73,7 @@ const router = createBrowserRouter([
             Component: () => (
               <AuthLayout
                 authentication={true}
-                roles={[ROLES.ADMIN, ROLES.MANAGER]}
+                roles={[ROLES.ADMIN, ROLES.MANAGER, ROLES.EDITOR]}
               />
             ),
           };

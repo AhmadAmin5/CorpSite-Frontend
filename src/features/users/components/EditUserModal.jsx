@@ -42,7 +42,7 @@ const EditUserModal = ({ isOpen, onClose, user }) => {
   const onSubmit = async (data) => {
     if (!user) return;
     try {
-      await updateUser({ id: user._id, ...data }).unwrap();
+      await updateUser({ id: user._id, data }).unwrap();
     } catch (err) {
       toast.error('Failed to edit user');
     }

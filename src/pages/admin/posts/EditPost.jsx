@@ -4,7 +4,7 @@ import {
   useUpdatePostMutation,
 } from '../../../features/posts/postsApi';
 import { PostEditor } from '../../../features/posts/components/';
-import { Loading, Button } from '../../../components';
+import { Button, SplashScreen } from '../../../components';
 import { AlertTriangle } from 'lucide-react';
 import useToast from '../../../context/ToastContext';
 
@@ -16,7 +16,7 @@ const EditPost = () => {
   const { data, isLoading, isError } = useGetPostQuery(id);
   const [updatePost, { isLoading: isSaving }] = useUpdatePostMutation();
 
-  if (isLoading) return <Loading />;
+  if (isLoading) return <SplashScreen message="Loading post" />;
 
   if (isError || !data?.data) {
     return (
@@ -34,7 +34,7 @@ const EditPost = () => {
     try {
       await updatePost({ id, ...formData }).unwrap();
       toast.success('Post updated successfully');
-      navigate('/admin/posts');
+      // navigate('/admin/posts');
     } catch (err) {
       console.error(err);
       toast.error(err?.data?.message || 'Failed to update post');

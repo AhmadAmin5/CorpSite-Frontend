@@ -19,7 +19,7 @@ const LoginForm = () => {
     defaultValues: import.meta.env.DEV
       ? {
           identifier: 'ahmad',
-          password: 'Ahmad.123456',
+          password: 'ahmad123',
         }
       : {},
   });

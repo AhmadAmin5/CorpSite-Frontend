@@ -12,6 +12,7 @@ import {
 } from '../../features/media/mediaApi';
 import { Modal, Button, Skeleton, Spinner } from '../index';
 import useToast from '../../context/ToastContext';
+import {Img } from '../'
 
 const MediaPickerModal = ({ isOpen, onClose, onSelect }) => {
   const toast = useToast();
@@ -135,7 +136,7 @@ const MediaPickerModal = ({ isOpen, onClose, onSelect }) => {
                       ${isFetching ? 'opacity-50' : ''}
                     `}
                   >
-                    <img
+                    <Img
                       src={item.url}
                       alt={item.originalName}
                       className="w-full h-full object-cover"

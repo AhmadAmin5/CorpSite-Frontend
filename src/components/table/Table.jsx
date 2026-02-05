@@ -149,7 +149,7 @@ const Table = ({
     <div className={`flex flex-col h-full ${className}`}>
       {/* --- DESKTOP VIEW --- */}
       <div className="hidden md:flex bg-(--card) rounded-xl border border-(--border) shadow-sm overflow-hidden flex-col">
-        <div className="overflow-x-auto grow">
+        <div className="px-3 overflow-x-auto grow">
           <table className="w-full text-left border-collapse">
             <thead>
               <tr className="bg-(--secondary)/5 border-b border-(--border) text-xs uppercase text-(--secondary)">
@@ -184,7 +184,7 @@ const Table = ({
                       {columns.map((col, colIndex) => (
                         <td
                           key={colIndex}
-                          className={`px-6 py-4 align-middle ${col.className || ''}`}
+                          className={`px-1 py-4 align-middle ${col.className || ''}`}
                         >
                           {col.render ? col.render(row) : row[col.accessor]}
                         </td>

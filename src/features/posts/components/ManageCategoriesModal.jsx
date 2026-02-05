@@ -21,7 +21,7 @@ const ManageCategoriesModal = ({ isOpen, onClose }) => {
   const [editingId, setEditingId] = useState(null);
   const [deleteId, setDeleteId] = useState(null);
 
-  const { data, isLoading } = useGetCategoriesQuery();
+  const { data, isLoading, isFetching } = useGetCategoriesQuery();
   const [createCategory, { isLoading: isCreating }] =
     useCreateCategoryMutation();
   const [updateCategory, { isLoading: isUpdating }] =
@@ -166,7 +166,7 @@ const ManageCategoriesModal = ({ isOpen, onClose }) => {
               No categories found.
             </div>
           ) : (
-            <table className="w-full text-sm text-left">
+            <table className={`w-full text-sm text-left ${isFetching && 'opacity-50'}`}>
               <thead className="bg-(--secondary)/5 text-(--foreground) font-semibold sticky top-0">
                 <tr>
                   <th className="p-3 border-b border-(--border)">Name</th>

@@ -90,7 +90,7 @@ const InviteUserModal = ({ isOpen, onClose }) => {
           })}
         />
 
-        <div className="space-y-1">
+        <div className="space-y-1 text-(--foreground)">
           <Controller
             name="role"
             control={control}

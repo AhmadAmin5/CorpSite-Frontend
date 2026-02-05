@@ -99,7 +99,8 @@ const UsersTable = ({
 
   if (isError)
     return (
-      <div className="p-6 text-center text-error">Failed to load users</div>
+      <div className="p-6 text-center text-error">Failed to load users. <br/> {error.data.message} <br/> {error.status == 403 && ("Only admins are allowed to access this section.")}</div>
+      
     );
 
   return (

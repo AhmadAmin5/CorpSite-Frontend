@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import { useGetPostsQuery } from '../postsApi';
 import {
   Table,
@@ -7,6 +7,7 @@ import {
   BadgeCell,
   DateCell,
   ActionsCell,
+  Img,
 } from '../../../components';
 import PostStatusBadge from './PostStatusBadge';
 import { useSelector } from 'react-redux';
@@ -50,10 +51,22 @@ const PostsTable = ({
     {
       header: 'Author',
       render: (post) => (
-        <span className="text-sm text-(--secondary)">
-          {post.author?.fullName || 'Unknown'}{' '}
-          {post.author?._id === thisUser._id && '(You)'}
-        </span>
+        <Link
+          to={`/author/${post.author?.username}`}
+          className="flex items-center gap-3 group"
+        >
+          <div className="w-6 h-6 rounded-full overflow-hidden border border-(--border) shrink-0">
+            <Img
+              src={post?.author?.profilePicture}
+              alt={post.author?.fullName}
+              className="w-full h-full object-cover"
+            />
+          </div>
+          <span className="text-sm text-(--secondary) group-hover:text-blue-600 transition-colors">
+            {post.author?.fullName || 'Unknown'}
+            {post.author?._id === thisUser?._id && ' (You)'}
+          </span>
+        </Link>
       ),
     },
     {
