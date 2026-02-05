@@ -13,10 +13,10 @@ const SeoSettingsCard = ({ siteUrl, urlPrefix = '/blog/' }) => {
   const excerpt = watch('excerpt');
 
   return (
-    <EditorCard 
-      title="Search Engine Optimization (SEO)" 
-      icon={Search} 
-      collapsible={true} 
+    <EditorCard
+      title="Search Engine Optimization (SEO)"
+      icon={Search}
+      collapsible={true}
       defaultOpen={false}
     >
       <div className="space-y-6">
@@ -29,7 +29,9 @@ const SeoSettingsCard = ({ siteUrl, urlPrefix = '/blog/' }) => {
             {metaTitle || title || 'Page Title'}
           </div>
           <div className="text-[#006621] dark:text-[#81c995] text-sm truncate">
-            {siteUrl}{urlPrefix}{slug || 'slug'}
+            {siteUrl}
+            {urlPrefix}
+            {slug || 'slug'}
           </div>
           <div className="text-(--secondary) text-sm mt-1 line-clamp-2">
             {metaDesc || excerpt || 'Meta description will appear here...'}

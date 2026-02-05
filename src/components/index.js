@@ -20,6 +20,8 @@ import ConfirmationDialog from './dialog/ConfirmationDialog';
 
 import Loading from './feedback/Loading';
 import TopLoader from './feedback/TopLoader';
+import SplashScreen from './feedback/SplashScreen';
+import NetworkAlert from './feedback/NetworkAlert';
 
 import AdminHeader from './layout/AdminHeader';
 import PublicHeader from './layout/PublicHeader';
@@ -35,7 +37,7 @@ export { Table, UserCell, InfoCell, DateCell, BadgeCell, ActionsCell };
 
 export { Modal, ConfirmationDialog };
 
-export { Loading, TopLoader };
+export { Loading, TopLoader, SplashScreen, NetworkAlert };
 
 export { AdminHeader, PublicHeader, AdminFooter, PublicFooter, AdminSidebar };
 

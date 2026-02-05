@@ -4,9 +4,10 @@ import { selectUser } from '../../features/auth/authSlice';
 import useTheme from '../../hooks/useTheme';
 import Logo from '../ui/Logo';
 
-import { Sun, Moon, User, Menu } from 'lucide-react';
+// Import the X icon
+import { Sun, Moon, User, Menu, X } from 'lucide-react';
 
-const AdminHeader = ({ onMenuClick }) => {
+const AdminHeader = ({ onMenuClick, isOpen }) => {
   const user = useSelector(selectUser);
   const { theme, toggleTheme } = useTheme();
   const [imgError, setImgError] = useState(false);
@@ -18,8 +19,9 @@ const AdminHeader = ({ onMenuClick }) => {
           <button
             onClick={onMenuClick}
             className="md:hidden p-2 -ml-2 rounded-lg hover:bg-primary/10 text-(--foreground) transition-colors"
+            aria-label={isOpen ? 'Close Menu' : 'Open Menu'}
           >
-            <Menu className="w-6 h-6" />
+            {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
           </button>
         )}
 

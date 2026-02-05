@@ -1,20 +1,23 @@
 import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
-import { useNavigate, useLocation, Outlet } from 'react-router-dom'; // 1. Import useLocation
+import { useNavigate, useLocation, Outlet } from 'react-router-dom';
 import { selectAuthStatus, selectUserRole } from '../features/auth/authSlice';
-import { Spinner } from '../components'; // 2. Assuming you have this from our components export
+// Import SplashScreen instead of Spinner
+import { SplashScreen } from '../components';
 
 const AuthLayout = ({ children, authentication = true, roles = [] }) => {
   const navigate = useNavigate();
-  const location = useLocation(); // 1. Get current location
+  const location = useLocation();
   const [loader, setLoader] = useState(true);
 
   const authStatus = useSelector(selectAuthStatus);
   const userRole = useSelector(selectUserRole);
 
   useEffect(() => {
+    // Artificial delay check to prevent flashing?
+    // Usually not needed if Redux state is instant, but good for UX if async.
+
     if (authentication && !authStatus) {
-      // Redirect to login, but REMEMBER where they were coming from
       navigate('/login', {
         state: { from: location },
         replace: true,
@@ -33,12 +36,7 @@ const AuthLayout = ({ children, authentication = true, roles = [] }) => {
   }, [authStatus, userRole, navigate, authentication, roles, location]);
 
   return loader ? (
-    <div className="min-h-screen w-full flex flex-col items-center justify-center bg-(--background) gap-3">
-      <Spinner size="lg" />
-      <p className="text-(--secondary) text-sm font-medium animate-pulse">
-        Verifying access...
-      </p>
-    </div>
+    <SplashScreen message="Verifying access..." />
   ) : (
     <>{children ? children : <Outlet />}</>
   );

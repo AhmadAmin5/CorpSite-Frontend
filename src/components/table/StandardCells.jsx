@@ -12,7 +12,6 @@ export const InfoCell = ({
 }) => {
   return (
     <div className="flex items-center gap-4">
-      {/* Thumbnail / Avatar */}
       <div className="w-10 h-10 rounded-lg bg-(--secondary)/10 flex items-center justify-center overflow-hidden border border-(--border) shrink-0">
         {imgUrl ? (
           <img
@@ -27,7 +26,6 @@ export const InfoCell = ({
         )}
       </div>
 
-      {/* Text Info */}
       <div className="min-w-0">
         <div
           className={`font-medium text-(--foreground) truncate max-w-50 ${onClick ? 'cursor-pointer hover:text-primary transition-colors' : ''}`}

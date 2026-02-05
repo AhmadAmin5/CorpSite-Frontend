@@ -1,7 +1,7 @@
 import { Tag } from 'lucide-react';
 import { Controller, useFormContext } from 'react-hook-form';
 import { useGetCategoriesQuery } from '../../../categories/categoriesApi';
-import { Select } from '../../../../components'
+import { Select } from '../../../../components';
 import { EditorCard } from '../../../../components/editor';
 
 const TaxonomyCard = () => {

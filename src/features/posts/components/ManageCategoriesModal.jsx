@@ -110,7 +110,6 @@ const ManageCategoriesModal = ({ isOpen, onClose }) => {
       maxWidth="max-w-4xl"
     >
       <div className="space-y-6">
-        {/* Form Section */}
         <form
           onSubmit={handleSubmit(onSubmit)}
           className="bg-(--secondary)/5 p-4 rounded-lg border border-(--border)"
@@ -157,7 +156,6 @@ const ManageCategoriesModal = ({ isOpen, onClose }) => {
           </div>
         </form>
 
-        {/* List Section */}
         <div className="max-h-100 overflow-y-auto border rounded-lg border-(--border)">
           {isLoading ? (
             <div className="p-4 text-center">
@@ -191,7 +189,9 @@ const ManageCategoriesModal = ({ isOpen, onClose }) => {
                         : 'hover:bg-(--foreground)/5'
                     }
                   >
-                    <td className="p-3 font-medium text-(--foreground)">{cat.name}</td>
+                    <td className="p-3 font-medium text-(--foreground)">
+                      {cat.name}
+                    </td>
                     <td className="p-3 text-(--foreground)">{cat.slug}</td>
                     <td className="p-3 text-(--foreground) hidden md:table-cell truncate max-w-xs">
                       {cat.description}

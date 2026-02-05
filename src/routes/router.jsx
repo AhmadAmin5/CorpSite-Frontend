@@ -1,8 +1,7 @@
 import { createBrowserRouter, Navigate } from 'react-router-dom';
-
 import App from '../App.jsx';
 import GlobalError from '../pages/error/GlobalError.jsx';
-
+import { SplashScreen } from '../components/index.js';
 import { ROLES } from '../config/roles.js';
 
 const lazyLoad = (importFunc) => async () => {
@@ -15,6 +14,7 @@ const router = createBrowserRouter([
     path: '/',
     element: <App />,
     errorElement: <GlobalError />,
+    hydrateFallbackElement: <SplashScreen message="Loading website..." />,
     children: [
       // 1. Public Routes
       {
@@ -80,7 +80,7 @@ const router = createBrowserRouter([
               },
               {
                 path: 'media',
-                lazy: lazyLoad(() => import('../pages/admin/media/Media.jsx')),
+                lazy: lazyLoad(() => import('../pages/admin/Media.jsx')),
               },
               {
                 path: 'posts',

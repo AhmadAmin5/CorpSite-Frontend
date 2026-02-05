@@ -1,13 +1,7 @@
 import { ArrowLeft, Eye, Save } from 'lucide-react';
 import { Button, Spinner } from '../';
 
-const EditorHeader = ({
-  title,
-  onBack,
-  onPreview,
-  isSaving,
-  isDirty,
-}) => {
+const EditorHeader = ({ title, onBack, onPreview, isSaving, isDirty }) => {
   return (
     <div className="shrink-0 bg-(--card)/80 backdrop-blur-md border-b border-(--border) px-6 py-3 flex items-center justify-between z-10 sticky top-0">
       <div className="flex items-center gap-4">

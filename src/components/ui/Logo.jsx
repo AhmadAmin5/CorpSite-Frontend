@@ -1,8 +1,14 @@
 import { Link } from 'react-router-dom';
 
-const Logo = ({ className = '', iconOnly = false, size = 32 }) => {
+const Logo = ({ className = '', iconOnly = false, size = 32, link = true }) => {
+  const Component = link ? Link : 'div';
+  const props = link ? { to: '/' } : {};
+
   return (
-    <Link to="/" className={`flex items-center gap-2 ${className}`}>
+    <Component
+      {...props}
+      className={`flex items-center gap-2 select-none ${className}`}
+    >
       <svg
         width={size}
         height={size}
@@ -42,11 +48,14 @@ const Logo = ({ className = '', iconOnly = false, size = 32 }) => {
         />
       </svg>
       {!iconOnly && (
-        <span className="font-bold text-xl tracking-tight text-(--foreground)">
+        <span
+          style={{ fontSize: size * 0.75 }}
+          className="font-bold tracking-tight text-(--foreground)"
+        >
           Corp<span className="text-primary">Site</span>
         </span>
       )}
-    </Link>
+    </Component>
   );
 };
 

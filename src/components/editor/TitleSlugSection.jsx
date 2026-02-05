@@ -40,7 +40,8 @@ const TitleSlugSection = ({ siteUrl, urlPrefix = '/blog/' }) => {
           className={`flex items-center w-full border rounded-lg overflow-hidden bg-(--background) ${errors.slug ? 'border-error' : 'border-(--border) focus-within:border-primary'}`}
         >
           <div className="pl-4 py-2 bg-(--secondary)/5 text-(--foreground)/50 text-sm whitespace-nowrap select-none">
-            {siteUrl}{urlPrefix}
+            {siteUrl}
+            {urlPrefix}
           </div>
           <input
             type="text"

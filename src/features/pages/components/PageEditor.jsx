@@ -58,7 +58,7 @@ const PageEditor = ({ initialData, onSubmit, isSaving }) => {
       title: initialData?.title || '',
       slug: initialData?.slug || '',
       status: initialData?.status || 'draft',
-      parent: initialData?.parent?._id || initialData?.parent || '', 
+      parent: initialData?.parent?._id || initialData?.parent || '',
       content: initialData?.content || [],
       metaTitle: initialData?.metaTitle || '',
       metaDescription: initialData?.metaDescription || '',
@@ -74,7 +74,9 @@ const PageEditor = ({ initialData, onSubmit, isSaving }) => {
   const watchedParentId = watch('parent');
 
   const selectedParent = allPages.find((p) => p._id === watchedParentId);
-  const dynamicUrlPrefix = selectedParent ? `/${selectedParent.fullPath}/` : '/';
+  const dynamicUrlPrefix = selectedParent
+    ? `/${selectedParent.fullPath}/`
+    : '/';
 
   const editor = useCreateBlockNote({
     initialContent: initialData?.content
@@ -139,9 +141,7 @@ const PageEditor = ({ initialData, onSubmit, isSaving }) => {
 
   const handlePreview = () => {
     const slug = watch('slug') || 'preview';
-    const path = selectedParent 
-      ? `${selectedParent.fullPath}/${slug}` 
-      : slug;
+    const path = selectedParent ? `${selectedParent.fullPath}/${slug}` : slug;
     window.open(`/${path}`, '_blank');
   };
 
@@ -169,8 +169,10 @@ const PageEditor = ({ initialData, onSubmit, isSaving }) => {
             <div className="grid grid-cols-1 lg:grid-cols-[1fr_350px] gap-8">
               {/* --- LEFT COLUMN: Main Content --- */}
               <div className="space-y-6 min-w-0">
-                
-                <TitleSlugSection siteUrl={siteUrl} urlPrefix={dynamicUrlPrefix} />
+                <TitleSlugSection
+                  siteUrl={siteUrl}
+                  urlPrefix={dynamicUrlPrefix}
+                />
 
                 <div className="min-h-125 pt-7 pb-5 bg-(--card) rounded-xl border border-(--border) shadow-sm p-1 text-(--foreground) [&_.bn-editor]:bg-transparent!">
                   <BlockNoteView
@@ -189,7 +191,10 @@ const PageEditor = ({ initialData, onSubmit, isSaving }) => {
                   </BlockNoteView>
                 </div>
 
-                <SeoSettingsCard siteUrl={siteUrl} urlPrefix={dynamicUrlPrefix} />
+                <SeoSettingsCard
+                  siteUrl={siteUrl}
+                  urlPrefix={dynamicUrlPrefix}
+                />
               </div>
 
               {/* --- RIGHT COLUMN: Sidebar --- */}
@@ -202,9 +207,9 @@ const PageEditor = ({ initialData, onSubmit, isSaving }) => {
                   updatedAt={initialData?.updatedAt}
                 />
                 <PublishingCard />
-                
-                <PageAttributesCard 
-                  currentId={initialData?._id} 
+
+                <PageAttributesCard
+                  currentId={initialData?._id}
                   pages={allPages}
                 />
               </div>

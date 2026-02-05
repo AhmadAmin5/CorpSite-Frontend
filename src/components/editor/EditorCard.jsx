@@ -26,10 +26,15 @@ export const EditorCard = ({
             {title}
           </div>
           <div className="flex items-center gap-2">
-            {headerAction && <div onClick={(e) => e.stopPropagation()}>{headerAction}</div>}
-            {collapsible && (
-              isOpen ? <ChevronUp className="w-4 h-4 text-(--secondary)" /> : <ChevronDown className="w-4 h-4 text-(--secondary)" />
+            {headerAction && (
+              <div onClick={(e) => e.stopPropagation()}>{headerAction}</div>
             )}
+            {collapsible &&
+              (isOpen ? (
+                <ChevronUp className="w-4 h-4 text-(--secondary)" />
+              ) : (
+                <ChevronDown className="w-4 h-4 text-(--secondary)" />
+              ))}
           </div>
         </div>
       )}

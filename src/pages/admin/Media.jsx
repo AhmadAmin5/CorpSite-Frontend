@@ -12,14 +12,14 @@ import {
   useGetMediaQuery,
   useUploadMediaMutation,
   useDeleteMediaMutation,
-} from '../../../features/media/mediaApi';
+} from '../../features/media/mediaApi';
 import {
   Button,
   Spinner,
   ConfirmationDialog,
   Skeleton,
-} from '../../../components';
-import useToast from '../../../context/ToastContext';
+} from '../../components';
+import useToast from '../../context/ToastContext';
 
 const Media = () => {
   const toast = useToast();
@@ -104,7 +104,7 @@ const Media = () => {
           </p>
         </div>
 
-        <div>
+        <div className="w-full sm:w-auto">
           <input
             type="file"
             ref={fileInputRef}
@@ -115,7 +115,7 @@ const Media = () => {
           <Button
             onClick={() => fileInputRef.current?.click()}
             disabled={isUploading}
-            className="flex items-center gap-2"
+            className="flex items-center justify-center w-full sm:w-auto"
           >
             {isUploading ? (
               <Spinner size="sm" className="text-white" />
@@ -169,7 +169,6 @@ const Media = () => {
                 {/* Hover Overlay */}
                 <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity flex flex-col items-center justify-center gap-2 p-2">
                   <div className="flex gap-2">
-                    {/* Copy Button */}
                     <button
                       onClick={() => handleCopyLink(item.url, item._id)}
                       className="p-2 bg-white/10 hover:bg-white/20 text-white rounded-full backdrop-blur-sm transition-colors"
@@ -182,7 +181,6 @@ const Media = () => {
                       )}
                     </button>
 
-                    {/* Delete Button */}
                     <button
                       onClick={() => setDeleteId(item._id)}
                       className="p-2 bg-red-500/20 hover:bg-red-500/40 text-red-400 rounded-full backdrop-blur-sm transition-colors"

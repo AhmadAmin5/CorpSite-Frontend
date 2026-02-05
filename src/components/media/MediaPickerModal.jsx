@@ -75,7 +75,6 @@ const MediaPickerModal = ({ isOpen, onClose, onSelect }) => {
       maxWidth="max-w-4xl"
     >
       <div className="flex flex-col h-[70vh]">
-        {/* Toolbar: Upload & Search (Future) */}
         <div className="flex justify-between items-center mb-4 pb-4 border-b border-(--border)">
           <div className="text-sm text-(--foreground)">
             {selectedImage ? '1 image selected' : 'Select an image to insert'}
@@ -106,7 +105,6 @@ const MediaPickerModal = ({ isOpen, onClose, onSelect }) => {
           </div>
         </div>
 
-        {/* Scrollable Grid Area */}
         <div className="flex-1 overflow-y-auto min-h-0 p-1">
           {isLoading ? (
             <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
@@ -143,7 +141,6 @@ const MediaPickerModal = ({ isOpen, onClose, onSelect }) => {
                       className="w-full h-full object-cover"
                     />
 
-                    {/* Selected Checkmark Overlay */}
                     {isSelected && (
                       <div className="absolute inset-0 bg-primary/20 flex items-center justify-center">
                         <div className="bg-primary text-white p-1 rounded-full shadow-sm">
@@ -158,9 +155,7 @@ const MediaPickerModal = ({ isOpen, onClose, onSelect }) => {
           )}
         </div>
 
-        {/* Footer: Pagination & Actions */}
         <div className="mt-4 pt-4 border-t border-(--border) flex justify-between items-center">
-          {/* Pagination */}
           <div className="flex gap-2">
             <Button
               variant="ghost"
@@ -183,7 +178,6 @@ const MediaPickerModal = ({ isOpen, onClose, onSelect }) => {
             </Button>
           </div>
 
-          {/* Action Buttons */}
           <div className="flex gap-3">
             <Button variant="ghost" onClick={onClose}>
               Cancel
