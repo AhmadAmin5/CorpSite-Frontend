@@ -31,7 +31,7 @@ const Modal = ({ isOpen, onClose, title, children, maxWidth = 'max-w-md' }) => {
           <h3 className="text-lg font-semibold text-(--foreground)">{title}</h3>
           <button
             onClick={onClose}
-            className="p-1 rounded-md text-(--secondary) hover:bg-(--secondary)/10 hover:text-(--foreground) transition-colors"
+            className="p-1 rounded-md text-(--foreground) hover:bg-(--secondary)/10 hover:text-(--foreground) transition-colors"
           >
             <X className="w-5 h-5" />
           </button>

@@ -2,7 +2,7 @@ import { useEffect, useState, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useForm, FormProvider } from 'react-hook-form';
 import { useSelector } from 'react-redux';
-import { selectUser } from '../../../features/auth/authSlice';
+import { selectUser } from '../../auth/authSlice';
 
 import { Image as ImageIcon } from 'lucide-react';
 import { BlockNoteView } from '@blocknote/mantine';
@@ -20,11 +20,10 @@ import {
   SeoSettingsCard,
   AuthorStatsCard,
   PublishingCard,
-  FeaturedImageCard,
-  ExcerptCard,
 } from '../../../components/editor';
 
-import TaxonomyCard from './editor/TaxonomyCard';
+import { useGetPagesQuery } from '../pagesApi';
+import PageAttributesCard from './PageAttributesCard';
 
 const getEditorStats = (editor) => {
   if (!editor) return { words: 0, time: 0 };
@@ -43,26 +42,24 @@ const getEditorStats = (editor) => {
   };
 };
 
-const PostEditor = ({ initialData, onSubmit, isSaving }) => {
+const PageEditor = ({ initialData, onSubmit, isSaving }) => {
   const navigate = useNavigate();
   const currentUser = useSelector(selectUser);
   const author = initialData?.author || currentUser;
 
   const [isMediaModalOpen, setIsMediaModalOpen] = useState(false);
-  const [mediaPickerContext, setMediaPickerContext] = useState('featured'); // 'featured' or 'editor'
-
   const [stats, setStats] = useState({ words: 0, time: 0 });
+
+  const { data: pagesData } = useGetPagesQuery({ limit: 1000 });
+  const allPages = pagesData?.data?.pages || [];
 
   const methods = useForm({
     defaultValues: {
       title: initialData?.title || '',
       slug: initialData?.slug || '',
-      excerpt: initialData?.excerpt || '',
       status: initialData?.status || 'draft',
-      featuredImage: initialData?.featuredImage || null,
+      parent: initialData?.parent?._id || initialData?.parent || '', 
       content: initialData?.content || [],
-      category: initialData?.category || 'Uncategorized',
-      tags: initialData?.tags?.join(', ') || '',
       metaTitle: initialData?.metaTitle || '',
       metaDescription: initialData?.metaDescription || '',
     },
@@ -70,10 +67,14 @@ const PostEditor = ({ initialData, onSubmit, isSaving }) => {
 
   const {
     handleSubmit,
-    setValue,
     watch,
     formState: { isDirty },
   } = methods;
+
+  const watchedParentId = watch('parent');
+
+  const selectedParent = allPages.find((p) => p._id === watchedParentId);
+  const dynamicUrlPrefix = selectedParent ? `/${selectedParent.fullPath}/` : '/';
 
   const editor = useCreateBlockNote({
     initialContent: initialData?.content
@@ -102,7 +103,6 @@ const PostEditor = ({ initialData, onSubmit, isSaving }) => {
     const customImageItem = {
       title: 'Image',
       onItemClick: () => {
-        setMediaPickerContext('editor');
         setIsMediaModalOpen(true);
       },
       aliases: ['image', 'img', 'picture'],
@@ -114,32 +114,24 @@ const PostEditor = ({ initialData, onSubmit, isSaving }) => {
   };
 
   const handleMediaSelect = (media) => {
-    if (mediaPickerContext === 'featured') {
-      setValue('featuredImage', media, { shouldDirty: true });
-    } else {
-      const currentBlock = editor.getTextCursorPosition().block;
-      editor.insertBlocks(
-        [
-          {
-            type: 'image',
-            props: { url: media.url, name: media.originalName },
-          },
-        ],
-        currentBlock,
-        'after'
-      );
-    }
+    const currentBlock = editor.getTextCursorPosition().block;
+    editor.insertBlocks(
+      [
+        {
+          type: 'image',
+          props: { url: media.url, name: media.originalName },
+        },
+      ],
+      currentBlock,
+      'after'
+    );
   };
 
   const onFormSubmit = async (data) => {
     const blocks = editor.document;
-    const tagsArray = data.tags
-      .split(',')
-      .map((t) => t.trim())
-      .filter(Boolean);
     const payload = {
       ...data,
-      tags: tagsArray,
+      parent: data.parent || null,
       content: JSON.stringify(blocks),
     };
     onSubmit(payload);
@@ -147,7 +139,10 @@ const PostEditor = ({ initialData, onSubmit, isSaving }) => {
 
   const handlePreview = () => {
     const slug = watch('slug') || 'preview';
-    window.open(`/blog/${slug}`, '_blank');
+    const path = selectedParent 
+      ? `${selectedParent.fullPath}/${slug}` 
+      : slug;
+    window.open(`/${path}`, '_blank');
   };
 
   const siteUrl =
@@ -161,10 +156,9 @@ const PostEditor = ({ initialData, onSubmit, isSaving }) => {
         onSubmit={handleSubmit(onFormSubmit)}
         className="flex flex-col h-full bg-(--background)"
       >
-        {/* --- Top Header --- */}
         <EditorHeader
-          title={initialData ? 'Edit Post' : 'Create New Post'}
-          onBack={() => navigate('/admin/posts')}
+          title={initialData ? 'Edit Page' : 'Create New Page'}
+          onBack={() => navigate('/admin/pages')}
           onPreview={handlePreview}
           isSaving={isSaving}
           isDirty={isDirty}
@@ -175,9 +169,9 @@ const PostEditor = ({ initialData, onSubmit, isSaving }) => {
             <div className="grid grid-cols-1 lg:grid-cols-[1fr_350px] gap-8">
               {/* --- LEFT COLUMN: Main Content --- */}
               <div className="space-y-6 min-w-0">
-                <TitleSlugSection siteUrl={siteUrl} urlPrefix="/blog/" />
+                
+                <TitleSlugSection siteUrl={siteUrl} urlPrefix={dynamicUrlPrefix} />
 
-                {/* Editor Container */}
                 <div className="min-h-125 pt-7 pb-5 bg-(--card) rounded-xl border border-(--border) shadow-sm p-1 text-(--foreground) [&_.bn-editor]:bg-transparent!">
                   <BlockNoteView
                     editor={editor}
@@ -195,7 +189,7 @@ const PostEditor = ({ initialData, onSubmit, isSaving }) => {
                   </BlockNoteView>
                 </div>
 
-                <SeoSettingsCard siteUrl={siteUrl} urlPrefix="/blog/" />
+                <SeoSettingsCard siteUrl={siteUrl} urlPrefix={dynamicUrlPrefix} />
               </div>
 
               {/* --- RIGHT COLUMN: Sidebar --- */}
@@ -208,14 +202,11 @@ const PostEditor = ({ initialData, onSubmit, isSaving }) => {
                   updatedAt={initialData?.updatedAt}
                 />
                 <PublishingCard />
-                <TaxonomyCard />
-                <FeaturedImageCard
-                  onOpenPicker={() => {
-                    setMediaPickerContext('featured');
-                    setIsMediaModalOpen(true);
-                  }}
+                
+                <PageAttributesCard 
+                  currentId={initialData?._id} 
+                  pages={allPages}
                 />
-                <ExcerptCard />
               </div>
             </div>
           </div>
@@ -231,4 +222,4 @@ const PostEditor = ({ initialData, onSubmit, isSaving }) => {
   );
 };
 
-export default PostEditor;
+export default PageEditor;

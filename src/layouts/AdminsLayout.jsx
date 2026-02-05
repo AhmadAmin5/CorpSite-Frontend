@@ -9,9 +9,8 @@ const AdminLayout = () => {
   const toggleSidebar = () => setIsSidebarOpen(!isSidebarOpen);
   const closeSidebar = () => setIsSidebarOpen(false);
 
-  const isEditorRoute =
-    location.pathname.includes('/admin/posts/create') ||
-    location.pathname.includes('/admin/posts/edit');
+const isEditorRoute = ['/posts/create', '/posts/edit', '/pages/create', '/pages/edit']
+  .some(path => location.pathname.includes(path));
 
   return (
     <div className="flex flex-col min-h-screen bg-(--background)">

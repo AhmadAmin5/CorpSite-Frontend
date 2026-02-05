@@ -164,12 +164,12 @@ const ManageCategoriesModal = ({ isOpen, onClose }) => {
               <Spinner />
             </div>
           ) : categories.length === 0 ? (
-            <div className="p-8 text-center text-(--secondary)">
+            <div className="p-8 text-center text-(--foreground)">
               No categories found.
             </div>
           ) : (
             <table className="w-full text-sm text-left">
-              <thead className="bg-(--secondary)/5 text-(--secondary) font-semibold sticky top-0">
+              <thead className="bg-(--secondary)/5 text-(--foreground) font-semibold sticky top-0">
                 <tr>
                   <th className="p-3 border-b border-(--border)">Name</th>
                   <th className="p-3 border-b border-(--border)">Slug</th>
@@ -188,24 +188,24 @@ const ManageCategoriesModal = ({ isOpen, onClose }) => {
                     className={
                       editingId === cat._id
                         ? 'bg-primary/5'
-                        : 'hover:bg-(--secondary)/5'
+                        : 'hover:bg-(--foreground)/5'
                     }
                   >
-                    <td className="p-3 font-medium">{cat.name}</td>
-                    <td className="p-3 text-(--secondary)">{cat.slug}</td>
-                    <td className="p-3 text-(--secondary) hidden md:table-cell truncate max-w-xs">
+                    <td className="p-3 font-medium text-(--foreground)">{cat.name}</td>
+                    <td className="p-3 text-(--foreground)">{cat.slug}</td>
+                    <td className="p-3 text-(--foreground) hidden md:table-cell truncate max-w-xs">
                       {cat.description}
                     </td>
                     <td className="p-3 text-right space-x-2 whitespace-nowrap">
                       <button
                         onClick={() => handleEdit(cat)}
-                        className="text-(--secondary) hover:text-primary p-1"
+                        className="text-(--foreground) hover:text-primary p-1"
                       >
                         <Edit className="w-4 h-4" />
                       </button>
                       <button
                         onClick={() => setDeleteId(cat._id)}
-                        className="text-(--secondary) hover:text-error p-1"
+                        className="text-(--foreground) hover:text-error p-1"
                       >
                         <Trash2 className="w-4 h-4" />
                       </button>

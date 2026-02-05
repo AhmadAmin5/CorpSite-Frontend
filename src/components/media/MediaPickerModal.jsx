@@ -77,7 +77,7 @@ const MediaPickerModal = ({ isOpen, onClose, onSelect }) => {
       <div className="flex flex-col h-[70vh]">
         {/* Toolbar: Upload & Search (Future) */}
         <div className="flex justify-between items-center mb-4 pb-4 border-b border-(--border)">
-          <div className="text-sm text-(--secondary)">
+          <div className="text-sm text-(--foreground)">
             {selectedImage ? '1 image selected' : 'Select an image to insert'}
           </div>
 
@@ -94,7 +94,7 @@ const MediaPickerModal = ({ isOpen, onClose, onSelect }) => {
               variant="ghost"
               onClick={() => fileInputRef.current?.click()}
               disabled={isUploading}
-              className="border border-dashed border-(--border) text-(--secondary) hover:text-primary hover:border-primary"
+              className="border border-dashed border-(--border) text-(--foreground) hover:text-primary hover:border-primary"
             >
               {isUploading ? (
                 <Spinner size="sm" />

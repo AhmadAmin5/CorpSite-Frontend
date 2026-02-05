@@ -3,11 +3,19 @@ import apiSlice from '../../api/apiSlice';
 const pagesApi = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
     getPages: builder.query({
-      query: ({ page = 1, limit = 10, search = '', status = '' }) => {
-        let queryString = `/page?page=${page}&limit=${limit}`;
-        if (search) queryString += `&search=${search}`;
-        if (status && status !== 'all') queryString += `&status=${status}`;
-        return { url: queryString, method: 'get' };
+      query: ({ page = 1, limit = 10, search = '', status = '' } = {}) => {
+        const params = new URLSearchParams({
+          page,
+          limit,
+        });
+
+        if (search) params.append('search', search);
+        if (status && status !== 'all') params.append('status', status);
+
+        return {
+          url: `/page?${params.toString()}`,
+          method: 'get',
+        };
       },
       providesTags: (result) =>
         result
