@@ -3,8 +3,8 @@ import { useSelector } from 'react-redux';
 import { selectUser } from '../../features/auth/authSlice';
 import useTheme from '../../hooks/useTheme';
 import Logo from '../ui/Logo';
+import Img from '../ui/Img';
 
-// Import the X icon
 import { Sun, Moon, User, Menu, X } from 'lucide-react';
 
 const AdminHeader = ({ onMenuClick, isOpen }) => {
@@ -53,7 +53,7 @@ const AdminHeader = ({ onMenuClick, isOpen }) => {
               </div>
               <div className="w-10 h-10 rounded-full overflow-hidden border-2 border-(--border) group-hover:border-primary transition-colors">
                 {!imgError && user.profilePicture ? (
-                  <img
+                  <Img
                     src={user.profilePicture}
                     alt="Profile"
                     className="w-full h-full object-cover"

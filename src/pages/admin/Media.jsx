@@ -18,6 +18,7 @@ import {
   Spinner,
   ConfirmationDialog,
   Skeleton,
+  Img
 } from '../../components';
 import useToast from '../../context/ToastContext';
 
@@ -159,12 +160,13 @@ const Media = () => {
                 className={`group relative aspect-square bg-(--secondary)/5 rounded-lg overflow-hidden border border-(--border) transition-all hover:shadow-md ${isFetching ? 'opacity-50' : ''}`}
               >
                 {/* Image */}
-                <img
-                  src={item.url}
-                  alt={item.originalName}
-                  className="w-full h-full object-cover"
-                  loading="lazy"
-                />
+                <div className="w-full">
+                  <Img
+                    src={item.url}
+                    alt={item.originalName}
+                    aspectRatio="aspect-square"
+                  />
+                </div>
 
                 {/* Hover Overlay */}
                 <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity flex flex-col items-center justify-center gap-2 p-2">

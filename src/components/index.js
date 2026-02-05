@@ -5,6 +5,7 @@ import Select from './ui/Select';
 import Spinner from './ui/Spinner';
 import Skeleton from './ui/Skeleton';
 import StatusBadge from './ui/StatusBadge';
+import Img from './ui/Img';
 
 import Table from './table/Table';
 import {
@@ -31,7 +32,7 @@ import AdminSidebar from './layout/AdminSidebar';
 
 import MediaPickerModal from './media/MediaPickerModal';
 
-export { Input, Logo, Button, Select, Spinner, Skeleton, StatusBadge };
+export { Input, Logo, Button, Select, Spinner, Skeleton, StatusBadge, Img };
 
 export { Table, UserCell, InfoCell, DateCell, BadgeCell, ActionsCell };
 

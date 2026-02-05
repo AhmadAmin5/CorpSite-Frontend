@@ -10,7 +10,7 @@ import {
   History,
   FileText,
 } from 'lucide-react';
-import { Select, Button } from '../';
+import { Select, Button, Img} from '../';
 import EditorCard from './EditorCard';
 
 export const AuthorStatsCard = ({
@@ -27,7 +27,7 @@ export const AuthorStatsCard = ({
         <div className="flex items-center gap-3">
           <div className="w-10 h-10 rounded-full overflow-hidden border border-(--border) bg-(--background)">
             {author?.profilePicture ? (
-              <img
+              <Img
                 src={author.profilePicture}
                 alt={author.fullName}
                 className="w-full h-full object-cover"
@@ -131,7 +131,7 @@ export const FeaturedImageCard = ({ onOpenPicker }) => {
     <EditorCard title="Featured Image" icon={ImageIcon}>
       {featuredImage ? (
         <div className="relative aspect-video rounded-lg overflow-hidden border border-(--border) group">
-          <img
+          <Img
             src={featuredImage.url}
             alt="Featured"
             className="w-full h-full object-cover"

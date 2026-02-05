@@ -1,6 +1,6 @@
 import { format } from 'date-fns';
 import { User as UserIcon, ImageIcon, Edit, Trash2, Eye } from 'lucide-react';
-import { Button } from '../';
+import { Button, Img } from '../';
 
 export const InfoCell = ({
   imgUrl,
@@ -14,7 +14,7 @@ export const InfoCell = ({
     <div className="flex items-center gap-4">
       <div className="w-10 h-10 rounded-lg bg-(--secondary)/10 flex items-center justify-center overflow-hidden border border-(--border) shrink-0">
         {imgUrl ? (
-          <img
+          <Img
             src={imgUrl}
             alt={title}
             className="w-full h-full object-cover"
