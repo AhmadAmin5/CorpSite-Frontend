@@ -31,12 +31,11 @@ const router = createBrowserRouter([
         ],
       },
 
-      // 2. Auth Routes (Login)
+      // 2. Auth Routes
       {
         path: 'login',
         lazy: async () => {
-          const { default: AuthLayout } =
-            await import('../layouts/AuthLayout.jsx');
+          const { default: AuthLayout } = await import('../layouts/AuthLayout.jsx');
           const { default: Login } = await import('../pages/auth/Login.jsx');
 
           return {
@@ -48,13 +47,28 @@ const router = createBrowserRouter([
           };
         },
       },
+      // Separated into its own object
+      {
+        path: 'activate-account',
+        lazy: async () => {
+          const { default: AuthLayout } = await import('../layouts/AuthLayout.jsx');
+          const { default: ActivateAccount } = await import('../pages/auth/ActivateAccount.jsx');
+
+          return {
+            Component: () => (
+              <AuthLayout authentication={false}>
+                <ActivateAccount />
+              </AuthLayout>
+            ),
+          };
+        },
+      },
 
       // 3. Protected Admin Routes
       {
         path: 'admin',
         lazy: async () => {
-          const { default: AuthLayout } =
-            await import('../layouts/AuthLayout.jsx');
+          const { default: AuthLayout } = await import('../layouts/AuthLayout.jsx');
           return {
             Component: () => (
               <AuthLayout
@@ -69,7 +83,6 @@ const router = createBrowserRouter([
             lazy: lazyLoad(() => import('../layouts/AdminsLayout.jsx')),
             children: [
               { index: true, element: <Navigate to="dashboard" replace /> },
-
               {
                 path: 'dashboard',
                 lazy: lazyLoad(() => import('../pages/admin/Dashboard.jsx')),
@@ -83,20 +96,20 @@ const router = createBrowserRouter([
                 lazy: lazyLoad(() => import('../pages/admin/Media.jsx')),
               },
               {
+                path: 'profile',
+                lazy: lazyLoad(() => import('../pages/admin/Profile.jsx')),
+              },
+              {
                 path: 'posts',
                 lazy: lazyLoad(() => import('../pages/admin/posts/Posts.jsx')),
               },
               {
                 path: 'posts/create',
-                lazy: lazyLoad(
-                  () => import('../pages/admin/posts/CreatePost.jsx')
-                ),
+                lazy: lazyLoad(() => import('../pages/admin/posts/CreatePost.jsx')),
               },
               {
                 path: 'posts/edit/:id',
-                lazy: lazyLoad(
-                  () => import('../pages/admin/posts/EditPost.jsx')
-                ),
+                lazy: lazyLoad(() => import('../pages/admin/posts/EditPost.jsx')),
               },
               {
                 path: 'pages',
@@ -104,15 +117,11 @@ const router = createBrowserRouter([
               },
               {
                 path: 'pages/create',
-                lazy: lazyLoad(
-                  () => import('../pages/admin/pages/CreatePage.jsx')
-                ),
+                lazy: lazyLoad(() => import('../pages/admin/pages/CreatePage.jsx')),
               },
               {
                 path: 'pages/edit/:id',
-                lazy: lazyLoad(
-                  () => import('../pages/admin/pages/EditPage.jsx')
-                ),
+                lazy: lazyLoad(() => import('../pages/admin/pages/EditPage.jsx')),
               },
             ],
           },

@@ -18,7 +18,6 @@ const usersApi = apiSlice.injectEndpoints({
         role = '',
         status = '',
       }) => {
-        // Build query params
         const params = new URLSearchParams({
           page,
           limit,
@@ -55,10 +54,10 @@ const usersApi = apiSlice.injectEndpoints({
     }),
 
     updateUser: builder.mutation({
-      query: ({ id, ...patchData }) => ({
+      query: ({ id, data }) => ({
         url: `/user/${id}`,
         method: 'patch',
-        data: patchData,
+        data: data, 
       }),
       invalidatesTags: (result, error, { id }) => [{ type: 'Users', id }],
     }),

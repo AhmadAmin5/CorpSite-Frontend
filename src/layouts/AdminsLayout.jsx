@@ -2,6 +2,8 @@ import { useState } from 'react';
 import { Outlet, useLocation } from 'react-router-dom';
 import AdminHeader from '../components/layout/AdminHeader';
 import AdminSidebar from '../components/layout/AdminSidebar';
+import { useSelector } from 'react-redux';
+import { selectAuthStatus } from '../features/auth/authSlice';
 
 const AdminLayout = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
@@ -9,6 +11,8 @@ const AdminLayout = () => {
 
   const toggleSidebar = () => setIsSidebarOpen(!isSidebarOpen);
   const closeSidebar = () => setIsSidebarOpen(false);
+
+  const isLoggedIn = useSelector(selectAuthStatus);
 
   const isEditorRoute = [
     '/posts/create',
@@ -23,7 +27,7 @@ const AdminLayout = () => {
       <AdminHeader onMenuClick={toggleSidebar} isOpen={isSidebarOpen} />
 
       <div className="flex flex-1 overflow-hidden relative">
-        {!isEditorRoute && (
+        {isLoggedIn && !isEditorRoute && (
           <AdminSidebar isOpen={isSidebarOpen} onClose={closeSidebar} />
         )}
 

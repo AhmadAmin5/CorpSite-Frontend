@@ -14,6 +14,7 @@ import {
   LogOut,
   MessageSquare,
   X,
+  UserRoundPen
 } from 'lucide-react';
 
 const AdminSidebar = ({ isOpen, onClose }) => {
@@ -40,6 +41,7 @@ const AdminSidebar = ({ isOpen, onClose }) => {
     { name: 'Media', path: '/admin/media', icon: ImageIcon },
     { name: 'Inquiries', path: '/admin/inquiries', icon: MessageSquare },
     { name: 'Users', path: '/admin/users', icon: Users, role: 'admin' },
+    { name: 'Profile', path: '/admin/profile', icon: UserRoundPen },
     {
       name: 'Settings',
       path: '/admin/settings',

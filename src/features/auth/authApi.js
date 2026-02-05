@@ -19,16 +19,42 @@ const authApi = apiSlice.injectEndpoints({
       invalidatesTags: ['Me', 'Auth'],
     }),
 
+    activateAccount: builder.mutation({
+      query: (data) => ({
+        url: '/auth/activate-account',
+        method: 'post',
+        data,
+      }),
+    }),
+
     me: builder.query({
       query: () => ({
-        url: '/user/profile',
+        url: '/auth/me',
         method: 'get',
       }),
       providesTags: ['Me'],
     }),
+
+    updateProfile: builder.mutation({
+      query: (formData) => ({
+        url: '/auth/update',
+        method: 'patch',
+        data: formData, 
+      }),
+      invalidatesTags: (result) => [
+        'Me',
+        { type: 'Users', id: result?.data?._id } 
+      ],
+    }),
   }),
 });
 
-export const { useLoginMutation, useLogoutMutation, useMeQuery } = authApi;
+export const { 
+  useLoginMutation, 
+  useLogoutMutation, 
+  useMeQuery, 
+  useActivateAccountMutation, 
+  useUpdateProfileMutation // Export this
+} = authApi;
 
 export default authApi;
