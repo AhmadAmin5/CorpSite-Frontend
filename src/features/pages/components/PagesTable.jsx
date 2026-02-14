@@ -1,11 +1,11 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { FileText, Link as LinkIcon } from 'lucide-react';
+import { FileText, Link as LinkIcon, LayoutTemplate, Code } from 'lucide-react';
 import { useGetPagesQuery } from '../pagesApi';
 import { Table, DateCell, ActionsCell } from '../../../components';
 import PostStatusBadge from '../../posts/components/PostStatusBadge';
 
-const PagesTable = ({ searchQuery, statusFilter, onDelete }) => {
+const PagesTable = ({ searchQuery, statusFilter, typeFilter, onDelete }) => {
   const navigate = useNavigate();
   const [page, setPage] = useState(1);
 
@@ -14,17 +14,47 @@ const PagesTable = ({ searchQuery, statusFilter, onDelete }) => {
     limit: 10,
     search: searchQuery,
     status: statusFilter,
+    pageType: typeFilter === 'all' ? undefined : typeFilter,
   });
+
+  const getTypeIcon = (type) => {
+    switch (type) {
+      case 'hardcoded':
+        return <LayoutTemplate className="w-4 h-4" />;
+      case 'functional':
+        return <Code className="w-4 h-4" />;
+      default:
+        return <FileText className="w-4 h-4" />;
+    }
+  };
+
+  const getTypeBadgeColor = (type) => {
+    switch (type) {
+      case 'hardcoded':
+        return 'bg-purple-100 text-purple-700 dark:bg-purple-900/30 dark:text-purple-300';
+      case 'functional':
+        return 'bg-blue-100 text-blue-700 dark:bg-blue-900/30 dark:text-blue-300';
+      default:
+        return 'bg-primary/10 text-primary';
+    }
+  };
 
   const columns = [
     {
       header: 'Page Title',
       render: (page) => (
         <div className="flex items-center gap-3">
-          <div className="p-2 rounded-lg bg-primary/10 text-primary">
-            <FileText className="w-4 h-4" />
+          <div className={`p-2 rounded-lg ${getTypeBadgeColor(page.pageType)}`}>
+            {getTypeIcon(page.pageType)}
           </div>
-          <div className="font-medium text-(--foreground)">{page.title}</div>
+          <div>
+            <div className="font-medium text-(--foreground)">{page.title}</div>
+            {page.componentName && (
+              <div className="text-[10px] bg-(--muted) text-(--secondary) px-1.5 py-0.5 rounded inline-block mt-1 font-mono">
+                {page.componentName}
+              </div>
+            )}
+          </div>
         </div>
       ),
     },
@@ -34,6 +64,14 @@ const PagesTable = ({ searchQuery, statusFilter, onDelete }) => {
         <div className="flex items-center gap-1 text-sm text-(--secondary)">
           <LinkIcon className="w-3 h-3" />/{page.fullPath}
         </div>
+      ),
+    },
+    {
+      header: 'Type',
+      render: (page) => (
+        <span className="capitalize text-sm text-(--secondary)">
+          {page.pageType || 'Generic'}
+        </span>
       ),
     },
     {

@@ -12,6 +12,7 @@ const Pages = () => {
 
   const [searchQuery, setSearchQuery] = useState('');
   const [statusFilter, setStatusFilter] = useState('all');
+  const [typeFilter, setTypeFilter] = useState('all'); // NEW
   const [pageToDelete, setPageToDelete] = useState(null);
 
   const [deletePage, { isLoading: isDeleting }] = useDeletePageMutation();
@@ -32,6 +33,14 @@ const Pages = () => {
     { value: 'published', label: 'Published' },
     { value: 'draft', label: 'Draft' },
     { value: 'archived', label: 'Archived' },
+  ];
+
+  // NEW OPTIONS
+  const typeOptions = [
+    { value: 'all', label: 'All Types' },
+    { value: 'generic', label: 'Generic' },
+    { value: 'hardcoded', label: 'Hardcoded' },
+    { value: 'functional', label: 'Functional' },
   ];
 
   return (
@@ -67,19 +76,30 @@ const Pages = () => {
           />
         </div>
 
-        <div className="w-full md:w-48">
-          <Select
-            value={statusFilter}
-            onChange={setStatusFilter}
-            options={statusOptions}
-            placeholder="Filter by Status"
-          />
+        <div className="flex flex-col sm:flex-row gap-4 w-full md:w-auto">
+          <div className="w-full sm:w-40">
+            <Select
+              value={typeFilter}
+              onChange={setTypeFilter}
+              options={typeOptions}
+              placeholder="Page Type"
+            />
+          </div>
+          <div className="w-full sm:w-40">
+            <Select
+              value={statusFilter}
+              onChange={setStatusFilter}
+              options={statusOptions}
+              placeholder="Status"
+            />
+          </div>
         </div>
       </div>
 
       <PagesTable
         searchQuery={searchQuery}
         statusFilter={statusFilter}
+        typeFilter={typeFilter}
         onDelete={setPageToDelete}
       />
 

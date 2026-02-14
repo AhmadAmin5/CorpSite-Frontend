@@ -4,7 +4,7 @@ import { useForm, FormProvider } from 'react-hook-form';
 import { useSelector } from 'react-redux';
 import { selectUser } from '../../auth/authSlice';
 
-import { Image as ImageIcon } from 'lucide-react';
+import { Image as ImageIcon, LayoutTemplate, Code } from 'lucide-react';
 import { BlockNoteView } from '@blocknote/mantine';
 import {
   useCreateBlockNote,
@@ -13,7 +13,7 @@ import {
 } from '@blocknote/react';
 import '@blocknote/mantine/style.css';
 
-import { MediaPickerModal } from '../../../components';
+import { MediaPickerModal, Button } from '../../../components';
 import {
   EditorHeader,
   TitleSlugSection,
@@ -59,6 +59,8 @@ const PageEditor = ({ initialData, onSubmit, isSaving }) => {
       slug: initialData?.slug || '',
       status: initialData?.status || 'draft',
       parent: initialData?.parent?._id || initialData?.parent || '',
+      pageType: initialData?.pageType || 'generic', // NEW
+      componentName: initialData?.componentName || '', // NEW
       content: initialData?.content || [],
       metaTitle: initialData?.metaTitle || '',
       metaDescription: initialData?.metaDescription || '',
@@ -72,6 +74,7 @@ const PageEditor = ({ initialData, onSubmit, isSaving }) => {
   } = methods;
 
   const watchedParentId = watch('parent');
+  const watchedPageType = watch('pageType');
 
   const selectedParent = allPages.find((p) => p._id === watchedParentId);
   const dynamicUrlPrefix = selectedParent
@@ -174,22 +177,51 @@ const PageEditor = ({ initialData, onSubmit, isSaving }) => {
                   urlPrefix={dynamicUrlPrefix}
                 />
 
-                <div className="min-h-125 pt-7 pb-5 bg-(--card) rounded-xl border border-(--border) shadow-sm p-1 text-(--foreground) [&_.bn-editor]:bg-transparent!">
-                  <BlockNoteView
-                    editor={editor}
-                    theme="light"
-                    slashMenu={false}
-                  >
-                    <SuggestionMenuController
-                      triggerCharacter={'/'}
-                      getItems={async (query) =>
-                        getCustomSlashMenuItems(editor).filter((item) =>
-                          item.title.toLowerCase().includes(query.toLowerCase())
-                        )
-                      }
-                    />
-                  </BlockNoteView>
-                </div>
+                {/* Conditional Editor Rendering */}
+                {watchedPageType === 'generic' ? (
+                  <div className="min-h-125 pt-7 pb-5 bg-(--card) rounded-xl border border-(--border) shadow-sm p-1 text-(--foreground) [&_.bn-editor]:bg-transparent!">
+                    <BlockNoteView
+                      editor={editor}
+                      theme="light"
+                      slashMenu={false}
+                    >
+                      <SuggestionMenuController
+                        triggerCharacter={'/'}
+                        getItems={async (query) =>
+                          getCustomSlashMenuItems(editor).filter((item) =>
+                            item.title
+                              .toLowerCase()
+                              .includes(query.toLowerCase())
+                          )
+                        }
+                      />
+                    </BlockNoteView>
+                  </div>
+                ) : (
+                  <div className="min-h-80 flex flex-col items-center justify-center bg-(--muted)/20 border-2 border-dashed border-(--muted) rounded-xl p-8 text-center space-y-4">
+                    <div className="w-16 h-16 bg-(--primary)/10 rounded-full flex items-center justify-center text-(--primary)">
+                      {watchedPageType === 'hardcoded' ? (
+                        <LayoutTemplate size={32} />
+                      ) : (
+                        <Code size={32} />
+                      )}
+                    </div>
+                    <div>
+                      <h3 className="text-lg font-semibold text-(--foreground)">
+                        {watchedPageType === 'hardcoded'
+                          ? 'Hardcoded Layout'
+                          : 'Functional Component'}
+                      </h3>
+                      <p className="text-(--secondary) max-w-md mx-auto mt-2">
+                        This page is rendered using a custom React component
+                        <span className="font-mono text-xs bg-(--muted) px-1.5 py-0.5 rounded mx-1">
+                          {watch('componentName') || '...'}
+                        </span>
+                        Wait for a developer to implement the frontend logic.
+                      </p>
+                    </div>
+                  </div>
+                )}
 
                 <SeoSettingsCard
                   siteUrl={siteUrl}
