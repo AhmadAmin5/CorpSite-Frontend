@@ -112,10 +112,10 @@ const Media = () => {
               onClick={() => fileInputRef.current?.click()}
               disabled={isUploading}
               className="flex items-center justify-center w-full sm:w-auto"
-              isButtonLoading = {isUploading}
+              isButtonLoading={isUploading}
               text="Uplaod Image"
-              textLoading="Uploading..."
-              icon={<UploadCloud/>}
+              loadingText="Uploading..."
+              icon={<UploadCloud />}
             />
           </div>
         }
@@ -203,9 +203,9 @@ const Media = () => {
                 disabled={isLoading || page <= 1}
                 onClick={() => setPage((p) => Math.max(1, p - 1))}
                 text="Prev"
-                icon={<ChevronLeft/>}
+                icon={<ChevronLeft />}
               />
-              
+
               <Button
                 variant="ghost"
                 size="sm"
@@ -213,8 +213,8 @@ const Media = () => {
                 isButtonLoading={isFetching}
                 onClick={() => setPage((p) => p + 1)}
                 text="Next"
-                icon={<ChevronRight/>}
-                iconPosition='right'
+                icon={<ChevronRight />}
+                iconPosition="right"
               />
             </div>
           </div>
@@ -229,7 +229,7 @@ const Media = () => {
         title="Delete Image?"
         message="Are you sure you want to delete this image? This action cannot be undone and might break posts using this image."
         confirmText="Delete"
-        loadingText="Deleting"
+        loadingText="Deleting..."
         isLoading={isDeleting}
       />
     </div>

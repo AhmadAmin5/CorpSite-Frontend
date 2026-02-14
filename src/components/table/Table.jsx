@@ -116,19 +116,19 @@ const Table = ({
             onClick={() =>
               pagination.onPageChange(Math.max(1, pagination.currentPage - 1))
             }
-            text='Prev'
-            icon={<ChevronLeft/>}
+            text="Prev"
+            icon={<ChevronLeft />}
           />
 
           <Button
             size="sm"
             variant="ghost"
-            disabled={pagination.currentPage >= pagination.totalPages }
-            isButtonLoading ={isLoading || isFetching }
+            disabled={pagination.currentPage >= pagination.totalPages}
+            isButtonLoading={isLoading || isFetching}
             onClick={() => pagination.onPageChange(pagination.currentPage + 1)}
-            text='Next'
-            icon={<ChevronRight/>}
-            iconPosition='right'
+            text="Next"
+            icon={<ChevronRight />}
+            iconPosition="right"
           />
         </div>
       </div>

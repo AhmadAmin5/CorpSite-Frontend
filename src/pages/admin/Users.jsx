@@ -76,7 +76,7 @@ const Users = () => {
           <Button
             onClick={() => setIsInviteModalOpen(true)}
             className="flex items-center gap-2"
-            icon={<Plus/>}
+            icon={<Plus />}
           />
         }
       />

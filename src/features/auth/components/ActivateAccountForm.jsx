@@ -67,7 +67,11 @@ const ActivateAccountForm = () => {
             momentarily.
           </p>
         </div>
-        <Button onClick={() => navigate('/login')} className="w-full" text="Go to Login"/>
+        <Button
+          onClick={() => navigate('/login')}
+          className="w-full"
+          text="Go to Login"
+        />
       </div>
     );
   }
@@ -87,7 +91,7 @@ const ActivateAccountForm = () => {
           onClick={() => navigate('/login')}
           variant="secondary"
           className="w-full"
-          text = "Back to Login"
+          text="Back to Login"
         />
       </div>
     );
@@ -147,7 +151,7 @@ const ActivateAccountForm = () => {
           className="w-full flex justify-center"
           isButtonLoading={isLoading}
           text="Activate Account"
-          textLoading="Activating..."
+          loadingText="Activating..."
         />
       </form>
     </div>

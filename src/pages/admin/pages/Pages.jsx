@@ -1,7 +1,14 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Plus, Search } from 'lucide-react';
-import { Button, Input, ConfirmationDialog, Select, PageHeader, TableToolbar } from '../../../components';
+import {
+  Button,
+  Input,
+  ConfirmationDialog,
+  Select,
+  PageHeader,
+  TableToolbar,
+} from '../../../components';
 import { useDeletePageMutation } from '../../../features/pages/pagesApi';
 import useToast from '../../../context/ToastContext';
 import { PagesTable } from '../../../features/pages/components';
@@ -45,23 +52,24 @@ const Pages = () => {
 
   return (
     <div className="space-y-6">
-
-      <PageHeader title="Pages" description="Build and manage high-performance dynamic pages for your site"
+      <PageHeader
+        title="Pages"
+        description="Build and manage high-performance dynamic pages for your site"
         actions={
           <Button
-          onClick={() => navigate('create')}
-          className="flex items-center gap-2"
-          text="Create New Page"
-          icon={<Plus/>}
-        />
+            onClick={() => navigate('create')}
+            className="flex items-center gap-2"
+            text="Create New Page"
+            icon={<Plus />}
+          />
         }
       />
 
       <TableToolbar
         searchQuery={searchQuery}
         onSearchChange={(e) => setSearchQuery(e.target.value)}
-        placeholder="Search posts...">
-
+        placeholder="Search posts..."
+      >
         <div className="flex flex-col sm:flex-row gap-4 w-full md:w-auto">
           <div className="w-full sm:w-40">
             <Select
@@ -80,7 +88,6 @@ const Pages = () => {
             />
           </div>
         </div>
-
       </TableToolbar>
 
       <PagesTable
@@ -98,6 +105,7 @@ const Pages = () => {
         message={`Are you sure you want to delete "${pageToDelete?.title}"? This cannot be undone.`}
         confirmText="Delete"
         isLoading={isDeleting}
+        loadingText="Deleting..."
       />
     </div>
   );

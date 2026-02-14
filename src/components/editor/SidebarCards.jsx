@@ -144,7 +144,7 @@ export const FeaturedImageCard = ({ onOpenPicker }) => {
               onClick={onOpenPicker}
               text="Change"
             />
-            
+
             <Button
               size="sm"
               variant="ghost"
@@ -152,7 +152,7 @@ export const FeaturedImageCard = ({ onOpenPicker }) => {
               onClick={() =>
                 setValue('featuredImage', null, { shouldDirty: true })
               }
-              icon={<X/>}
+              icon={<X />}
             />
           </div>
         </div>

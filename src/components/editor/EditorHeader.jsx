@@ -10,7 +10,7 @@ const EditorHeader = ({ title, onBack, onPreview, isSaving, isDirty }) => {
           size="sm"
           onClick={onBack}
           text="Back"
-          icon={<ArrowLeft/>}
+          icon={<ArrowLeft />}
         />
 
         <div className="h-6 w-px bg-(--border)" />
@@ -28,7 +28,7 @@ const EditorHeader = ({ title, onBack, onPreview, isSaving, isDirty }) => {
             variant="ghost"
             onClick={onPreview}
             title="Live Preview"
-            icon={<Eye/>}
+            icon={<Eye />}
             iconSize="lg"
           />
         )}
@@ -38,10 +38,9 @@ const EditorHeader = ({ title, onBack, onPreview, isSaving, isDirty }) => {
           isButtonLoading={isSaving}
           className="min-w-30 shadow-sm"
           text="Save"
-          textLoading="Saving..."
-          icon={<Save/>}
+          loadingText="Saving..."
+          icon={<Save />}
         />
-
       </div>
     </div>
   );

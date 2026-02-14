@@ -40,10 +40,15 @@ const ErrorLayout = ({
                 onClick={() => navigate(-1)}
                 className="border border-(--border)"
                 text="Go Back"
-                icon={<ArrowLeft/>}
+                icon={<ArrowLeft />}
               />
 
-              <Button variant="primary" onClick={() => navigate('/')} text="Back Home" icon={<Home/>}/>
+              <Button
+                variant="primary"
+                onClick={() => navigate('/')}
+                text="Back Home"
+                icon={<Home />}
+              />
             </>
           )}
         </div>

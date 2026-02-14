@@ -31,12 +31,7 @@ const Modal = ({ isOpen, onClose, title, children, maxWidth = 'max-w-md' }) => {
         <div className="flex items-center justify-between p-4 border-b border-(--border)">
           <h3 className="text-lg font-semibold text-(--foreground)">{title}</h3>
 
-          <Button
-            variant='ghost'
-            icon={<X/>}
-            onClick={onClose}
-          />
-
+          <Button variant="ghost" icon={<X />} onClick={onClose} />
         </div>
 
         <div className="p-4 md:p-6 max-h-[80vh] overflow-y-auto">

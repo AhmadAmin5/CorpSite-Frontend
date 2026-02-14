@@ -50,7 +50,7 @@ const ConfirmationDialog = ({
             }`}
             isButtonLoading={isLoading}
             text={confirmText}
-            textLoading={loadingText}
+            loadingText={loadingText}
           />
         </div>
       </div>

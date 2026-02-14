@@ -62,7 +62,7 @@ const PagesTable = ({ searchQuery, statusFilter, typeFilter, onDelete }) => {
       header: 'URL Path',
       render: (page) => (
         <div className="flex items-center gap-1 text-sm text-(--secondary)">
-          <LinkIcon className="w-3 h-3" />/{page.fullPath}
+          <LinkIcon className="w-3 h-3" />/{page.fullPath!=='/' && page.fullPath}
         </div>
       ),
     },

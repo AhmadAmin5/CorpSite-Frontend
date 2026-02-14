@@ -1,11 +1,6 @@
 import { useForm, Controller } from 'react-hook-form';
 import { useInviteUserMutation } from '../usersApi.js';
-import {
-  Modal,
-  Input,
-  Button,
-  Select,
-} from '../../../components/index.js';
+import { Modal, Input, Button, Select } from '../../../components/index.js';
 import { useEffect } from 'react';
 import { ROLE_OPTIONS } from '../../../config/roles.js';
 import useToast from '../../../context/ToastContext.jsx';
@@ -100,8 +95,13 @@ const InviteUserModal = ({ isOpen, onClose }) => {
         </div>
 
         <div className="pt-2 flex justify-end gap-3">
-          <Button variant="ghost" onClick={onClose} text="Cancel"/>
-          <Button type="submit" isButtonLoading={isLoading} text="Send Invitation" loadingText="Sending Invite..."/>
+          <Button variant="ghost" onClick={onClose} text="Cancel" />
+          <Button
+            type="submit"
+            isButtonLoading={isLoading}
+            text="Send Invitation"
+            loadingText="Sending Invite..."
+          />
         </div>
       </form>
     </Modal>

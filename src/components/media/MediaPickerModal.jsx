@@ -96,8 +96,8 @@ const MediaPickerModal = ({ isOpen, onClose, onSelect }) => {
               isButtonLoading={isUploading}
               className="border border-dashed border-(--border) text-(--foreground) hover:text-primary hover:border-primary"
               text="Uplaod New"
-              textLoading="Uplaoding..."
-              icon={<UploadCloud/>}
+              loadingText="Uplaoding..."
+              icon={<UploadCloud />}
             />
           </div>
         </div>
@@ -159,7 +159,7 @@ const MediaPickerModal = ({ isOpen, onClose, onSelect }) => {
               size="sm"
               disabled={page <= 1 || isFetching}
               onClick={() => setPage((p) => Math.max(1, p - 1))}
-              icon={<ChevronLeft/>}
+              icon={<ChevronLeft />}
             />
             <span className="text-sm flex items-center text-(--secondary)">
               {page} / {pagination.totalPages}
@@ -169,14 +169,17 @@ const MediaPickerModal = ({ isOpen, onClose, onSelect }) => {
               size="sm"
               disabled={page >= pagination.totalPages || isFetching}
               onClick={() => setPage((p) => p + 1)}
-              icon={<ChevronRight/>}
-            >
-            </Button>
+              icon={<ChevronRight />}
+            ></Button>
           </div>
 
           <div className="flex gap-3">
-            <Button variant="ghost" onClick={onClose} text="Cancel"/>
-            <Button disabled={!selectedImage} onClick={handleConfirm} text="Insert Selected"/>
+            <Button variant="ghost" onClick={onClose} text="Cancel" />
+            <Button
+              disabled={!selectedImage}
+              onClick={handleConfirm}
+              text="Insert Selected"
+            />
           </div>
         </div>
       </div>

@@ -86,8 +86,8 @@ export const ActionsCell = ({ onEdit, onDelete, onView, customActions }) => {
             e.stopPropagation();
             onView();
           }}
-          icon={<Eye/>}
-          iconSize='md'
+          icon={<Eye />}
+          iconSize="md"
         />
       )}
 
@@ -101,8 +101,8 @@ export const ActionsCell = ({ onEdit, onDelete, onView, customActions }) => {
             e.stopPropagation();
             onEdit();
           }}
-          icon={<Edit/>}
-          iconSize='md'
+          icon={<Edit />}
+          iconSize="md"
         />
       )}
 
@@ -116,8 +116,8 @@ export const ActionsCell = ({ onEdit, onDelete, onView, customActions }) => {
             e.stopPropagation();
             onDelete();
           }}
-          icon={<Trash2/>}
-          iconSize='md'
+          icon={<Trash2 />}
+          iconSize="md"
         />
       )}
     </div>

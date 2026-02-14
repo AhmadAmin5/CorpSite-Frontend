@@ -301,9 +301,9 @@ const Profile = () => {
                 type="submit"
                 disabled={isLoadingMe || (!isDirty && !selectedFile)}
                 isButtonLoading={isUpdating}
-                icon={<Save/>}
+                icon={<Save />}
                 text="Save Changes"
-                textLoading="Saving Changes..."
+                loadingText="Saving Changes..."
               />
             </div>
           </div>

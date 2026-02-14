@@ -93,8 +93,13 @@ const EditUserModal = ({ isOpen, onClose, user }) => {
         </div>
 
         <div className="pt-2 flex justify-end gap-3">
-          <Button variant="ghost" onClick={onClose} text="Cancel"/>
-          <Button type="submit" isButtonLoading={isLoading} text="Save Changes" loadingText="Saving..."/>
+          <Button variant="ghost" onClick={onClose} text="Cancel" />
+          <Button
+            type="submit"
+            isButtonLoading={isLoading}
+            text="Save Changes"
+            loadingText="Saving..."
+          />
         </div>
       </form>
     </Modal>

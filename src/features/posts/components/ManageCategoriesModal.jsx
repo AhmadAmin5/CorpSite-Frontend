@@ -139,10 +139,20 @@ const ManageCategoriesModal = ({ isOpen, onClose }) => {
           </div>
 
           <div className="flex justify-end gap-2">
-            {editingId &&
-              <Button type="button" variant="ghost" onClick={handleCancelEdit} text="Cancel Edit"/>
-            }
-            <Button type="submit" isButtonLoading={isCreating || isUpdating} text={editingId ? "Update Category" : "Add Category"} loadingText={editingId ? "Updating..." : "Adding..."}/>
+            {editingId && (
+              <Button
+                type="button"
+                variant="ghost"
+                onClick={handleCancelEdit}
+                text="Cancel Edit"
+              />
+            )}
+            <Button
+              type="submit"
+              isButtonLoading={isCreating || isUpdating}
+              text={editingId ? 'Update Category' : 'Add Category'}
+              loadingText={editingId ? 'Updating...' : 'Adding...'}
+            />
           </div>
         </form>
 
@@ -217,6 +227,8 @@ const ManageCategoriesModal = ({ isOpen, onClose }) => {
         title="Delete Category"
         message="Are you sure? Posts in this category will become Uncategorized."
         isLoading={isDeleting}
+        confirmText="Delete"
+        loadingText="Deleting..."
       />
     </Modal>
   );

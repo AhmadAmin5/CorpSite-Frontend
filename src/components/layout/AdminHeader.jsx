@@ -5,7 +5,7 @@ import { selectUser } from '../../features/auth/authSlice';
 import useTheme from '../../hooks/useTheme';
 import Logo from '../ui/Logo';
 import Img from '../ui/Img';
-import Button from '../ui/Button'
+import Button from '../ui/Button';
 
 import { Sun, Moon, User, Menu, X } from 'lucide-react';
 
@@ -42,8 +42,6 @@ const AdminHeader = ({ onMenuClick, isOpen }) => {
             <Moon className="w-5 h-5" />
           )}
         </button>
-          
-
 
         {user && (
           <>

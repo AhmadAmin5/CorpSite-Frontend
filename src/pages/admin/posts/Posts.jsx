@@ -1,7 +1,14 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Plus, Search, Tag } from 'lucide-react';
-import { Button, Input, ConfirmationDialog, Select, PageHeader, TableToolbar } from '../../../components';
+import {
+  Button,
+  Input,
+  ConfirmationDialog,
+  Select,
+  PageHeader,
+  TableToolbar,
+} from '../../../components';
 import { useDeletePostMutation } from '../../../features/posts/postsApi';
 import { useGetCategoriesQuery } from '../../../features/categories/categoriesApi';
 import useToast from '../../../context/ToastContext';
@@ -54,31 +61,34 @@ const Posts = () => {
   return (
     <div className="space-y-6">
       {/* Header */}
-      <PageHeader title="Posts" description="Create, manage, and publish content for your blog"
-      actions={<>
-        <Button
-            variant="secondary"
-            onClick={() => setIsCategoryModalOpen(true)}
-            className="flex items-center justify-center gap-2 border border-(--border) w-full sm:w-auto"
-            text="Manage Categories"
-            icon={<Tag/>}
-          />
+      <PageHeader
+        title="Posts"
+        description="Create, manage, and publish content for your blog"
+        actions={
+          <>
+            <Button
+              variant="secondary"
+              onClick={() => setIsCategoryModalOpen(true)}
+              className="flex items-center justify-center gap-2 border border-(--border) w-full sm:w-auto"
+              text="Manage Categories"
+              icon={<Tag />}
+            />
 
-          <Button
-            onClick={() => navigate('create')}
-            className="flex items-center justify-center gap-2 w-full sm:w-auto"
-            text="Create New Post"
-            icon={<Plus/>}
-          />
+            <Button
+              onClick={() => navigate('create')}
+              className="flex items-center justify-center gap-2 w-full sm:w-auto"
+              text="Create New Post"
+              icon={<Plus />}
+            />
           </>
-      }
+        }
       />
 
       <TableToolbar
         searchQuery={searchQuery}
         onSearchChange={(e) => setSearchQuery(e.target.value)}
-        placeholder="Search posts...">
-
+        placeholder="Search posts..."
+      >
         <div className="flex flex-col md:flex-row gap-4 w-full md:w-auto">
           <div className="w-full md:w-48">
             <Select
@@ -117,6 +127,7 @@ const Posts = () => {
         message={`Are you sure you want to delete "${postToDelete?.title}"?`}
         confirmText="Delete"
         isLoading={isDeleting}
+        loadingText="Deleting..."
       />
 
       {/* Manage Categories Modal */}

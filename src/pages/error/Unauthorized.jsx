@@ -17,10 +17,15 @@ const Unauthorized = () => {
         onClick={() => navigate('/')}
         className="border border-(--border)"
         text="Home"
-        icon={<Home/>}
+        icon={<Home />}
       />
 
-      <Button variant="primary" onClick={handleLoginRedirect} text="Log In" icon={<LogIn/>}/>
+      <Button
+        variant="primary"
+        onClick={handleLoginRedirect}
+        text="Log In"
+        icon={<LogIn />}
+      />
     </>
   );
 
