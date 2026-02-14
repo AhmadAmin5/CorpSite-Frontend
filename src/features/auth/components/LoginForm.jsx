@@ -108,10 +108,10 @@ const LoginForm = () => {
           variant={isLoggedIn ? 'success' : 'primary'}
           disabled={isLoading}
           className="w-full flex justify-center"
-        >
-          {isLoading && <Spinner size="sm" />}
-          {isLoggedIn ? 'Logged in' : isLoading ? 'Logging in...' : 'Log In'}
-        </Button>
+          isButtonLoading={isLoading}
+          text={isLoggedIn ? 'Logged in' : 'Log In'}
+          loadingText="Logging In"
+        />
       </form>
     </div>
   );

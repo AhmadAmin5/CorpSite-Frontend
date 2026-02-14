@@ -56,10 +56,9 @@ const Pages = () => {
         <Button
           onClick={() => navigate('create')}
           className="flex items-center gap-2"
-        >
-          <Plus className="w-4 h-4" />
-          Create New Page
-        </Button>
+          text="Create New Page"
+          icon={<Plus/>}
+        />
       </div>
 
       <div className="bg-(--card) p-4 rounded-xl border border-(--border) shadow-sm flex flex-col md:flex-row gap-4">

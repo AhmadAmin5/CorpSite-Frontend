@@ -25,7 +25,7 @@ const EditPage = () => {
           <AlertTriangle className="w-8 h-8" />
         </div>
         <h2 className="text-xl font-bold">Page not found</h2>
-        <Button onClick={() => navigate('/admin/pages')}>Go Back</Button>
+        <Button onClick={() => navigate('/admin/pages')} text="Go Back"/>
       </div>
     );
   }

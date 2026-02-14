@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 import { X } from 'lucide-react';
 import { createPortal } from 'react-dom';
+import Button from '../ui/Button';
 
 const Modal = ({ isOpen, onClose, title, children, maxWidth = 'max-w-md' }) => {
   // Prevent scrolling when modal is open
@@ -29,12 +30,13 @@ const Modal = ({ isOpen, onClose, title, children, maxWidth = 'max-w-md' }) => {
       >
         <div className="flex items-center justify-between p-4 border-b border-(--border)">
           <h3 className="text-lg font-semibold text-(--foreground)">{title}</h3>
-          <button
+
+          <Button
+            variant='ghost'
+            icon={<X/>}
             onClick={onClose}
-            className="p-1 rounded-md text-(--foreground) hover:bg-(--secondary)/10 hover:text-(--foreground) transition-colors"
-          >
-            <X className="w-5 h-5" />
-          </button>
+          />
+
         </div>
 
         <div className="p-4 md:p-6 max-h-[80vh] overflow-y-auto">

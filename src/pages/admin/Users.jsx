@@ -1,6 +1,13 @@
 import { useState } from 'react';
 import { Plus, Search } from 'lucide-react';
-import { Button, Input, ConfirmationDialog, Select } from '../../components';
+import {
+  Button,
+  Input,
+  ConfirmationDialog,
+  Select,
+  PageHeader,
+  TableToolbar,
+} from '../../components';
 import {
   UsersTable,
   InviteUserModal,
@@ -61,56 +68,43 @@ const Users = () => {
 
   return (
     <div className="space-y-6">
-      <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
-        <div>
-          <h1 className="text-2xl font-bold text-(--foreground)">Users</h1>
-          <p className="text-(--secondary) text-sm mt-1">
-            Manage your team members and their permissions here.
-          </p>
-        </div>
+      {/* 1. New Modular Header */}
+      <PageHeader
+        title="Users"
+        description="Manage your team members and their permissions here."
+        actions={
+          <Button
+            onClick={() => setIsInviteModalOpen(true)}
+            className="flex items-center gap-2"
+            icon={<Plus/>}
+          />
+        }
+      />
 
-        <Button
-          onClick={() => setIsInviteModalOpen(true)}
-          className="flex items-center gap-2"
-        >
-          <Plus className="w-4 h-4" />
-          Invite User
-        </Button>
-      </div>
-
-      <div className="bg-(--card) p-4 rounded-xl border border-(--border) shadow-sm flex flex-col md:flex-row gap-4">
-        <div className="relative grow md:max-w-md">
-          <div className="absolute left-3 top-1/2 -translate-y-1/2 text-(--secondary)">
-            <Search className="w-4 h-4" />
-          </div>
-          <Input
-            placeholder="Search users..."
-            value={searchQuery}
-            onChange={(e) => setSearchQuery(e.target.value)}
-            inputClassName="pl-10"
-            className="w-full"
+      {/* 2. New Modular Toolbar */}
+      <TableToolbar
+        searchQuery={searchQuery}
+        onSearchChange={(e) => setSearchQuery(e.target.value)}
+        placeholder="Search users..."
+      >
+        {/* Pass specific filters as children */}
+        <div className="w-full md:w-48">
+          <Select
+            value={roleFilter}
+            onChange={setRoleFilter}
+            options={roleOptions}
+            placeholder="Filter by Role"
           />
         </div>
-
-        <div className="flex flex-col md:flex-row gap-4 w-full md:w-auto">
-          <div className="w-full md:w-48">
-            <Select
-              value={roleFilter}
-              onChange={setRoleFilter}
-              options={roleOptions}
-              placeholder="Filter by Role"
-            />
-          </div>
-          <div className="w-full md:w-48">
-            <Select
-              value={statusFilter}
-              onChange={setStatusFilter}
-              options={statusOptions}
-              placeholder="Filter by Status"
-            />
-          </div>
+        <div className="w-full md:w-48">
+          <Select
+            value={statusFilter}
+            onChange={setStatusFilter}
+            options={statusOptions}
+            placeholder="Filter by Status"
+          />
         </div>
-      </div>
+      </TableToolbar>
 
       <UsersTable
         searchQuery={searchQuery}

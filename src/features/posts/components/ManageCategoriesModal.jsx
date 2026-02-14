@@ -139,20 +139,10 @@ const ManageCategoriesModal = ({ isOpen, onClose }) => {
           </div>
 
           <div className="flex justify-end gap-2">
-            {editingId && (
-              <Button type="button" variant="ghost" onClick={handleCancelEdit}>
-                Cancel Edit
-              </Button>
-            )}
-            <Button type="submit" disabled={isCreating || isUpdating}>
-              {isCreating || isUpdating ? (
-                <Spinner size="sm" />
-              ) : editingId ? (
-                'Update Category'
-              ) : (
-                'Add Category'
-              )}
-            </Button>
+            {editingId &&
+              <Button type="button" variant="ghost" onClick={handleCancelEdit} text="Cancel Edit"/>
+            }
+            <Button type="submit" isButtonLoading={isCreating || isUpdating} text={editingId ? "Update Category" : "Add Category"} loadingText={editingId ? "Updating..." : "Adding..."}/>
           </div>
         </form>
 

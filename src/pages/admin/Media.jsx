@@ -22,6 +22,8 @@ import {
 } from '../../components';
 import useToast from '../../context/ToastContext';
 
+import { PageHeader, EmptyState } from './../../components';
+
 const Media = () => {
   const toast = useToast();
   const fileInputRef = useRef(null);
@@ -94,39 +96,30 @@ const Media = () => {
 
   return (
     <div className="space-y-6">
-      {/* Header */}
-      <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
-        <div>
-          <h1 className="text-2xl font-bold text-(--foreground)">
-            Media Library
-          </h1>
-          <p className="text-(--secondary) text-sm mt-1">
-            Manage images and files for your posts.
-          </p>
-        </div>
-
-        <div className="w-full sm:w-auto">
-          <input
-            type="file"
-            ref={fileInputRef}
-            className="hidden"
-            accept="image/*"
-            onChange={handleFileSelect}
-          />
-          <Button
-            onClick={() => fileInputRef.current?.click()}
-            disabled={isUploading}
-            className="flex items-center justify-center w-full sm:w-auto"
-          >
-            {isUploading ? (
-              <Spinner size="sm" className="text-white" />
-            ) : (
-              <UploadCloud className="w-4 h-4" />
-            )}
-            {isUploading ? 'Uploading...' : 'Upload Image'}
-          </Button>
-        </div>
-      </div>
+      <PageHeader
+        title="Media Library"
+        description="Manage images and files for your posts."
+        actions={
+          <div>
+            <input
+              type="file"
+              ref={fileInputRef}
+              className="hidden"
+              accept="image/*"
+              onChange={handleFileSelect}
+            />
+            <Button
+              onClick={() => fileInputRef.current?.click()}
+              disabled={isUploading}
+              className="flex items-center justify-center w-full sm:w-auto"
+              isButtonLoading = {isUploading}
+              text="Uplaod Image"
+              textLoading="Uploading..."
+              icon={<UploadCloud/>}
+            />
+          </div>
+        }
+      />
 
       {/* Content Area */}
       <div className="bg-(--card) rounded-xl border border-(--border) shadow-sm p-6 min-h-100">
@@ -139,18 +132,13 @@ const Media = () => {
           </div>
         ) : mediaList.length === 0 ? (
           // Empty State
-          <div className="flex flex-col items-center justify-center h-64 text-(--secondary) border-2 border-dashed border-(--border) rounded-xl">
-            <ImageIcon className="w-12 h-12 opacity-20 mb-2" />
-            <p>No media found</p>
-            <Button
-              variant="ghost"
-              size="sm"
-              onClick={() => fileInputRef.current?.click()}
-              className="mt-2 text-primary"
-            >
-              Upload your first image
-            </Button>
-          </div>
+          <EmptyState
+            icon={ImageIcon}
+            title="No media found"
+            description="Upload images to use them in your posts and pages."
+            actionLabel="Upload your first image"
+            onAction={() => fileInputRef.current?.click()}
+          />
         ) : (
           // Image Grid
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
@@ -212,19 +200,22 @@ const Media = () => {
               <Button
                 variant="ghost"
                 size="sm"
-                disabled={page <= 1 || isFetching}
+                disabled={isLoading || page <= 1}
                 onClick={() => setPage((p) => Math.max(1, p - 1))}
-              >
-                <ChevronLeft className="w-4 h-4 mr-1" /> Prev
-              </Button>
+                text="Prev"
+                icon={<ChevronLeft/>}
+              />
+              
               <Button
                 variant="ghost"
                 size="sm"
-                disabled={page >= pagination.totalPages || isFetching}
+                disabled={isLoading || page >= pagination.totalPages}
+                isButtonLoading={isFetching}
                 onClick={() => setPage((p) => p + 1)}
-              >
-                Next <ChevronRight className="w-4 h-4 ml-1" />
-              </Button>
+                text="Next"
+                icon={<ChevronRight/>}
+                iconPosition='right'
+              />
             </div>
           </div>
         )}

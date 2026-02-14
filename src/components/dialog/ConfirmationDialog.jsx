@@ -1,7 +1,6 @@
 import { AlertTriangle } from 'lucide-react';
 import { Modal } from '../';
 import { Button } from '../';
-import { Spinner } from '../';
 
 const ConfirmationDialog = ({
   isOpen,
@@ -39,9 +38,9 @@ const ConfirmationDialog = ({
             onClick={onClose}
             className="flex-1"
             disabled={isLoading}
-          >
-            {cancelText}
-          </Button>
+            text={cancelText}
+          />
+
           <Button
             onClick={onConfirm}
             className={`flex-1 flex items-center justify-center ${
@@ -49,18 +48,10 @@ const ConfirmationDialog = ({
                 ? 'bg-error! hover:bg-error/70! text-white! border-error!'
                 : ''
             }`}
-            disabled={isLoading}
-          >
-            {isLoading ? (
-              <>
-                {' '}
-                <Spinner size="sm" className="ml-2 text-white" />{' '}
-                {loadingText}{' '}
-              </>
-            ) : (
-              confirmText
-            )}
-          </Button>
+            isButtonLoading={isLoading}
+            text={confirmText}
+            textLoading={loadingText}
+          />
         </div>
       </div>
     </Modal>

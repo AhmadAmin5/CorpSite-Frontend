@@ -67,9 +67,7 @@ const ActivateAccountForm = () => {
             momentarily.
           </p>
         </div>
-        <Button onClick={() => navigate('/login')} className="w-full">
-          Go to Login
-        </Button>
+        <Button onClick={() => navigate('/login')} className="w-full" text="Go to Login"/>
       </div>
     );
   }
@@ -89,9 +87,8 @@ const ActivateAccountForm = () => {
           onClick={() => navigate('/login')}
           variant="secondary"
           className="w-full"
-        >
-          Back to Login
-        </Button>
+          text = "Back to Login"
+        />
       </div>
     );
   }
@@ -148,10 +145,10 @@ const ActivateAccountForm = () => {
           type="submit"
           disabled={isLoading}
           className="w-full flex justify-center"
-        >
-          {isLoading && <Spinner size="sm" />}
-          {isLoading ? 'Activating...' : 'Set Password & Login'}
-        </Button>
+          isButtonLoading={isLoading}
+          text="Activate Account"
+          textLoading="Activating..."
+        />
       </form>
     </div>
   );

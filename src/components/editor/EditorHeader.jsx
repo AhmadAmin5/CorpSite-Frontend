@@ -9,11 +9,10 @@ const EditorHeader = ({ title, onBack, onPreview, isSaving, isDirty }) => {
           variant="ghost"
           size="sm"
           onClick={onBack}
-          className="text-(--secondary) hover:text-(--foreground)"
-        >
-          <ArrowLeft className="w-4 h-4 mr-1" />
-          Back
-        </Button>
+          text="Back"
+          icon={<ArrowLeft/>}
+        />
+
         <div className="h-6 w-px bg-(--border)" />
         <h1 className="text-lg font-bold text-(--foreground)">{title}</h1>
         {isDirty && (
@@ -29,24 +28,20 @@ const EditorHeader = ({ title, onBack, onPreview, isSaving, isDirty }) => {
             variant="ghost"
             onClick={onPreview}
             title="Live Preview"
-            className="text-(--secondary) hover:text-primary"
-          >
-            <Eye className="w-5 h-5" />
-          </Button>
+            icon={<Eye/>}
+            iconSize="lg"
+          />
         )}
 
         <Button
           type="submit"
-          disabled={isSaving}
+          isButtonLoading={isSaving}
           className="min-w-30 shadow-sm"
-        >
-          {isSaving ? (
-            <Spinner size="sm" className="mr-2" />
-          ) : (
-            <Save className="w-4 h-4 mr-2" />
-          )}
-          {isSaving ? 'Saving...' : 'Save'}
-        </Button>
+          text="Save"
+          textLoading="Saving..."
+          icon={<Save/>}
+        />
+
       </div>
     </div>
   );

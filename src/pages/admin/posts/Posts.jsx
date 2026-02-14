@@ -67,18 +67,16 @@ const Posts = () => {
             variant="secondary"
             onClick={() => setIsCategoryModalOpen(true)}
             className="flex items-center justify-center gap-2 border border-(--border) w-full sm:w-auto"
-          >
-            <Tag className="w-4 h-4" />
-            Manage Categories
-          </Button>
+            text="Manage Categories"
+            icon={<Tag/>}
+          />
 
           <Button
             onClick={() => navigate('create')}
             className="flex items-center justify-center gap-2 w-full sm:w-auto"
-          >
-            <Plus className="w-4 h-4" />
-            Create New Post
-          </Button>
+            text="Create New Post"
+            icon={<Plus/>}
+          />
         </div>
       </div>
 

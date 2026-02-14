@@ -80,45 +80,45 @@ export const ActionsCell = ({ onEdit, onDelete, onView, customActions }) => {
         <Button
           size="sm"
           variant="ghost"
-          className="text-(--secondary) hover:text-primary w-10 h-10 p-0"
+          className="hover:text-primary"
           title="View"
           onClick={(e) => {
             e.stopPropagation();
             onView();
           }}
-        >
-          <Eye className="w-6 h-6" />
-        </Button>
+          icon={<Eye/>}
+          iconSize='md'
+        />
       )}
 
       {onEdit && (
         <Button
           size="sm"
           variant="ghost"
-          className="text-(--secondary) hover:text-primary w-10 h-10 p-0"
+          className="hover:text-primary"
           title="Edit"
           onClick={(e) => {
             e.stopPropagation();
             onEdit();
           }}
-        >
-          <Edit className="w-6 h-6" />
-        </Button>
+          icon={<Edit/>}
+          iconSize='md'
+        />
       )}
 
       {onDelete && (
         <Button
           size="sm"
           variant="ghost"
-          className="text-(--secondary) hover:text-error hover:bg-error/10 w-10 h-10 p-0"
+          className="hover:text-error hover:bg-error/10"
           title="Delete"
           onClick={(e) => {
             e.stopPropagation();
             onDelete();
           }}
-        >
-          <Trash2 className="w-6 h-6" />
-        </Button>
+          icon={<Trash2/>}
+          iconSize='md'
+        />
       )}
     </div>
   );

@@ -27,6 +27,7 @@ import {
   Spinner,
   StatusBadge,
   Img,
+  PageHeader,
 } from '../../components';
 import useToast from '../../context/ToastContext';
 
@@ -122,14 +123,10 @@ const Profile = () => {
 
   return (
     <div className="max-w-5xl mx-auto space-y-6">
-      <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
-        <div>
-          <h1 className="text-2xl font-bold text-(--foreground)">My Profile</h1>
-          <p className="text-(--secondary) text-sm mt-1">
-            Manage your personal information and account settings.
-          </p>
-        </div>
-      </div>
+      <PageHeader
+        title="My Profile"
+        description="Manage your personal information and account settings."
+      />
 
       <form
         onSubmit={handleSubmit(onSubmit)}
@@ -302,17 +299,12 @@ const Profile = () => {
               </span>
               <Button
                 type="submit"
-                disabled={
-                  isLoadingMe || isUpdating || (!isDirty && !selectedFile)
-                }
-              >
-                {isUpdating ? (
-                  <Spinner size="sm" className="mr-2" />
-                ) : (
-                  <Save className="w-4 h-4 mr-2" />
-                )}
-                {isUpdating ? 'Saving Changes...' : 'Save Changes'}
-              </Button>
+                disabled={isLoadingMe || (!isDirty && !selectedFile)}
+                isButtonLoading={isUpdating}
+                icon={<Save/>}
+                text="Save Changes"
+                textLoading="Saving Changes..."
+              />
             </div>
           </div>
         </div>

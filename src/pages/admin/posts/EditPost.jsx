@@ -25,7 +25,7 @@ const EditPost = () => {
           <AlertTriangle className="w-8 h-8" />
         </div>
         <h2 className="text-xl font-bold">Post not found</h2>
-        <Button onClick={() => navigate('/admin/posts')}>Go Back</Button>
+        <Button onClick={() => navigate('/admin/posts')} text="Go back"/>
       </div>
     );
   }

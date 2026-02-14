@@ -93,16 +93,12 @@ const MediaPickerModal = ({ isOpen, onClose, onSelect }) => {
               size="sm"
               variant="ghost"
               onClick={() => fileInputRef.current?.click()}
-              disabled={isUploading}
+              isButtonLoading={isUploading}
               className="border border-dashed border-(--border) text-(--foreground) hover:text-primary hover:border-primary"
-            >
-              {isUploading ? (
-                <Spinner size="sm" />
-              ) : (
-                <UploadCloud className="w-4 h-4 mr-2" />
-              )}
-              {isUploading ? 'Uploading...' : 'Upload New'}
-            </Button>
+              text="Uplaod New"
+              textLoading="Uplaoding..."
+              icon={<UploadCloud/>}
+            />
           </div>
         </div>
 
@@ -163,9 +159,8 @@ const MediaPickerModal = ({ isOpen, onClose, onSelect }) => {
               size="sm"
               disabled={page <= 1 || isFetching}
               onClick={() => setPage((p) => Math.max(1, p - 1))}
-            >
-              <ChevronLeft className="w-4 h-4" />
-            </Button>
+              icon={<ChevronLeft/>}
+            />
             <span className="text-sm flex items-center text-(--secondary)">
               {page} / {pagination.totalPages}
             </span>
@@ -174,18 +169,14 @@ const MediaPickerModal = ({ isOpen, onClose, onSelect }) => {
               size="sm"
               disabled={page >= pagination.totalPages || isFetching}
               onClick={() => setPage((p) => p + 1)}
+              icon={<ChevronRight/>}
             >
-              <ChevronRight className="w-4 h-4" />
             </Button>
           </div>
 
           <div className="flex gap-3">
-            <Button variant="ghost" onClick={onClose}>
-              Cancel
-            </Button>
-            <Button disabled={!selectedImage} onClick={handleConfirm}>
-              Insert Selected
-            </Button>
+            <Button variant="ghost" onClick={onClose} text="Cancel"/>
+            <Button disabled={!selectedImage} onClick={handleConfirm} text="Insert Selected"/>
           </div>
         </div>
       </div>

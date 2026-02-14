@@ -83,13 +83,12 @@ const UsersTable = ({
                 className={`w-10 h-10 p-0 ${copiedStates[user._id] ? 'text-success bg-success/10' : 'text-(--secondary)'}`}
                 onClick={() => handleCopyLink(user)}
                 title="Copy Invite Link"
-              >
-                {copiedStates[user._id] ? (
+                icon={copiedStates[user._id] ? (
                   <Check className="w-6 h-6" />
                 ) : (
                   <Link className="w-6 h-6" />
                 )}
-              </Button>
+              />
             )
           }
         />
