@@ -35,7 +35,8 @@ const router = createBrowserRouter([
       {
         path: 'login',
         lazy: async () => {
-          const { default: AuthLayout } = await import('../layouts/AuthLayout.jsx');
+          const { default: AuthLayout } =
+            await import('../layouts/AuthLayout.jsx');
           const { default: Login } = await import('../pages/auth/Login.jsx');
 
           return {
@@ -51,8 +52,10 @@ const router = createBrowserRouter([
       {
         path: 'activate-account',
         lazy: async () => {
-          const { default: AuthLayout } = await import('../layouts/AuthLayout.jsx');
-          const { default: ActivateAccount } = await import('../pages/auth/ActivateAccount.jsx');
+          const { default: AuthLayout } =
+            await import('../layouts/AuthLayout.jsx');
+          const { default: ActivateAccount } =
+            await import('../pages/auth/ActivateAccount.jsx');
 
           return {
             Component: () => (
@@ -68,7 +71,8 @@ const router = createBrowserRouter([
       {
         path: 'admin',
         lazy: async () => {
-          const { default: AuthLayout } = await import('../layouts/AuthLayout.jsx');
+          const { default: AuthLayout } =
+            await import('../layouts/AuthLayout.jsx');
           return {
             Component: () => (
               <AuthLayout
@@ -105,11 +109,15 @@ const router = createBrowserRouter([
               },
               {
                 path: 'posts/create',
-                lazy: lazyLoad(() => import('../pages/admin/posts/CreatePost.jsx')),
+                lazy: lazyLoad(
+                  () => import('../pages/admin/posts/CreatePost.jsx')
+                ),
               },
               {
                 path: 'posts/edit/:id',
-                lazy: lazyLoad(() => import('../pages/admin/posts/EditPost.jsx')),
+                lazy: lazyLoad(
+                  () => import('../pages/admin/posts/EditPost.jsx')
+                ),
               },
               {
                 path: 'pages',
@@ -117,11 +125,15 @@ const router = createBrowserRouter([
               },
               {
                 path: 'pages/create',
-                lazy: lazyLoad(() => import('../pages/admin/pages/CreatePage.jsx')),
+                lazy: lazyLoad(
+                  () => import('../pages/admin/pages/CreatePage.jsx')
+                ),
               },
               {
                 path: 'pages/edit/:id',
-                lazy: lazyLoad(() => import('../pages/admin/pages/EditPage.jsx')),
+                lazy: lazyLoad(
+                  () => import('../pages/admin/pages/EditPage.jsx')
+                ),
               },
             ],
           },

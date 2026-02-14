@@ -39,22 +39,22 @@ const authApi = apiSlice.injectEndpoints({
       query: (formData) => ({
         url: '/auth/update',
         method: 'patch',
-        data: formData, 
+        data: formData,
       }),
       invalidatesTags: (result) => [
         'Me',
-        { type: 'Users', id: result?.data?._id } 
+        { type: 'Users', id: result?.data?._id },
       ],
     }),
   }),
 });
 
-export const { 
-  useLoginMutation, 
-  useLogoutMutation, 
-  useMeQuery, 
-  useActivateAccountMutation, 
-  useUpdateProfileMutation // Export this
+export const {
+  useLoginMutation,
+  useLogoutMutation,
+  useMeQuery,
+  useActivateAccountMutation,
+  useUpdateProfileMutation, // Export this
 } = authApi;
 
 export default authApi;

@@ -14,7 +14,7 @@ import {
   LogOut,
   MessageSquare,
   X,
-  UserRoundPen
+  UserRoundPen,
 } from 'lucide-react';
 
 const AdminSidebar = ({ isOpen, onClose }) => {

@@ -18,7 +18,7 @@ import {
   Spinner,
   ConfirmationDialog,
   Skeleton,
-  Img
+  Img,
 } from '../../components';
 import useToast from '../../context/ToastContext';
 

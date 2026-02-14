@@ -12,7 +12,7 @@ import {
 } from '../../features/media/mediaApi';
 import { Modal, Button, Skeleton, Spinner } from '../index';
 import useToast from '../../context/ToastContext';
-import {Img } from '../'
+import { Img } from '../';
 
 const MediaPickerModal = ({ isOpen, onClose, onSelect }) => {
   const toast = useToast();

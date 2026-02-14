@@ -57,7 +57,7 @@ const usersApi = apiSlice.injectEndpoints({
       query: ({ id, data }) => ({
         url: `/user/${id}`,
         method: 'patch',
-        data: data, 
+        data: data,
       }),
       invalidatesTags: (result, error, { id }) => [{ type: 'Users', id }],
     }),

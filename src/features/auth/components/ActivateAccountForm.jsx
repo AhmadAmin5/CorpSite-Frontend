@@ -41,7 +41,6 @@ const ActivateAccountForm = () => {
       setTimeout(() => {
         navigate('/login');
       }, 3000);
-
     } catch (err) {
       if (err?.data?.message) {
         setErrMsg(err.data.message);
@@ -60,9 +59,12 @@ const ActivateAccountForm = () => {
           <CheckCircle className="w-8 h-8" />
         </div>
         <div className="space-y-2">
-          <h2 className="text-2xl font-bold text-(--foreground)">Account Activated!</h2>
+          <h2 className="text-2xl font-bold text-(--foreground)">
+            Account Activated!
+          </h2>
           <p className="text-(--secondary)">
-            Your password has been set. You will be redirected to the login page momentarily.
+            Your password has been set. You will be redirected to the login page
+            momentarily.
           </p>
         </div>
         <Button onClick={() => navigate('/login')} className="w-full">
@@ -80,9 +82,14 @@ const ActivateAccountForm = () => {
         </div>
         <h2 className="text-xl font-bold text-(--foreground)">Invalid Link</h2>
         <p className="text-(--secondary)">
-          The invitation link is missing a valid token. Please check the link sent to your email.
+          The invitation link is missing a valid token. Please check the link
+          sent to your email.
         </p>
-        <Button onClick={() => navigate('/login')} variant="secondary" className="w-full">
+        <Button
+          onClick={() => navigate('/login')}
+          variant="secondary"
+          className="w-full"
+        >
           Back to Login
         </Button>
       </div>
@@ -93,7 +100,9 @@ const ActivateAccountForm = () => {
     <div className="max-w-md w-full space-y-8 p-8 bg-(--card) border border-(--border) shadow-lg rounded-xl">
       <div className="text-center flex flex-col items-center">
         <Logo iconOnly={true} size={60} />
-        <h2 className="mt-6 text-3xl font-bold text-(--foreground)">Activate Account</h2>
+        <h2 className="mt-6 text-3xl font-bold text-(--foreground)">
+          Activate Account
+        </h2>
         <p className="mt-2 text-sm text-(--secondary)">
           Set up your password to access your workspace.
         </p>

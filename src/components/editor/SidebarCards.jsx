@@ -10,7 +10,7 @@ import {
   History,
   FileText,
 } from 'lucide-react';
-import { Select, Button, Img} from '../';
+import { Select, Button, Img } from '../';
 import EditorCard from './EditorCard';
 
 export const AuthorStatsCard = ({

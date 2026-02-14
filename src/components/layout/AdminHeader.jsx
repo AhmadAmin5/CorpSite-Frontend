@@ -52,7 +52,9 @@ const AdminHeader = ({ onMenuClick, isOpen }) => {
                   <span className="text-sm font-semibold text-(--foreground)">
                     {user.fullName || user.username}
                   </span>
-                  <span className="text-xs text-(--secondary)">{user.role}</span>
+                  <span className="text-xs text-(--secondary)">
+                    {user.role}
+                  </span>
                 </div>
                 <div className="w-10 h-10 rounded-full overflow-hidden border-2 border-(--border) group-hover:border-primary transition-colors">
                   {!imgError && user.profilePicture ? (
@@ -70,7 +72,6 @@ const AdminHeader = ({ onMenuClick, isOpen }) => {
                 </div>
               </div>
             </Link>
-
           </>
         )}
       </div>

@@ -3,13 +3,13 @@ import { ImageOff } from 'lucide-react';
 import Skeleton from './Skeleton';
 import Spinner from './Spinner';
 
-const Img = ({ 
-  src, 
-  alt, 
-  className = '', 
-  aspectRatio = 'aspect-video', 
+const Img = ({
+  src,
+  alt,
+  className = '',
+  aspectRatio = 'aspect-video',
   fallbackSrc,
-  ...props 
+  ...props
 }) => {
   const [status, setStatus] = useState('loading'); // 'loading' | 'loaded' | 'error'
 
@@ -25,13 +25,11 @@ const Img = ({
 
   return (
     <div className={containerClasses}>
-      
       {status === 'loading' && (
         <>
           <Skeleton className="absolute inset-0 w-full h-full z-10 opacity-50" />
-          
-          <div className="absolute inset-0 flex items-center justify-center z-20">
 
+          <div className="absolute inset-0 flex items-center justify-center z-20">
             <Spinner size="md" className="text-(--foreground) opacity-30" />
           </div>
         </>

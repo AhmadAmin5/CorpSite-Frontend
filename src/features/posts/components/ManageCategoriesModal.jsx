@@ -166,7 +166,9 @@ const ManageCategoriesModal = ({ isOpen, onClose }) => {
               No categories found.
             </div>
           ) : (
-            <table className={`w-full text-sm text-left ${isFetching && 'opacity-50'}`}>
+            <table
+              className={`w-full text-sm text-left ${isFetching && 'opacity-50'}`}
+            >
               <thead className="bg-(--secondary)/5 text-(--foreground) font-semibold sticky top-0">
                 <tr>
                   <th className="p-3 border-b border-(--border)">Name</th>

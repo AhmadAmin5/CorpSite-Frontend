@@ -10,11 +10,14 @@ import {
   Save,
   Shield,
   AtSign,
-  FileText
+  FileText,
 } from 'lucide-react';
 
 // Import BOTH from authApi
-import { useMeQuery, useUpdateProfileMutation } from '../../features/auth/authApi';
+import {
+  useMeQuery,
+  useUpdateProfileMutation,
+} from '../../features/auth/authApi';
 import { setCredentials } from '../../features/auth/authSlice'; // [!code ++]
 
 import {
@@ -23,7 +26,7 @@ import {
   Select,
   Spinner,
   StatusBadge,
-  Img
+  Img,
 } from '../../components';
 import useToast from '../../context/ToastContext';
 
@@ -98,7 +101,7 @@ const Profile = () => {
       }
 
       const updatedProfile = await updateProfile(formData).unwrap();
-      
+
       dispatch(setCredentials({ user: updatedProfile.data }));
 
       toast.success('Profile updated successfully');
@@ -128,12 +131,13 @@ const Profile = () => {
         </div>
       </div>
 
-      <form onSubmit={handleSubmit(onSubmit)} className="grid grid-cols-1 lg:grid-cols-3 gap-6 items-start">
-
+      <form
+        onSubmit={handleSubmit(onSubmit)}
+        className="grid grid-cols-1 lg:grid-cols-3 gap-6 items-start"
+      >
         {/* --- LEFT COLUMN: Identity Card --- */}
         <div className="lg:col-span-1 space-y-6 lg:sticky lg:top-6">
           <div className="bg-(--card) rounded-xl border border-(--border) shadow-sm p-6 flex flex-col items-center text-center">
-
             <div className="relative mb-4">
               <div className="w-32 h-32 rounded-full overflow-hidden border-4 border-(--background) shadow-md ring-1 ring-(--border)">
                 {previewUrl ? (
@@ -167,8 +171,12 @@ const Profile = () => {
               />
             </div>
 
-            <h2 className="text-xl font-bold text-(--foreground)">{currentUser?.fullName}</h2>
-            <p className="text-(--secondary) text-sm mb-2">@{currentUser?.username}</p>
+            <h2 className="text-xl font-bold text-(--foreground)">
+              {currentUser?.fullName}
+            </h2>
+            <p className="text-(--secondary) text-sm mb-2">
+              @{currentUser?.username}
+            </p>
 
             {currentUser?.bio && (
               <p className="text-sm text-(--foreground) opacity-80 mb-4 px-2 italic line-clamp-3">
@@ -178,7 +186,11 @@ const Profile = () => {
 
             <div className="w-full pt-4 border-t border-(--border) flex justify-between items-center text-sm">
               <span className="text-(--secondary)">Role</span>
-              <StatusBadge variant="info" icon={Shield} className="uppercase text-[10px]">
+              <StatusBadge
+                variant="info"
+                icon={Shield}
+                className="uppercase text-[10px]"
+              >
                 {currentUser?.role}
               </StatusBadge>
             </div>
@@ -195,7 +207,9 @@ const Profile = () => {
         <div className="lg:col-span-2 space-y-6">
           <div className="bg-(--card) rounded-xl border border-(--border) shadow-sm">
             <div className="px-6 py-4 border-b border-(--border)">
-              <h3 className="font-semibold text-(--foreground)">Personal Information</h3>
+              <h3 className="font-semibold text-(--foreground)">
+                Personal Information
+              </h3>
             </div>
 
             <div className="p-6 space-y-6">
@@ -205,7 +219,9 @@ const Profile = () => {
                   icon={User}
                   placeholder="e.g. John Doe"
                   error={errors.fullName?.message}
-                  {...register('fullName', { required: 'Full Name is required' })}
+                  {...register('fullName', {
+                    required: 'Full Name is required',
+                  })}
                 />
 
                 <Input
@@ -213,7 +229,9 @@ const Profile = () => {
                   icon={AtSign}
                   placeholder="e.g. johndoe"
                   error={errors.username?.message}
-                  {...register('username', { required: 'Username is required' })}
+                  {...register('username', {
+                    required: 'Username is required',
+                  })}
                 />
 
                 <Input
@@ -275,7 +293,6 @@ const Profile = () => {
                     Brief description for your profile.
                   </p>
                 </div>
-
               </div>
             </div>
 
@@ -283,14 +300,22 @@ const Profile = () => {
               <span className="text-xs text-(--secondary)">
                 {isDirty ? 'You have unsaved changes' : 'All changes saved'}
               </span>
-              <Button type="submit" disabled={isLoadingMe || isUpdating || (!isDirty && !selectedFile)}>
-                {isUpdating ? <Spinner size="sm" className="mr-2" /> : <Save className="w-4 h-4 mr-2" />}
+              <Button
+                type="submit"
+                disabled={
+                  isLoadingMe || isUpdating || (!isDirty && !selectedFile)
+                }
+              >
+                {isUpdating ? (
+                  <Spinner size="sm" className="mr-2" />
+                ) : (
+                  <Save className="w-4 h-4 mr-2" />
+                )}
                 {isUpdating ? 'Saving Changes...' : 'Save Changes'}
               </Button>
             </div>
           </div>
         </div>
-
       </form>
     </div>
   );
