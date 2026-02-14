@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Plus, Search } from 'lucide-react';
-import { Button, Input, ConfirmationDialog, Select } from '../../../components';
+import { Button, Input, ConfirmationDialog, Select, PageHeader, TableToolbar } from '../../../components';
 import { useDeletePageMutation } from '../../../features/pages/pagesApi';
 import useToast from '../../../context/ToastContext';
 import { PagesTable } from '../../../features/pages/components';
@@ -45,35 +45,22 @@ const Pages = () => {
 
   return (
     <div className="space-y-6">
-      <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
-        <div>
-          <h1 className="text-2xl font-bold text-(--foreground)">Pages</h1>
-          <p className="text-(--secondary) text-sm mt-1">
-            Build and manage high-performance dynamic pages for your site.
-          </p>
-        </div>
 
-        <Button
+      <PageHeader title="Pages" description="Build and manage high-performance dynamic pages for your site"
+        actions={
+          <Button
           onClick={() => navigate('create')}
           className="flex items-center gap-2"
           text="Create New Page"
           icon={<Plus/>}
         />
-      </div>
+        }
+      />
 
-      <div className="bg-(--card) p-4 rounded-xl border border-(--border) shadow-sm flex flex-col md:flex-row gap-4">
-        <div className="relative grow md:max-w-md">
-          <div className="absolute left-3 top-1/2 -translate-y-1/2 text-(--secondary)">
-            <Search className="w-4 h-4" />
-          </div>
-          <Input
-            placeholder="Search pages..."
-            value={searchQuery}
-            onChange={(e) => setSearchQuery(e.target.value)}
-            inputClassName="pl-10"
-            className="w-full"
-          />
-        </div>
+      <TableToolbar
+        searchQuery={searchQuery}
+        onSearchChange={(e) => setSearchQuery(e.target.value)}
+        placeholder="Search posts...">
 
         <div className="flex flex-col sm:flex-row gap-4 w-full md:w-auto">
           <div className="w-full sm:w-40">
@@ -93,7 +80,8 @@ const Pages = () => {
             />
           </div>
         </div>
-      </div>
+
+      </TableToolbar>
 
       <PagesTable
         searchQuery={searchQuery}
