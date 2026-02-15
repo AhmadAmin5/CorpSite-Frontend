@@ -5,7 +5,10 @@ import Img from '../ui/Img';
 const PostCard = ({ post }) => {
   return (
     <article className="flex flex-col bg-(--card) border border-(--border) rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-shadow duration-300 group">
-      <Link to={`/blog/${post.slug}`} className="block relative overflow-hidden aspect-video">
+      <Link
+        to={`/blog/${post.slug}`}
+        className="block relative overflow-hidden aspect-video"
+      >
         <Img
           src={post.featuredImage?.url}
           alt={post.title}
@@ -26,18 +29,27 @@ const PostCard = ({ post }) => {
           </div>
           <div className="flex items-center gap-1">
             <Calendar className="w-3.5 h-3.5" />
-            <time>{new Date(post.publishedAt || post.createdAt).toLocaleDateString()}</time>
+            <time>
+              {new Date(
+                post.publishedAt || post.createdAt
+              ).toLocaleDateString()}
+            </time>
           </div>
         </div>
 
-        <Link to={`/blog/${post.slug}`} className="block group-hover:text-primary transition-colors">
+        <Link
+          to={`/blog/${post.slug}`}
+          className="block group-hover:text-primary transition-colors"
+        >
           <h2 className="text-xl font-bold leading-snug mb-3 line-clamp-2">
             {post.title}
           </h2>
         </Link>
 
         <p className="text-(--secondary) text-sm line-clamp-3 mb-4 flex-grow">
-          {post.excerpt || post.metaDescription || 'Click to read this article...'}
+          {post.excerpt ||
+            post.metaDescription ||
+            'Click to read this article...'}
         </p>
       </div>
     </article>

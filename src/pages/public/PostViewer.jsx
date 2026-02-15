@@ -15,7 +15,7 @@ const PostContentRenderer = ({ content, theme }) => {
     try {
       return typeof content === 'string' ? JSON.parse(content) : content;
     } catch (e) {
-      console.error("Failed to parse post content", e);
+      console.error('Failed to parse post content', e);
       return undefined;
     }
   }, [content]);
@@ -43,7 +43,9 @@ const PostViewer = () => {
 
   const [currentTheme, setCurrentTheme] = useState(() => {
     if (typeof window !== 'undefined') {
-      return document.documentElement.classList.contains('dark') ? 'dark' : 'light';
+      return document.documentElement.classList.contains('dark')
+        ? 'dark'
+        : 'light';
     }
     return 'light';
   });
@@ -92,10 +94,8 @@ const PostViewer = () => {
   return (
     <article className="min-h-screen bg-(--background) pt-4 pb-16">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-
         {/* Header Section */}
         <header className="mb-10 text-center md:text-left">
-
           {/* Title */}
           <h1 className="text-3xl md:text-5xl font-bold text-(--foreground) leading-tight mb-4">
             {post.title}
@@ -106,29 +106,38 @@ const PostViewer = () => {
             {post.category && (
               <Link
                 to={`/blog?category=${encodeURIComponent(post.category)}`}
-                className="bg-(--secondary)/10 px-3 py-1 rounded-full text-(--foreground) font-medium hover:bg-(--secondary)/20 hover:text-(--color-primary) transition-colors"
+                className="bg-(--secondary)/10 px-3 py-1 rounded-full text-(--foreground) font-medium hover:bg-(--secondary)/20 hover:text-primary transition-colors"
               >
                 {post.category}
               </Link>
             )}
             <span>•</span>
             <time dateTime={post.publishedAt || post.createdAt}>
-              {new Date(post.publishedAt || post.createdAt).toLocaleDateString('en-US', {
-                year: 'numeric',
-                month: 'long',
-                day: 'numeric'
-              })}
+              {new Date(post.publishedAt || post.createdAt).toLocaleDateString(
+                'en-US',
+                {
+                  year: 'numeric',
+                  month: 'long',
+                  day: 'numeric',
+                }
+              )}
             </time>
           </div>
 
           {/* Author */}
           {post.author && (
-            <Link to={`/author/${post.author.username}`} className="group inline-block">
+            <Link
+              to={`/author/${post.author.username}`}
+              className="group inline-block"
+            >
               <div className="flex items-center justify-center md:justify-start gap-3">
-                <div className="w-10 h-10 rounded-full bg-gray-200 overflow-hidden ring-2 ring-transparent group-hover:ring-(--color-primary) transition-all">
+                <div className="w-10 h-10 rounded-full bg-gray-200 overflow-hidden ring-2 ring-transparent group-hover:ring-primary transition-all">
                   {/* Fallback avatar if no image */}
                   <img
-                    src={post.author.profilePicture || `https://ui-avatars.com/api/?name=${post.author.name || 'Admin'}`}
+                    src={
+                      post.author.profilePicture ||
+                      `https://ui-avatars.com/api/?name=${post.author.name || 'Admin'}`
+                    }
                     alt={post.author.fullName}
                     className="w-full h-full object-cover"
                   />
@@ -137,7 +146,11 @@ const PostViewer = () => {
                   <p className="font-medium text-(--foreground) group-hover:text-primary transition-colors">
                     {post.author.fullName || 'Unknown Author'}
                   </p>
-                  {post.author.role && <p className="text-xs text-(--secondary) capitalize">{post.author.role}</p>}
+                  {post.author.role && (
+                    <p className="text-xs text-(--secondary) capitalize">
+                      {post.author.role}
+                    </p>
+                  )}
                 </div>
               </div>
             </Link>
@@ -160,7 +173,9 @@ const PostViewer = () => {
           {post.content ? (
             <PostContentRenderer content={post.content} theme={currentTheme} />
           ) : (
-            <p className="text-center text-(--secondary) italic">No content available.</p>
+            <p className="text-center text-(--secondary) italic">
+              No content available.
+            </p>
           )}
         </div>
 
@@ -179,7 +194,6 @@ const PostViewer = () => {
             </div>
           </div>
         )}
-
       </div>
     </article>
   );

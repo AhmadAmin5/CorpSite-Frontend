@@ -47,7 +47,10 @@ const Blog = () => {
   });
 
   const posts = data?.data?.posts || [];
-  const pagination = data?.data?.pagination || { totalPages: 1, currentPage: 1 };
+  const pagination = data?.data?.pagination || {
+    totalPages: 1,
+    currentPage: 1,
+  };
 
   const handleCategoryChange = (cat) => {
     setCategory(cat);
@@ -63,17 +66,17 @@ const Blog = () => {
   return (
     <div className="min-h-screen bg-(--background) py-12">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-
         {/* Page Header */}
         <div className="mb-10 text-center md:text-left">
-          <h1 className="text-4xl font-bold text-(--foreground) mb-3">Our Blog</h1>
+          <h1 className="text-4xl font-bold text-(--foreground) mb-3">
+            Our Blog
+          </h1>
           <p className="text-lg text-(--secondary)">
             Insights, tutorials, and updates from our team.
           </p>
         </div>
 
         <div className="flex flex-col lg:flex-row gap-8 lg:gap-12">
-
           {/* --- SIDEBAR (Desktop: Right side, Mobile: Top) --- */}
           <div className="lg:w-1/4 lg:order-last">
             <BlogSidebar
@@ -87,7 +90,6 @@ const Blog = () => {
 
           {/* --- MAIN CONTENT --- */}
           <div className="lg:w-3/4">
-
             {/* Loading State */}
             {(isLoading || isFetching) && posts.length === 0 ? (
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -101,8 +103,15 @@ const Blog = () => {
               </div>
             ) : isError ? (
               <div className="text-center py-20 bg-destructive/5 rounded-xl border border-destructive/20">
-                <h3 className="text-destructive font-bold text-lg mb-2">Error loading posts</h3>
-                <Button variant="secondary" onClick={() => window.location.reload()}>Try Again</Button>
+                <h3 className="text-destructive font-bold text-lg mb-2">
+                  Error loading posts
+                </h3>
+                <Button
+                  variant="secondary"
+                  onClick={() => window.location.reload()}
+                >
+                  Try Again
+                </Button>
               </div>
             ) : posts.length > 0 ? (
               <>
@@ -123,7 +132,9 @@ const Blog = () => {
                 <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-(--secondary)/10 mb-4">
                   <Search className="w-8 h-8 text-(--secondary)" />
                 </div>
-                <h3 className="text-xl font-bold text-(--foreground) mb-2">No articles found</h3>
+                <h3 className="text-xl font-bold text-(--foreground) mb-2">
+                  No articles found
+                </h3>
                 <p className="text-(--secondary) mb-6">
                   We couldn't find any articles matching your search criteria.
                 </p>
@@ -133,7 +144,6 @@ const Blog = () => {
               </div>
             )}
           </div>
-
         </div>
       </div>
     </div>

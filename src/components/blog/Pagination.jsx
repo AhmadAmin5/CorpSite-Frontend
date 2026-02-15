@@ -12,7 +12,11 @@ const Pagination = ({ currentPage, totalPages, onPageChange }) => {
     if (currentPage > 4) pages.push('...');
 
     // Show current and neighbors
-    for (let i = Math.max(1, currentPage - 1); i <= Math.min(totalPages, currentPage + 1); i++) {
+    for (
+      let i = Math.max(1, currentPage - 1);
+      i <= Math.min(totalPages, currentPage + 1);
+      i++
+    ) {
       pages.push(i);
     }
 
@@ -35,24 +39,28 @@ const Pagination = ({ currentPage, totalPages, onPageChange }) => {
         <ChevronLeft className="w-5 h-5" />
       </Button>
 
-      {getPageNumbers().map((page, idx) => (
+      {getPageNumbers().map((page, idx) =>
         typeof page === 'number' ? (
           <button
             key={idx}
             onClick={() => onPageChange(page)}
             className={`
               w-9 h-9 rounded-lg text-sm font-medium transition-colors
-              ${currentPage === page
-                ? 'bg-primary text-primary-content shadow-sm'
-                : 'text-(--foreground) hover:bg-(--secondary)/10'}
+              ${
+                currentPage === page
+                  ? 'bg-primary text-primary-content shadow-sm'
+                  : 'text-(--foreground) hover:bg-(--secondary)/10'
+              }
             `}
           >
             {page}
           </button>
         ) : (
-          <span key={idx} className="text-(--secondary) px-1">...</span>
+          <span key={idx} className="text-(--secondary) px-1">
+            ...
+          </span>
         )
-      ))}
+      )}
 
       <Button
         variant="ghost"
