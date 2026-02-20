@@ -175,7 +175,7 @@ const PublicFooter = () => {
                 Subscribe to Marketing News and Events
               </h4>
               <div className="flex flex-col sm:flex-row gap-0 items-end">
-                <div className="flex-grow w-full">
+                <div className="grow w-full">
                   <Input
                     placeholder="Email*"
                     className="w-full"
@@ -184,7 +184,7 @@ const PublicFooter = () => {
                 </div>
                 <Button
                   variant="primary"
-                  className="bg-[#38bdf8] hover:bg-[#0ea5e9] text-slate-900 font-bold rounded-none h-[42px] px-8 whitespace-nowrap border-none transition-colors"
+                  className="bg-[#38bdf8] hover:bg-[#0ea5e9] text-slate-900 font-bold rounded-none h-10.5 px-8 whitespace-nowrap border-none transition-colors"
                   text="SUBSCRIBE"
                 />
               </div>

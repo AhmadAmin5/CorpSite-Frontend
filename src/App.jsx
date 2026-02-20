@@ -8,7 +8,7 @@ import axiosInstance from './api/axios.js';
 
 const App = () => {
   useTheme();
-  
+
   // States: 'checking', 'waking', 'ready', 'error'
   const [serverState, setServerState] = useState('checking');
 
@@ -21,8 +21,8 @@ const App = () => {
       }, 5000);
 
       try {
-        await axiosInstance.get('/health', { timeout: 40000 }); 
-        
+        await axiosInstance.get('/health', { timeout: 40000 });
+
         clearTimeout(sleepTimer);
         if (isMounted) setServerState('ready');
       } catch (error) {
@@ -45,8 +45,8 @@ const App = () => {
 
   if (serverState === 'waking') {
     return (
-      <SplashScreen 
-        message="Waking up the backend server..." 
+      <SplashScreen
+        message="Waking up the backend server..."
         subMessage="Since this is a free hosting tier, the server sleeps after inactivity. It usually takes 30-50 seconds to spin up. Thank you for your patience!"
       />
     );
@@ -59,14 +59,17 @@ const App = () => {
           <ServerCrash className="w-10 h-10" />
         </div>
         <div className="space-y-2 max-w-md">
-          <h1 className="text-3xl font-bold tracking-tight">Server Unreachable</h1>
+          <h1 className="text-3xl font-bold tracking-tight">
+            Server Unreachable
+          </h1>
           <p className="text-(--secondary)">
-            We cannot connect to the backend server right now. It might be down for maintenance or experiencing unexpected issues.
+            We cannot connect to the backend server right now. It might be down
+            for maintenance or experiencing unexpected issues.
           </p>
         </div>
-        <Button 
-          variant="primary" 
-          onClick={() => window.location.reload()} 
+        <Button
+          variant="primary"
+          onClick={() => window.location.reload()}
           icon={<RefreshCcw className="w-4 h-4" />}
           text="Try Again"
         />

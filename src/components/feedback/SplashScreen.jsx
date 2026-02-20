@@ -14,18 +14,18 @@ const SplashScreen = ({ message = 'Loading...', subMessage }) => {
 
         <div className="flex flex-col items-center gap-3">
           <Spinner size="md" className="text-primary opacity-80" />
-          <p className="text-sm font-medium text-(--secondary) animate-pulse">
+          <p className="text-sm font-medium text-(--foreground) animate-pulse">
             {message}
           </p>
           {subMessage && (
-            <p className="text-sm text-(--secondary) mt-4 max-w-md text-center animate-pulse">
+            <p className="text-sm text-(--foreground) mt-4 max-w-md text-center animate-pulse">
               {subMessage}
             </p>
           )}
         </div>
       </div>
 
-      <div className="absolute bottom-8 text-xs text-(--secondary)/50">
+      <div className="absolute bottom-8 text-xs text-(--foreground)/50">
         Copyright © 2026 CorpSite
       </div>
     </div>

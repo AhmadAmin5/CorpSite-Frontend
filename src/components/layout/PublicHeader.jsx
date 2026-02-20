@@ -41,7 +41,7 @@ const PublicHeader = () => {
   }, [location]);
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b border-(--border) bg-(--background)/80 backdrop-blur-md transition-colors duration-300">
+    <header className="sticky top-0 z-50 w-full border-b border-(--border) bg-(--background)/70 backdrop-blur-md transition-colors duration-300">
       <div className="container mx-auto px-4 h-16 flex items-center justify-between max-w-7xl">
         {/* --- Left: Logo --- */}
         <div className="shrink-0 flex items-center gap-2">
@@ -128,21 +128,22 @@ const PublicHeader = () => {
           </div>
 
           <div className="flex flex-col space-y-2">
-            {isLoading ? (
-              Array.from({ length: 4 }).map((_, i) => (
-                <div key={i} className="py-3 border-b border-(--border) last:border-0">
-                  <Skeleton className="h-6 w-1/2 rounded-md" />
-                </div>
-              ))
-            ) : (
-              menuItems.map((item) => (
-                <MobileMenuItem
-                  key={item._id}
-                  item={item}
-                  closeMenu={() => setIsMobileMenuOpen(false)}
-                />
-              ))
-            )}
+            {isLoading
+              ? Array.from({ length: 4 }).map((_, i) => (
+                  <div
+                    key={i}
+                    className="py-3 border-b border-(--border) last:border-0"
+                  >
+                    <Skeleton className="h-6 w-1/2 rounded-md" />
+                  </div>
+                ))
+              : menuItems.map((item) => (
+                  <MobileMenuItem
+                    key={item._id}
+                    item={item}
+                    closeMenu={() => setIsMobileMenuOpen(false)}
+                  />
+                ))}
           </div>
         </div>
       )}

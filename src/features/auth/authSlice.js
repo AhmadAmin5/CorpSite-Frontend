@@ -4,7 +4,7 @@ const loadStateFromStorage = () => {
   try {
     const accessToken = localStorage.getItem('accessToken');
     const user = localStorage.getItem('user');
-    
+
     if (accessToken && user) {
       return {
         accessToken,
@@ -28,7 +28,7 @@ const authSlice = createSlice({
   reducers: {
     setCredentials: (state, action) => {
       const { accessToken, user } = action.payload || {};
-      
+
       if (typeof accessToken !== 'undefined') {
         state.accessToken = accessToken;
         if (accessToken) {
@@ -37,7 +37,7 @@ const authSlice = createSlice({
           localStorage.removeItem('accessToken');
         }
       }
-      
+
       if (typeof user !== 'undefined') {
         state.user = user;
         if (user) {

@@ -29,6 +29,10 @@ const router = createBrowserRouter([
             lazy: lazyLoad(() => import('../pages/public/About.jsx')),
           },
           {
+            path: 'contact',
+            lazy: lazyLoad(() => import('../pages/public/Contact.jsx')),
+          },
+          {
             path: 'services',
             lazy: lazyLoad(() => import('../pages/public/Services.jsx')),
           },
@@ -153,6 +157,10 @@ const router = createBrowserRouter([
                 lazy: lazyLoad(
                   () => import('../pages/admin/pages/EditPage.jsx')
                 ),
+              },
+              {
+                path: 'inquiries',
+                lazy: lazyLoad(() => import('../pages/admin/Inquiries.jsx')),
               },
             ],
           },
