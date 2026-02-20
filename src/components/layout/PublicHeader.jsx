@@ -3,7 +3,7 @@ import { Link, NavLink, useLocation } from 'react-router-dom';
 import { useGetSettingsQuery } from '../../features/settings/settingsApi';
 import { useGetMenuBySlugQuery } from '../../features/menu/menuApi';
 import useTheme from '../../hooks/useTheme';
-import Logo from '../ui/Logo';
+import { Logo, Skeleton } from '../../components';
 
 import {
   Search,
@@ -28,7 +28,6 @@ const PublicHeader = () => {
   const { theme, toggleTheme } = useTheme();
   const location = useLocation();
 
-  // const { data: settingsResult } = useGetSettingsQuery();
   const headerSlug = 'main-header';
 
   const { data: menuData, isLoading } = useGetMenuBySlugQuery(headerSlug, {
@@ -52,12 +51,9 @@ const PublicHeader = () => {
         {/* --- Center: Desktop Navigation --- */}
         <nav className="hidden md:flex items-center gap-1">
           {isLoading ? (
-            <div className="flex gap-4">
+            <div className="flex gap-6 px-4">
               {[1, 2, 3, 4].map((i) => (
-                <div
-                  key={i}
-                  className="h-4 w-16 bg-(--secondary)/10 rounded animate-pulse"
-                />
+                <Skeleton key={i} className="h-5 w-20 rounded-md" />
               ))}
             </div>
           ) : (
@@ -104,20 +100,6 @@ const PublicHeader = () => {
             )}
           </button>
 
-          {/* Login */}
-          {/*
-          
-          <div className="h-6 w-px bg-(--border) mx-1 hidden sm:block"></div>
-
-          <Link
-            to="/login"
-            className="hidden sm:flex items-center gap-2 px-4 py-2 text-sm font-medium text-primary hover:bg-primary/5 rounded-full transition-colors"
-          >
-            <LogIn className="w-4 h-4" />
-            <span>Login</span>
-          </Link>
-          */}
-
           {/* Mobile Toggle */}
           <button
             className="md:hidden p-2 rounded-md hover:bg-(--secondary)/10 text-(--foreground)"
@@ -146,27 +128,22 @@ const PublicHeader = () => {
           </div>
 
           <div className="flex flex-col space-y-2">
-            {menuItems.map((item) => (
-              <MobileMenuItem
-                key={item._id}
-                item={item}
-                closeMenu={() => setIsMobileMenuOpen(false)}
-              />
-            ))}
+            {isLoading ? (
+              Array.from({ length: 4 }).map((_, i) => (
+                <div key={i} className="py-3 border-b border-(--border) last:border-0">
+                  <Skeleton className="h-6 w-1/2 rounded-md" />
+                </div>
+              ))
+            ) : (
+              menuItems.map((item) => (
+                <MobileMenuItem
+                  key={item._id}
+                  item={item}
+                  closeMenu={() => setIsMobileMenuOpen(false)}
+                />
+              ))
+            )}
           </div>
-
-          {/*
-
-          <div className="pt-6 mt-4 border-t border-(--border) flex flex-col gap-3">
-            <Link
-              to="/login"
-              className="w-full flex items-center justify-center gap-2 py-3 rounded-lg bg-primary text-primary-content text-sm font-medium hover:bg-primary/90"
-            >
-              <User className="w-4 h-4" /> Client Portal
-            </Link>
-          </div>
-
-          */}
         </div>
       )}
     </header>

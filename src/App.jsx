@@ -1,13 +1,15 @@
 import { useState, useEffect } from 'react';
-import { Outlet } from 'react-router-dom';
+import { Outlet, ScrollRestoration } from 'react-router-dom';
+import { ServerCrash, RefreshCcw } from 'lucide-react';
 import './App.css';
 import useTheme from './hooks/useTheme.js';
-import { NetworkAlert, TopLoader, SplashScreen } from './components';
-import axiosInstance from './api/axios.js'; // Import your axios instance
+import { NetworkAlert, TopLoader, SplashScreen, Button } from './components';
+import axiosInstance from './api/axios.js';
 
 const App = () => {
   useTheme();
   
+  // States: 'checking', 'waking', 'ready', 'error'
   const [serverState, setServerState] = useState('checking');
 
   useEffect(() => {
@@ -16,15 +18,17 @@ const App = () => {
     const wakeUpServer = async () => {
       const sleepTimer = setTimeout(() => {
         if (isMounted) setServerState('waking');
-      }, 1500);
+      }, 5000);
 
       try {
-        await axiosInstance.get('/setting'); 
-      } catch (error) {
-        console.warn('Initial server ping failed, but proceeding...', error);
-      } finally {
+        await axiosInstance.get('/health', { timeout: 40000 }); 
+        
         clearTimeout(sleepTimer);
         if (isMounted) setServerState('ready');
+      } catch (error) {
+        clearTimeout(sleepTimer);
+        console.error('Server health check failed:', error);
+        if (isMounted) setServerState('error');
       }
     };
 
@@ -43,8 +47,30 @@ const App = () => {
     return (
       <SplashScreen 
         message="Waking up the backend server..." 
-        subMessage="The server used for this site's presentation sleeps after inactivity. It usually takes 10-20 seconds to spin up. Thank you for your patience!"
+        subMessage="Since this is a free hosting tier, the server sleeps after inactivity. It usually takes 30-50 seconds to spin up. Thank you for your patience!"
       />
+    );
+  }
+
+  if (serverState === 'error') {
+    return (
+      <div className="min-h-screen flex flex-col items-center justify-center bg-(--background) text-(--foreground) p-6 text-center space-y-6">
+        <div className="w-20 h-20 bg-error/10 text-error rounded-full flex items-center justify-center mx-auto">
+          <ServerCrash className="w-10 h-10" />
+        </div>
+        <div className="space-y-2 max-w-md">
+          <h1 className="text-3xl font-bold tracking-tight">Server Unreachable</h1>
+          <p className="text-(--secondary)">
+            We cannot connect to the backend server right now. It might be down for maintenance or experiencing unexpected issues.
+          </p>
+        </div>
+        <Button 
+          variant="primary" 
+          onClick={() => window.location.reload()} 
+          icon={<RefreshCcw className="w-4 h-4" />}
+          text="Try Again"
+        />
+      </div>
     );
   }
 
@@ -52,6 +78,7 @@ const App = () => {
     <div className="min-h-screen flex flex-col bg-(--background) text-(--foreground) transition-colors duration-200">
       <TopLoader />
       <NetworkAlert />
+      <ScrollRestoration />
       <Outlet />
     </div>
   );

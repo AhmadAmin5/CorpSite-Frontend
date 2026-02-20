@@ -67,10 +67,6 @@ const PublicFooter = () => {
     skip: !headerSlug,
   });
 
-  if (menuData) {
-    console.log(menuData);
-  }
-
   const menuItems = menuData?.data?.items || [];
 
   return (
