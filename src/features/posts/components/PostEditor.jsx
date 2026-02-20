@@ -49,7 +49,7 @@ const PostEditor = ({ initialData, onSubmit, isSaving }) => {
   const author = initialData?.author || currentUser;
 
   const [isMediaModalOpen, setIsMediaModalOpen] = useState(false);
-  const [mediaPickerContext, setMediaPickerContext] = useState('featured'); // 'featured' or 'editor'
+  const [mediaPickerContext, setMediaPickerContext] = useState('featured');
 
   const [stats, setStats] = useState({ words: 0, time: 0 });
 

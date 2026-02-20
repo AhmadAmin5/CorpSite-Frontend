@@ -1,5 +1,5 @@
 import { Controller, useFormContext } from 'react-hook-form';
-import { Layers, Code, Box } from 'lucide-react'; // Added icons
+import { Layers, Code, Box } from 'lucide-react';
 import { EditorCard } from '../../../components/editor';
 import { Select, Input } from '../../../components';
 

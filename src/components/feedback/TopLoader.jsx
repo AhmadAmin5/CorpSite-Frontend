@@ -1,9 +1,9 @@
 import { useEffect, useState, useRef } from 'react';
 import { useNavigation } from 'react-router-dom';
 
-const TopLoader = () => {
+const TopLoader = ({ forceLoading = false }) => {
   const navigation = useNavigation();
-  const isLoading = navigation.state === 'loading';
+  const isLoading = navigation.state === 'loading' || forceLoading;
   const [progress, setProgress] = useState(0);
   const activeRef = useRef(false);
 
@@ -42,7 +42,7 @@ const TopLoader = () => {
   if (progress === 0) return null;
 
   return (
-    <div className="fixed top-0 left-0 right-0 h-1 z-9999 bg-transparent">
+    <div className="fixed top-0 left-0 right-0 h-1 z-9999 bg-transparent pointer-events-none">
       <div
         className="h-full bg-primary shadow-[0_0_10px_rgba(37,99,235,0.5)] transition-all duration-300 ease-out"
         style={{ width: `${progress}%` }}

@@ -54,7 +54,7 @@ export const {
   useLogoutMutation,
   useMeQuery,
   useActivateAccountMutation,
-  useUpdateProfileMutation, // Export this
+  useUpdateProfileMutation,
 } = authApi;
 
 export default authApi;

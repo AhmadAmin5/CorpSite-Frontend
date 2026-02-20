@@ -59,8 +59,8 @@ const PageEditor = ({ initialData, onSubmit, isSaving }) => {
       slug: initialData?.slug || '',
       status: initialData?.status || 'draft',
       parent: initialData?.parent?._id || initialData?.parent || '',
-      pageType: initialData?.pageType || 'generic', // NEW
-      componentName: initialData?.componentName || '', // NEW
+      pageType: initialData?.pageType || 'generic',
+      componentName: initialData?.componentName || '',
       content: initialData?.content || [],
       metaTitle: initialData?.metaTitle || '',
       metaDescription: initialData?.metaDescription || '',

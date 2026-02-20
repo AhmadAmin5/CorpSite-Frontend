@@ -74,6 +74,7 @@ const Users = () => {
         description="Manage your team members and their permissions here."
         actions={
           <Button
+            text="Invite new user"
             onClick={() => setIsInviteModalOpen(true)}
             className="flex items-center gap-2"
             icon={<Plus />}

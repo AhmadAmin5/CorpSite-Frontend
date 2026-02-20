@@ -6,8 +6,7 @@ import { BlockNoteView } from '@blocknote/mantine';
 import { useCreateBlockNote } from '@blocknote/react';
 import '@blocknote/mantine/style.css';
 
-import Skeleton from '../../components/ui/Skeleton';
-import Button from '../../components/ui/Button';
+import { Skeleton, TopLoader } from '../../components';
 import NotFound from '../error/NotFound';
 
 const PostContentRenderer = ({ content, theme }) => {
@@ -27,7 +26,7 @@ const PostContentRenderer = ({ content, theme }) => {
   if (!editor) return null;
 
   return (
-    <div className="bn-viewer-container [&_.bn-editor]:bg-transparent [&_.bn-editor]:px-0">
+    <div className="bn-viewer-container [&_.bn-editor]:bg-transparent! [&_.bn-editor]:px-0! md:[&_.bn-editor]:px-13.5!">
       <BlockNoteView
         key={theme}
         editor={editor}
@@ -68,7 +67,7 @@ const PostViewer = () => {
     return () => observer.disconnect();
   }, []);
 
-  const { data, isLoading, isError } = useGetPostPublicQuery(slug);
+  const { data, isLoading, isError, isFetching } = useGetPostPublicQuery(slug);
 
   const post = data?.data?.post || data?.data || data;
 
@@ -92,110 +91,109 @@ const PostViewer = () => {
   }
 
   return (
-    <article className="min-h-screen bg-(--background) pt-4 pb-16">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Header Section */}
-        <header className="mb-10 text-center md:text-left">
-          {/* Title */}
-          <h1 className="text-3xl md:text-5xl font-bold text-(--foreground) leading-tight mb-4">
-            {post.title}
-          </h1>
+    <>
+      <TopLoader forceLoading={isFetching && !isLoading} />
 
-          {/* Category & Date */}
-          <div className="flex items-center justify-center md:justify-start gap-3 text-sm text-(--secondary) mb-6">
-            {post.category && (
-              <Link
-                to={`/blog?category=${encodeURIComponent(post.category)}`}
-                className="bg-(--secondary)/10 px-3 py-1 rounded-full text-(--foreground) font-medium hover:bg-(--secondary)/20 hover:text-primary transition-colors"
-              >
-                {post.category}
-              </Link>
-            )}
-            <span>•</span>
-            <time dateTime={post.publishedAt || post.createdAt}>
-              {new Date(post.publishedAt || post.createdAt).toLocaleDateString(
-                'en-US',
-                {
+      <article className="min-h-screen bg-(--background) pt-4 pb-16">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <header className="mb-10 text-center md:text-left">
+            <h1 className="text-3xl md:text-5xl font-bold text-(--foreground) leading-tight mb-4">
+              {post.title}
+            </h1>
+
+            <div className="flex items-center justify-center md:justify-start gap-3 text-sm text-(--secondary) mb-6">
+              {post.category && (
+                <Link
+                  to={`/blog?category=${encodeURIComponent(post.category)}`}
+                  className="bg-(--secondary)/10 px-3 py-1 rounded-full text-(--foreground) font-medium hover:bg-(--secondary)/20 hover:text-primary transition-colors"
+                >
+                  {post.category}
+                </Link>
+              )}
+              <span>•</span>
+              <time dateTime={post.publishedAt || post.createdAt}>
+                {new Date(
+                  post.publishedAt || post.createdAt
+                ).toLocaleDateString('en-US', {
                   year: 'numeric',
                   month: 'long',
                   day: 'numeric',
-                }
-              )}
-            </time>
-          </div>
+                })}
+              </time>
+            </div>
 
-          {/* Author */}
-          {post.author && (
-            <Link
-              to={`/author/${post.author.username}`}
-              className="group inline-block"
-            >
-              <div className="flex items-center justify-center md:justify-start gap-3">
-                <div className="w-10 h-10 rounded-full bg-gray-200 overflow-hidden ring-2 ring-transparent group-hover:ring-primary transition-all">
-                  {/* Fallback avatar if no image */}
-                  <img
-                    src={
-                      post.author.profilePicture ||
-                      `https://ui-avatars.com/api/?name=${post.author.name || 'Admin'}`
-                    }
-                    alt={post.author.fullName}
-                    className="w-full h-full object-cover"
-                  />
-                </div>
-                <div className="text-left">
-                  <p className="font-medium text-(--foreground) group-hover:text-primary transition-colors">
-                    {post.author.fullName || 'Unknown Author'}
-                  </p>
-                  {post.author.role && (
-                    <p className="text-xs text-(--secondary) capitalize">
-                      {post.author.role}
+            {post.author && (
+              <Link
+                to={`/author/${post.author.username}`}
+                className="group inline-block"
+              >
+                <div className="flex items-center justify-center md:justify-start gap-3">
+                  <div className="w-10 h-10 rounded-full bg-gray-200 overflow-hidden ring-2 ring-transparent group-hover:ring-primary transition-all">
+                    <img
+                      src={
+                        post.author.profilePicture ||
+                        `https://ui-avatars.com/api/?name=${post.author.name || 'Admin'}`
+                      }
+                      alt={post.author.fullName}
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+                  <div className="text-left">
+                    <p className="font-medium text-(--foreground) group-hover:text-primary transition-colors">
+                      {post.author.fullName || 'Unknown Author'}
                     </p>
-                  )}
+                    {post.author.role && (
+                      <p className="text-xs text-(--secondary) capitalize">
+                        {post.author.role}
+                      </p>
+                    )}
+                  </div>
                 </div>
-              </div>
-            </Link>
+              </Link>
+            )}
+          </header>
+
+          {post.featuredImage && (
+            <div className="mb-12 rounded-2xl overflow-hidden shadow-sm border border-(--border)">
+              <img
+                src={post.featuredImage.url}
+                alt={post.title}
+                className="w-full h-auto max-h-150 object-cover"
+              />
+            </div>
           )}
-        </header>
 
-        {/* Featured Image */}
-        {post.featuredImage && (
-          <div className="mb-12 rounded-2xl overflow-hidden shadow-sm border border-(--border)">
-            <img
-              src={post.featuredImage.url}
-              alt={post.title}
-              className="w-full h-auto max-h-150 object-cover"
-            />
+          <div className="prose prose-lg dark:prose-invert max-w-none">
+            {post.content ? (
+              <PostContentRenderer
+                key={post._id}
+                content={post.content}
+                theme={currentTheme}
+              />
+            ) : (
+              <p className="text-center text-(--secondary) italic">
+                No content available.
+              </p>
+            )}
           </div>
-        )}
 
-        {/* Content Body (BlockNote Renderer) */}
-        <div className="prose prose-lg dark:prose-invert max-w-none">
-          {post.content ? (
-            <PostContentRenderer content={post.content} theme={currentTheme} />
-          ) : (
-            <p className="text-center text-(--secondary) italic">
-              No content available.
-            </p>
+          {post.tags && post.tags.length > 0 && (
+            <div className="mt-12 pt-8 border-t border-(--border)">
+              <div className="flex flex-wrap gap-2">
+                {post.tags.map((tag, index) => (
+                  <span
+                    key={index}
+                    className="px-3 py-1 text-sm bg-(--secondary)/5 text-(--secondary) rounded-md"
+                  >
+                    #{tag}
+                  </span>
+                ))}
+              </div>
+            </div>
           )}
         </div>
-
-        {/* Tags */}
-        {post.tags && post.tags.length > 0 && (
-          <div className="mt-12 pt-8 border-t border-(--border)">
-            <div className="flex flex-wrap gap-2">
-              {post.tags.map((tag, index) => (
-                <span
-                  key={index}
-                  className="px-3 py-1 text-sm bg-(--secondary)/5 text-(--secondary) rounded-md"
-                >
-                  #{tag}
-                </span>
-              ))}
-            </div>
-          </div>
-        )}
-      </div>
-    </article>
+      </article>
+    </>
   );
 };
 

@@ -2,7 +2,6 @@ import apiSlice from '../../api/apiSlice';
 
 export const settingsApi = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
-    // Fetch all settings (returns mapped object { key: value })
     getSettings: builder.query({
       query: () => ({
         url: '/setting',
@@ -11,12 +10,11 @@ export const settingsApi = apiSlice.injectEndpoints({
       providesTags: ['Settings'],
     }),
 
-    // Update or Create a setting
     updateSetting: builder.mutation({
       query: (data) => ({
         url: '/setting',
-        method: 'patch', // Using PATCH to match the "update" nature
-        data, // Expects { key, value, group? }
+        method: 'patch',
+        data,
       }),
       invalidatesTags: ['Settings'],
     }),

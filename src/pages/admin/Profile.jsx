@@ -1,6 +1,6 @@
 import { useEffect, useState, useRef } from 'react';
 import { useForm, Controller } from 'react-hook-form';
-import { useDispatch } from 'react-redux'; // [!code ++]
+import { useDispatch } from 'react-redux';
 import {
   User,
   Mail,
@@ -13,12 +13,11 @@ import {
   FileText,
 } from 'lucide-react';
 
-// Import BOTH from authApi
 import {
   useMeQuery,
   useUpdateProfileMutation,
 } from '../../features/auth/authApi';
-import { setCredentials } from '../../features/auth/authSlice'; // [!code ++]
+import { setCredentials } from '../../features/auth/authSlice';
 
 import {
   Button,
@@ -39,7 +38,7 @@ const GENDER_OPTIONS = [
 
 const Profile = () => {
   const toast = useToast();
-  const dispatch = useDispatch(); // [!code ++]
+  const dispatch = useDispatch();
   const fileInputRef = useRef(null);
   const { data: meData, isLoading: isLoadingMe } = useMeQuery();
   const currentUser = meData?.data;

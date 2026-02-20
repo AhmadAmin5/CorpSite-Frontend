@@ -16,12 +16,11 @@ const Select = ({
   const [coords, setCoords] = useState({ top: 0, left: 0, width: 0 });
   const containerRef = useRef(null);
 
-  // 1. Calculate position when opening
   const updatePosition = () => {
     if (containerRef.current) {
       const rect = containerRef.current.getBoundingClientRect();
       setCoords({
-        top: rect.bottom + window.scrollY + 4, // 4px gap below button
+        top: rect.bottom + window.scrollY + 4,
         left: rect.left + window.scrollX,
         width: rect.width,
       });
@@ -31,7 +30,6 @@ const Select = ({
   useEffect(() => {
     if (isOpen) {
       updatePosition();
-      // Recalculate on scroll or resize to keep it attached
       window.addEventListener('resize', updatePosition);
       window.addEventListener('scroll', updatePosition, true);
     }
@@ -41,7 +39,6 @@ const Select = ({
     };
   }, [isOpen]);
 
-  // 2. Handle Click Outside
   useEffect(() => {
     const handleClickOutside = (event) => {
       const dropdownElement = document.getElementById('select-dropdown-portal');

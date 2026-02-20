@@ -10,14 +10,12 @@ import {
   Calendar,
 } from 'lucide-react';
 
-// APIs
 import { useGetPostsQuery } from '../../features/posts/postsApi';
 import { useGetPagesQuery } from '../../features/pages/pagesApi';
 import { useGetUsersQuery } from '../../features/users/usersApi';
 import { useGetMediaQuery } from '../../features/media/mediaApi';
 import { selectUser } from '../../features/auth/authSlice';
 
-// Components
 import { Button, Skeleton, Table, InfoCell, DateCell } from '../../components';
 import PostStatusBadge from '../../features/posts/components/PostStatusBadge';
 

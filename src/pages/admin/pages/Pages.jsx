@@ -19,7 +19,7 @@ const Pages = () => {
 
   const [searchQuery, setSearchQuery] = useState('');
   const [statusFilter, setStatusFilter] = useState('all');
-  const [typeFilter, setTypeFilter] = useState('all'); // NEW
+  const [typeFilter, setTypeFilter] = useState('all');
   const [pageToDelete, setPageToDelete] = useState(null);
 
   const [deletePage, { isLoading: isDeleting }] = useDeletePageMutation();
@@ -42,7 +42,6 @@ const Pages = () => {
     { value: 'archived', label: 'Archived' },
   ];
 
-  // NEW OPTIONS
   const typeOptions = [
     { value: 'all', label: 'All Types' },
     { value: 'generic', label: 'Generic' },

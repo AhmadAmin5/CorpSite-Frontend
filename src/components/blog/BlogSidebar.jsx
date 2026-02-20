@@ -1,8 +1,6 @@
 import { Search, X } from 'lucide-react';
 import { useGetCategoriesQuery } from '../../features/categories/categoriesApi';
-import Input from '../../components/ui/Input';
-import Button from '../../components/ui/Button';
-import Skeleton from '../../components/ui/Skeleton';
+import { Input, Skeleton } from '../../components';
 
 const BlogSidebar = ({
   search,
@@ -26,7 +24,6 @@ const BlogSidebar = ({
             value={search}
             onChange={(e) => setSearch(e.target.value)}
             className="w-full"
-            // Use a simple icon if available, or just the text
           />
           <div className="absolute right-3 top-2.5 text-(--secondary)">
             <Search className="w-5 h-5" />
@@ -64,8 +61,7 @@ const BlogSidebar = ({
           </button>
 
           {catLoading
-            ? // Skeleton Loader for Categories
-              Array.from({ length: 5 }).map((_, i) => (
+            ? Array.from({ length: 5 }).map((_, i) => (
                 <Skeleton key={i} className="h-9 w-full rounded-lg" />
               ))
             : categories.map((cat) => (

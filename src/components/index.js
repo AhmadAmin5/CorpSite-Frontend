@@ -35,6 +35,11 @@ import TableToolbar from './layout/TableToolbar';
 
 import MediaPickerModal from './media/MediaPickerModal';
 
+import PageCard from './page/PageCard';
+
+import CtaBlock from './block/CtaBlock';
+import Hero from './block/Hero';
+
 export {
   Input,
   Logo,
@@ -64,3 +69,7 @@ export {
 };
 
 export { MediaPickerModal };
+
+export { PageCard };
+
+export { CtaBlock, Hero };

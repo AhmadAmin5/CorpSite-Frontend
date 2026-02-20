@@ -2,7 +2,6 @@ import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { useNavigate, useLocation, Outlet } from 'react-router-dom';
 import { selectAuthStatus, selectUserRole } from '../features/auth/authSlice';
-// Import SplashScreen instead of Spinner
 import { SplashScreen } from '../components';
 
 const AuthLayout = ({ children, authentication = true, roles = [] }) => {
@@ -14,9 +13,6 @@ const AuthLayout = ({ children, authentication = true, roles = [] }) => {
   const userRole = useSelector(selectUserRole);
 
   useEffect(() => {
-    // Artificial delay check to prevent flashing?
-    // Usually not needed if Redux state is instant, but good for UX if async.
-
     if (authentication && !authStatus) {
       navigate('/login', {
         state: { from: location },

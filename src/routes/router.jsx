@@ -29,12 +29,24 @@ const router = createBrowserRouter([
             lazy: lazyLoad(() => import('../pages/public/About.jsx')),
           },
           {
+            path: 'services',
+            lazy: lazyLoad(() => import('../pages/public/Services.jsx')),
+          },
+          {
+            path: 'solutions',
+            lazy: lazyLoad(() => import('../pages/public/Solutions.jsx')),
+          },
+          {
             path: 'blog',
             lazy: lazyLoad(() => import('../pages/public/Blog.jsx')),
           },
           {
             path: 'blog/:slug',
             lazy: lazyLoad(() => import('../pages/public/PostViewer.jsx')),
+          },
+          {
+            path: '*',
+            lazy: lazyLoad(() => import('../pages/public/PageViewer.jsx')),
           },
         ],
       },

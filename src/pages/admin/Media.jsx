@@ -28,18 +28,15 @@ const Media = () => {
   const toast = useToast();
   const fileInputRef = useRef(null);
 
-  // State
   const [page, setPage] = useState(1);
   const limit = 12;
   const [deleteId, setDeleteId] = useState(null);
   const [copiedId, setCopiedId] = useState(null);
 
-  // API Hooks
   const { data, isLoading, isFetching } = useGetMediaQuery({ page, limit });
   const [uploadMedia, { isLoading: isUploading }] = useUploadMediaMutation();
   const [deleteMedia, { isLoading: isDeleting }] = useDeleteMediaMutation();
 
-  // Handlers
   const handleFileSelect = async (e) => {
     const file = e.target.files[0];
     if (!file) return;
@@ -124,14 +121,12 @@ const Media = () => {
       {/* Content Area */}
       <div className="bg-(--card) rounded-xl border border-(--border) shadow-sm p-6 min-h-100">
         {isLoading ? (
-          // Loading Skeleton Grid
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
             {[...Array(8)].map((_, i) => (
               <Skeleton key={i} className="aspect-square rounded-lg w-full" />
             ))}
           </div>
         ) : mediaList.length === 0 ? (
-          // Empty State
           <EmptyState
             icon={ImageIcon}
             title="No media found"
@@ -140,7 +135,6 @@ const Media = () => {
             onAction={() => fileInputRef.current?.click()}
           />
         ) : (
-          // Image Grid
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
             {mediaList.map((item) => (
               <div

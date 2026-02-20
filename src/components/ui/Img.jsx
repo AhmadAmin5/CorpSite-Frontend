@@ -11,7 +11,7 @@ const Img = ({
   fallbackSrc,
   ...props
 }) => {
-  const [status, setStatus] = useState('loading'); // 'loading' | 'loaded' | 'error'
+  const [status, setStatus] = useState('loading');
 
   const handleLoad = () => {
     setStatus('loaded');

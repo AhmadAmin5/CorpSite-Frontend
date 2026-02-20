@@ -26,18 +26,12 @@ const MobileCardSkeleton = () => (
 );
 
 const MobileDataCard = ({ row, columns }) => {
-  // Strategy:
-  // 1. Column[0] is the "Card Identity" (Header)
-  // 2. The last column is "Actions" (Footer) IF its header is "Actions"
-  // 3. All other columns are Key-Value pairs in the body
-
   const primaryCol = columns[0];
   const lastCol = columns[columns.length - 1];
   const hasActions =
     lastCol?.header === 'Actions' || lastCol?.className?.includes('text-right');
 
   const actionCol = hasActions ? lastCol : null;
-  // Slice out the body columns (Excluding first and optional last)
   const bodyCols = columns.slice(1, hasActions ? -1 : undefined);
 
   return (
@@ -81,8 +75,6 @@ const MobileDataCard = ({ row, columns }) => {
     </div>
   );
 };
-
-// --- Main Component ---
 
 const Table = ({
   columns = [],

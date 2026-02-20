@@ -3,14 +3,19 @@ import apiSlice from '../../api/apiSlice';
 const pagesApi = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
     getPages: builder.query({
-      query: ({ page = 1, limit = 10, search = '', status = '' } = {}) => {
-        const params = new URLSearchParams({
-          page,
-          limit,
-        });
+      query: ({
+        page = 1,
+        limit = 10,
+        search = '',
+        status = '',
+        parent = '',
+      } = {}) => {
+        const params = new URLSearchParams({ page, limit });
 
         if (search) params.append('search', search);
         if (status && status !== 'all') params.append('status', status);
+        if (parent !== undefined && parent !== '')
+          params.append('parent', parent);
 
         return {
           url: `/page?${params.toString()}`,
@@ -35,16 +40,40 @@ const pagesApi = apiSlice.injectEndpoints({
     }),
 
     getPagesPublic: builder.query({
-      query: (slug) => ({
-        url: `/page/public${encodeURIComponent(slug)}`,
-        method: 'get',
-      }),
-      providesTags: (result, error, slug) => [{ type: 'Pages', id: slug }],
+      query: ({
+        page = 1,
+        limit = 10,
+        search = '',
+        pageType = '',
+        parent = '',
+      } = {}) => {
+        const params = new URLSearchParams({ page, limit });
+
+        if (search) params.append('search', search);
+        if (pageType) params.append('pageType', pageType);
+        if (parent !== undefined && parent !== '')
+          params.append('parent', parent);
+
+        return {
+          url: `/page/public?${params.toString()}`,
+          method: 'get',
+        };
+      },
+      providesTags: (result) =>
+        result
+          ? [
+              ...result.data.pages.map(({ _id }) => ({
+                type: 'Pages',
+                id: _id,
+              })),
+              { type: 'Pages', id: 'LIST' },
+            ]
+          : [{ type: 'Pages', id: 'LIST' }],
     }),
 
     getPagePublic: builder.query({
       query: (slug) => ({
-        url: `/page/public${encodeURIComponent(slug)}`,
+        url: `/page/public/${encodeURIComponent(slug)}`,
         method: 'get',
       }),
       providesTags: (result, error, slug) => [{ type: 'Pages', id: slug }],
@@ -86,7 +115,6 @@ export const {
   useGetPageQuery,
   useGetPagesPublicQuery,
   useGetPagePublicQuery,
-  useGetPageBySlugQuery,
   useCreatePageMutation,
   useUpdatePageMutation,
   useDeletePageMutation,

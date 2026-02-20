@@ -4,14 +4,11 @@ import Button from '../ui/Button';
 const Pagination = ({ currentPage, totalPages, onPageChange }) => {
   if (totalPages <= 1) return null;
 
-  // Generate page numbers to display
   const getPageNumbers = () => {
     const pages = [];
-    // Always show 1
     if (currentPage > 3) pages.push(1);
     if (currentPage > 4) pages.push('...');
 
-    // Show current and neighbors
     for (
       let i = Math.max(1, currentPage - 1);
       i <= Math.min(totalPages, currentPage + 1);
@@ -20,7 +17,6 @@ const Pagination = ({ currentPage, totalPages, onPageChange }) => {
       pages.push(i);
     }
 
-    // Show last
     if (currentPage < totalPages - 3) pages.push('...');
     if (currentPage < totalPages - 2) pages.push(totalPages);
 

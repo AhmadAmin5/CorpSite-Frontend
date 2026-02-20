@@ -28,9 +28,8 @@ const PublicHeader = () => {
   const { theme, toggleTheme } = useTheme();
   const location = useLocation();
 
-  const { data: settingsResult } = useGetSettingsQuery();
-  const headerSlug =
-    settingsResult?.data?.menu_locations?.header || 'main-header';
+  // const { data: settingsResult } = useGetSettingsQuery();
+  const headerSlug = 'main-header';
 
   const { data: menuData, isLoading } = useGetMenuBySlugQuery(headerSlug, {
     skip: !headerSlug,
@@ -105,9 +104,11 @@ const PublicHeader = () => {
             )}
           </button>
 
+          {/* Login */}
+          {/*
+          
           <div className="h-6 w-px bg-(--border) mx-1 hidden sm:block"></div>
 
-          {/* Login */}
           <Link
             to="/login"
             className="hidden sm:flex items-center gap-2 px-4 py-2 text-sm font-medium text-primary hover:bg-primary/5 rounded-full transition-colors"
@@ -115,6 +116,7 @@ const PublicHeader = () => {
             <LogIn className="w-4 h-4" />
             <span>Login</span>
           </Link>
+          */}
 
           {/* Mobile Toggle */}
           <button
@@ -153,6 +155,8 @@ const PublicHeader = () => {
             ))}
           </div>
 
+          {/*
+
           <div className="pt-6 mt-4 border-t border-(--border) flex flex-col gap-3">
             <Link
               to="/login"
@@ -161,6 +165,8 @@ const PublicHeader = () => {
               <User className="w-4 h-4" /> Client Portal
             </Link>
           </div>
+
+          */}
         </div>
       )}
     </header>
@@ -172,7 +178,6 @@ const DesktopMenuItem = ({ item }) => {
   const hasChildren = item.children && item.children.length > 0;
   const [isOpen, setIsOpen] = useState(false);
 
-  // Link Styles
   const linkBase =
     'px-4 py-2 text-sm font-medium rounded-full transition-colors flex items-center gap-1 cursor-pointer';
   const activeClass = 'text-primary bg-primary/10';
@@ -279,7 +284,7 @@ const MobileMenuItem = ({ item, closeMenu }) => {
 
         {/* Expandable Submenu */}
         <div
-          className={`overflow-hidden transition-all duration-300 ease-in-out ${isExpanded ? 'max-h-[500px] opacity-100 mb-2' : 'max-h-0 opacity-0'}`}
+          className={`overflow-hidden transition-all duration-300 ease-in-out ${isExpanded ? 'max-h-125 opacity-100 mb-2' : 'max-h-0 opacity-0'}`}
         >
           <div className="pl-4 border-l-2 border-(--border) ml-1 flex flex-col gap-1">
             {item.children.map((child) => (

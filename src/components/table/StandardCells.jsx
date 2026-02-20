@@ -7,7 +7,7 @@ export const InfoCell = ({
   imgPlaceholder,
   title,
   subtitle,
-  subLabel, // e.g., "(You)"
+  subLabel,
   onClick,
 }) => {
   return (

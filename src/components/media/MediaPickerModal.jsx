@@ -18,12 +18,10 @@ const MediaPickerModal = ({ isOpen, onClose, onSelect }) => {
   const toast = useToast();
   const fileInputRef = useRef(null);
 
-  // State
   const [page, setPage] = useState(1);
   const limit = 12;
   const [selectedImage, setSelectedImage] = useState(null);
 
-  // API
   const { data, isLoading, isFetching } = useGetMediaQuery({ page, limit });
   const [uploadMedia, { isLoading: isUploading }] = useUploadMediaMutation();
 
@@ -33,7 +31,6 @@ const MediaPickerModal = ({ isOpen, onClose, onSelect }) => {
     totalPages: 1,
   };
 
-  // Handlers
   const handleUpload = async (e) => {
     const file = e.target.files[0];
     if (!file) return;

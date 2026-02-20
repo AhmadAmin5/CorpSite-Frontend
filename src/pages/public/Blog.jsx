@@ -2,33 +2,28 @@ import { useState, useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { useGetPostsPublicQuery } from '../../features/posts/postsApi';
 
-// Modular Components
 import PostCard from '../../components/blog/PostCard';
 import BlogSidebar from '../../components/blog/BlogSidebar';
 import Pagination from '../../components/blog/Pagination';
-import Skeleton from '../../components/ui/Skeleton';
-import Button from '../../components/ui/Button';
+import { Skeleton, Button, CtaBlock } from '../../components';
 
 const Blog = () => {
   const [searchParams, setSearchParams] = useSearchParams();
 
-  // State from URL or defaults
   const [page, setPage] = useState(Number(searchParams.get('page')) || 1);
   const [search, setSearch] = useState(searchParams.get('q') || '');
   const [category, setCategory] = useState(searchParams.get('category') || '');
 
-  // Debounce search to avoid too many API calls
   const [debouncedSearch, setDebouncedSearch] = useState(search);
 
   useEffect(() => {
     const handler = setTimeout(() => {
       setDebouncedSearch(search);
-      setPage(1); // Reset to page 1 on search
+      setPage(1);
     }, 500);
     return () => clearTimeout(handler);
   }, [search]);
 
-  // Update URL params
   useEffect(() => {
     const params = {};
     if (page > 1) params.page = page;
@@ -37,7 +32,6 @@ const Blog = () => {
     setSearchParams(params, { replace: true });
   }, [page, debouncedSearch, category, setSearchParams]);
 
-  // Fetch Data
   const { data, isLoading, isFetching, isError } = useGetPostsPublicQuery({
     page,
     limit: 9,
@@ -145,6 +139,7 @@ const Blog = () => {
             )}
           </div>
         </div>
+        <CtaBlock />
       </div>
     </div>
   );

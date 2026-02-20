@@ -34,7 +34,6 @@ const EditPost = () => {
     try {
       await updatePost({ id, ...formData }).unwrap();
       toast.success('Post updated successfully');
-      // navigate('/admin/posts');
     } catch (err) {
       console.error(err);
       toast.error(err?.data?.message || 'Failed to update post');
