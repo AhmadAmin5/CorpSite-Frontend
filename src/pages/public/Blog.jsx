@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
-import { useGetPostsQuery } from '../../features/posts/postsApi';
+import { useGetPostsPublicQuery } from '../../features/posts/postsApi';
 
 // Modular Components
 import PostCard from '../../components/blog/PostCard';
@@ -38,7 +38,7 @@ const Blog = () => {
   }, [page, debouncedSearch, category, setSearchParams]);
 
   // Fetch Data
-  const { data, isLoading, isFetching, isError } = useGetPostsQuery({
+  const { data, isLoading, isFetching, isError } = useGetPostsPublicQuery({
     page,
     limit: 9,
     search: debouncedSearch,

@@ -40,6 +40,37 @@ const postsApi = apiSlice.injectEndpoints({
       providesTags: (result, error, id) => [{ type: 'Posts', id }],
     }),
 
+    getPostsPublic: builder.query({
+      query: ({ page = 1, limit = 10, search = '', category = '' }) => {
+        let queryString = `/post/public?page=${page}&limit=${limit}`;
+        if (search) queryString += `&search=${search}`;
+        if (category && category !== 'all')
+          queryString += `&category=${category}`;
+        return {
+          url: queryString,
+          method: 'get',
+        };
+      },
+      providesTags: (result) =>
+        result
+          ? [
+              ...result.data.posts.map(({ _id }) => ({
+                type: 'Posts',
+                id: _id,
+              })),
+              { type: 'Posts', id: 'LIST' },
+            ]
+          : [{ type: 'Posts', id: 'LIST' }],
+    }),
+
+    getPostPublic: builder.query({
+      query: (id) => ({
+        url: `/post/public/${id}`,
+        method: 'get',
+      }),
+      providesTags: (result, error, id) => [{ type: 'Posts', id }],
+    }),
+
     createPost: builder.mutation({
       query: (postData) => ({
         url: `/post`,
@@ -74,6 +105,8 @@ const postsApi = apiSlice.injectEndpoints({
 export const {
   useGetPostsQuery,
   useGetPostQuery,
+  useGetPostsPublicQuery,
+  useGetPostPublicQuery,
   useCreatePostMutation,
   useUpdatePostMutation,
   useDeletePostMutation,

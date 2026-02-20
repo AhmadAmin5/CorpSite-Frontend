@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
-import { useGetPostQuery } from '../../features/posts/postsApi';
+import { useGetPostPublicQuery } from '../../features/posts/postsApi';
 
 import { BlockNoteView } from '@blocknote/mantine';
 import { useCreateBlockNote } from '@blocknote/react';
@@ -68,7 +68,7 @@ const PostViewer = () => {
     return () => observer.disconnect();
   }, []);
 
-  const { data, isLoading, isError } = useGetPostQuery(slug);
+  const { data, isLoading, isError } = useGetPostPublicQuery(slug);
 
   const post = data?.data?.post || data?.data || data;
 

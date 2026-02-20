@@ -34,6 +34,22 @@ const pagesApi = apiSlice.injectEndpoints({
       providesTags: (result, error, id) => [{ type: 'Pages', id }],
     }),
 
+    getPagesPublic: builder.query({
+      query: (slug) => ({
+        url: `/page/public${encodeURIComponent(slug)}`,
+        method: 'get',
+      }),
+      providesTags: (result, error, slug) => [{ type: 'Pages', id: slug }],
+    }),
+
+    getPagePublic: builder.query({
+      query: (slug) => ({
+        url: `/page/public${encodeURIComponent(slug)}`,
+        method: 'get',
+      }),
+      providesTags: (result, error, slug) => [{ type: 'Pages', id: slug }],
+    }),
+
     createPage: builder.mutation({
       query: (pageData) => ({
         url: `/page`,
@@ -68,6 +84,9 @@ const pagesApi = apiSlice.injectEndpoints({
 export const {
   useGetPagesQuery,
   useGetPageQuery,
+  useGetPagesPublicQuery,
+  useGetPagePublicQuery,
+  useGetPageBySlugQuery,
   useCreatePageMutation,
   useUpdatePageMutation,
   useDeletePageMutation,

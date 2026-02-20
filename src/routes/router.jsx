@@ -25,18 +25,16 @@ const router = createBrowserRouter([
             lazy: lazyLoad(() => import('../pages/public/Home.jsx')),
           },
           {
+            path: 'about',
+            lazy: lazyLoad(() => import('../pages/public/About.jsx')),
+          },
+          {
             path: 'blog',
             lazy: lazyLoad(() => import('../pages/public/Blog.jsx')),
           },
-          // --- NEW ROUTE START ---
           {
             path: 'blog/:slug',
             lazy: lazyLoad(() => import('../pages/public/PostViewer.jsx')),
-          },
-          // --- NEW ROUTE END ---
-          {
-            path: 'about',
-            lazy: lazyLoad(() => import('../pages/public/About.jsx')),
           },
         ],
       },
@@ -58,7 +56,6 @@ const router = createBrowserRouter([
           };
         },
       },
-      // Separated into its own object
       {
         path: 'activate-account',
         lazy: async () => {

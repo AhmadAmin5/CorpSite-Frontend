@@ -46,7 +46,7 @@ const PostCard = ({ post }) => {
           </h2>
         </Link>
 
-        <p className="text-(--secondary) text-sm line-clamp-3 mb-4 flex-grow">
+        <p className="text-(--secondary) text-sm line-clamp-3 mb-4 grow">
           {post.excerpt ||
             post.metaDescription ||
             'Click to read this article...'}
