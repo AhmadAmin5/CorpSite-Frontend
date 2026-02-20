@@ -1,5 +1,5 @@
 import React from 'react';
-import { useGetPagesPublicQuery } from '../../features/pages/PagesApi';
+import { useGetPagesPublicQuery } from '../../features/pages/pagesApi';
 import { CtaBlock, Hero, PageCard, Skeleton } from '../../components';
 import GlobalError from '../error/GlobalError';
 

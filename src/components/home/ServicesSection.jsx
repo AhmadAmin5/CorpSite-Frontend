@@ -8,7 +8,7 @@ import {
   Database,
   Globe,
 } from 'lucide-react';
-import { useGetPagesPublicQuery } from '../../features/pages/PagesApi';
+import { useGetPagesPublicQuery } from '../../features/pages/pagesApi';
 import { PageCard, Skeleton } from '../';
 
 const TECH_ICONS = [Code, Cloud, ShieldCheck, Cpu, Database, Globe];
