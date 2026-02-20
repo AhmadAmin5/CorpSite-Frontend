@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
-import { useGetPagePublicQuery } from '../../features/pages/PagesApi';
+import { useGetPagePublicQuery } from '../../features/pages/pagesApi';
 
 import { BlockNoteView } from '@blocknote/mantine';
 import { useCreateBlockNote } from '@blocknote/react';
