@@ -32,7 +32,7 @@ const scheduleProactiveRefresh = (store, token) => {
 
   timerId = setTimeout(async () => {
     try {
-      const res = await axiosInstance.post('/user/refresh');
+      const res = await axiosInstance.post('/auth/refresh');
       const newToken = res?.data?.accessToken;
       if (newToken) {
         store.dispatch(setAccessToken(newToken));
