@@ -47,7 +47,7 @@ const App = () => {
     return (
       <SplashScreen
         message="Waking up the backend server..."
-        subMessage="Since this is a free hosting tier, the server sleeps after inactivity. It usually takes 30-50 seconds to spin up. Thank you for your patience!"
+        subMessage="This site is using free servers for presentation purpose, which sleeps after inactivity. It usually takes 30-50 seconds to spin up. Thank you for your patience!"
       />
     );
   }
@@ -64,7 +64,7 @@ const App = () => {
           </h1>
           <p className="text-(--secondary)">
             We cannot connect to the backend server right now. It might be down
-            for maintenance or experiencing unexpected issues.
+            for maintenance or experiencing unexpected issues. Please try again.
           </p>
         </div>
         <Button
