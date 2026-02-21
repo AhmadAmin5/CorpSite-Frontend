@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react'; // ADDED: useEffect
 import { useNavigate } from 'react-router-dom';
 import { FileText, Link as LinkIcon, LayoutTemplate, Code } from 'lucide-react';
 import { useGetPagesQuery } from '../pagesApi';
@@ -8,6 +8,10 @@ import PostStatusBadge from '../../posts/components/PostStatusBadge';
 const PagesTable = ({ searchQuery, statusFilter, typeFilter, onDelete }) => {
   const navigate = useNavigate();
   const [page, setPage] = useState(1);
+
+  useEffect(() => {
+    setPage(1);
+  }, [searchQuery, statusFilter, typeFilter]);
 
   const { data, isLoading, isFetching } = useGetPagesQuery({
     page,
@@ -35,7 +39,7 @@ const PagesTable = ({ searchQuery, statusFilter, typeFilter, onDelete }) => {
       case 'functional':
         return 'bg-blue-100 text-blue-700 dark:bg-blue-900/30 dark:text-blue-300';
       default:
-        return 'bg-primary/10 text-primary';
+        return 'bg-primary/10 text-gray-700 dark:bg-gray-800 dark:text-gray-300';
     }
   };
 
@@ -44,13 +48,16 @@ const PagesTable = ({ searchQuery, statusFilter, typeFilter, onDelete }) => {
       header: 'Page Title',
       render: (page) => (
         <div className="flex items-center gap-3">
-          <div className={`p-2 rounded-lg ${getTypeBadgeColor(page.pageType)}`}>
+          <div
+            className={`p-2 rounded-lg ${getTypeBadgeColor(page.pageType)}`}
+            title={`Type: ${page.pageType || 'generic'}`}
+          >
             {getTypeIcon(page.pageType)}
           </div>
           <div>
             <div className="font-medium text-(--foreground)">{page.title}</div>
             {page.componentName && (
-              <div className="text-[10px] bg-(--muted) text-(--secondary) px-1.5 py-0.5 rounded inline-block mt-1 font-mono">
+              <div className="text-xs text-(--secondary) font-mono">
                 {page.componentName}
               </div>
             )}
@@ -102,7 +109,7 @@ const PagesTable = ({ searchQuery, statusFilter, typeFilter, onDelete }) => {
       data={data?.data?.pages || []}
       isLoading={isLoading}
       isFetching={isFetching}
-      emptyMessage="No pages found."
+      emptyMessage="No pages found matching the selected filters."
       pagination={{
         currentPage: data?.data?.pagination?.currentPage || 1,
         totalPages: data?.data?.pagination?.totalPages || 1,

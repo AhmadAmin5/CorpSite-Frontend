@@ -35,8 +35,8 @@ const HomeHero = () => {
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4 animate-in fade-in slide-in-from-bottom-10 duration-700 delay-300">
           <Button
             size="lg"
-            onClick={() => navigate('/services')}
-            text="Explore Services"
+            onClick={() => navigate('/contact')}
+            text="Contact now"
             icon={<ArrowRight />}
             iconPosition="right"
             className="w-full sm:w-auto text-lg px-8 py-4 shadow-lg shadow-primary/25 hover:shadow-xl hover:shadow-primary/30 hover:-translate-y-1 transition-all"

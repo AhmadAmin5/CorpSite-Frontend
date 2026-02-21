@@ -8,12 +8,16 @@ const pagesApi = apiSlice.injectEndpoints({
         limit = 10,
         search = '',
         status = '',
+        pageType = '',
         parent = '',
       } = {}) => {
         const params = new URLSearchParams({ page, limit });
 
         if (search) params.append('search', search);
         if (status && status !== 'all') params.append('status', status);
+
+        if (pageType && pageType !== 'all') params.append('pageType', pageType);
+
         if (parent !== undefined && parent !== '')
           params.append('parent', parent);
 

@@ -19,7 +19,16 @@ import { selectUser } from '../../features/auth/authSlice';
 import { Button, Skeleton, Table, InfoCell, DateCell } from '../../components';
 import PostStatusBadge from '../../features/posts/components/PostStatusBadge';
 
-const StatCard = ({ title, value, icon: Icon, color, isLoading, to }) => {
+// 1. Update StatCard to accept explicit color classes
+const StatCard = ({
+  title,
+  value,
+  icon: Icon,
+  iconColor,
+  bgColor,
+  isLoading,
+  to,
+}) => {
   return (
     <div className="bg-(--card) border border-(--border) rounded-xl p-6 shadow-sm flex items-start justify-between relative overflow-hidden group">
       <div className="relative z-10">
@@ -37,14 +46,14 @@ const StatCard = ({ title, value, icon: Icon, color, isLoading, to }) => {
         </Link>
       </div>
 
-      <div
-        className={`p-3 rounded-xl ${color} bg-opacity-10 text-opacity-100 mb-auto`}
-      >
-        <Icon className={`w-6 h-6 ${color.replace('bg-', 'text-')}`} />
+      {/* Use the explicit background color class here */}
+      <div className={`p-3 rounded-xl ${bgColor} mb-auto`}>
+        {/* Use the explicit text color class here */}
+        <Icon className={`w-6 h-6 ${iconColor}`} />
       </div>
 
       <Icon
-        className={`absolute -bottom-4 -right-4 w-32 h-32 opacity-5 pointer-events-none transform group-hover:scale-110 transition-transform duration-500 ${color.replace('bg-', 'text-')}`}
+        className={`absolute -bottom-4 -right-4 w-32 h-32 opacity-5 pointer-events-none transform group-hover:scale-110 transition-transform duration-500 ${iconColor}`}
       />
     </div>
   );
@@ -161,11 +170,13 @@ const Dashboard = () => {
       </div>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
+        {/* 2. Pass complete, explicit Tailwind class strings */}
         <StatCard
           title="Total Posts"
           value={stats.posts}
           icon={FileText}
-          color="bg-blue-500"
+          iconColor="text-blue-500"
+          bgColor="bg-blue-500/10"
           isLoading={postsLoading}
           to="/admin/posts"
         />
@@ -173,7 +184,8 @@ const Dashboard = () => {
           title="Pages"
           value={stats.pages}
           icon={Layers}
-          color="bg-purple-500"
+          iconColor="text-purple-500"
+          bgColor="bg-purple-500/10"
           isLoading={pagesLoading}
           to="/admin/pages"
         />
@@ -181,7 +193,8 @@ const Dashboard = () => {
           title="Media Items"
           value={stats.media}
           icon={ImageIcon}
-          color="bg-pink-500"
+          iconColor="text-pink-500"
+          bgColor="bg-pink-500/10"
           isLoading={mediaLoading}
           to="/admin/media"
         />
@@ -189,7 +202,8 @@ const Dashboard = () => {
           title="Users"
           value={stats.users}
           icon={Users}
-          color="bg-orange-500"
+          iconColor="text-orange-500"
+          bgColor="bg-orange-500/10"
           isLoading={usersLoading}
           to="/admin/users"
         />

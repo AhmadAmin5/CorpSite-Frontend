@@ -11,7 +11,7 @@ import {
 import { useGetPagesPublicQuery } from '../../features/pages/pagesApi';
 import { PageCard, Skeleton } from '../';
 
-const TECH_ICONS = [Code, Cloud, ShieldCheck, Cpu, Database, Globe];
+const TECH_ICONS = [Cloud, Code, ShieldCheck, Cpu, Database, Globe];
 
 const ServicesSection = () => {
   const { data, isLoading, isError } = useGetPagesPublicQuery({

@@ -25,11 +25,25 @@ const PostCard = ({ post }) => {
 
       <div className="flex flex-col grow p-5">
         <div className="flex items-center gap-3 text-xs text-(--secondary) mb-3">
-          <div className="flex items-center gap-1">
-            <User className="w-3.5 h-3.5" />
-            <span>{post?.author?.fullName || 'Admin'}</span>
+          <div className="flex items-center gap-2">
+            {post?.author?.profilePicture ? (
+              <div className="w-6 h-6 rounded-full overflow-hidden border border-(--border)">
+                <Img
+                  src={post.author.profilePicture}
+                  alt={post?.author?.fullName}
+                  className="w-full h-full object-cover"
+                />
+              </div>
+            ) : (
+              <div className="w-6 h-6 rounded-full bg-(--secondary)/10 flex items-center justify-center text-(--secondary)">
+                <User className="w-3.5 h-3.5" />
+              </div>
+            )}
+            <span className="font-medium text-(--foreground)">
+              {post?.author?.fullName || 'Admin'}
+            </span>
           </div>
-          <div className="flex items-center gap-1">
+          <div className="flex items-center gap-1 ml-auto">
             <Calendar className="w-3.5 h-3.5" />
             <time>
               {post?.publishedAt || post?.createdAt
@@ -45,7 +59,7 @@ const PostCard = ({ post }) => {
           to={`/blog/${post?.slug}`}
           className="block group-hover:text-primary transition-colors"
         >
-          <h2 className="text-xl font-bold leading-snug mb-3 line-clamp-2">
+          <h2 className="text-xl font-bold leading-snug mb-3 line-clamp-2 text-(--foreground)">
             {post?.title}
           </h2>
         </Link>
