@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
-import { useGetPostPublicQuery } from '../../features/posts/postsApi';
+import { useGetPostPublicQuery, useGetPostsPublicQuery } from '../../features/posts/postsApi';
 
 import { BlockNoteView } from '@blocknote/mantine';
 import { useCreateBlockNote } from '@blocknote/react';
@@ -8,6 +8,7 @@ import '@blocknote/mantine/style.css';
 
 import { Skeleton, TopLoader } from '../../components';
 import NotFound from '../error/NotFound';
+import PostCard from '../../components/blog/PostCard';
 
 const PostContentRenderer = ({ content, theme }) => {
   const initialContent = useMemo(() => {
@@ -70,6 +71,16 @@ const PostViewer = () => {
   const { data, isLoading, isError, isFetching } = useGetPostPublicQuery(slug);
 
   const post = data?.data?.post || data?.data || data;
+
+  // Fetch related posts by the same category
+  const { data: relatedData } = useGetPostsPublicQuery(
+    { category: post?.category, limit: 4 },
+    { skip: !post?.category }
+  );
+
+  const relatedPosts = (relatedData?.data?.posts || [])
+    .filter((p) => p._id !== post?._id)
+    .slice(0, 3);
 
   if (isLoading) {
     return (
@@ -187,6 +198,19 @@ const PostViewer = () => {
                   >
                     #{tag}
                   </span>
+                ))}
+              </div>
+            </div>
+          )}
+
+          {relatedPosts.length > 0 && (
+            <div className="mt-16 pt-12 border-t border-(--border)">
+              <h2 className="text-2xl font-bold text-(--foreground) mb-8">
+                Read more about {post.category}
+              </h2>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                {relatedPosts.map((rp) => (
+                  <PostCard key={rp._id} post={rp} />
                 ))}
               </div>
             </div>

@@ -1,12 +1,12 @@
 import { useEffect, useMemo, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
-import { useGetPagePublicQuery } from '../../features/pages/pagesApi';
+import { useGetPagePublicQuery, useGetPagesPublicQuery } from '../../features/pages/pagesApi';
 
 import { BlockNoteView } from '@blocknote/mantine';
 import { useCreateBlockNote } from '@blocknote/react';
 import '@blocknote/mantine/style.css';
 
-import { Skeleton, TopLoader, Hero, Button } from '../../components';
+import { Skeleton, TopLoader, Hero, Button, PageCard } from '../../components';
 import NotFound from '../error/NotFound';
 import { Mail, Phone, ArrowRight } from 'lucide-react';
 
@@ -73,6 +73,25 @@ const PageViewer = () => {
     useGetPagePublicQuery(queryPath);
 
   const page = data?.data?.page || data?.data || data;
+
+  // Fetch related pages by the same parent
+  const parentValue = page?.parent?._id || page?.parent;
+  
+  const { data: relatedData } = useGetPagesPublicQuery(
+    { parent: parentValue, limit: 4 },
+    { skip: !parentValue }
+  );
+
+  console.log(relatedData);
+
+  const relatedPages = (relatedData?.data?.pages || relatedData?.pages || [])
+    .filter((p) => p._id !== page?._id)
+    .slice(0, 3);
+
+  const rawBasePath = page?.fullPath 
+    ? '/' + page.fullPath.split('/').slice(0, -1).join('/') 
+    : '';
+  const basePath = rawBasePath === '/' ? '' : rawBasePath;
 
   if (isLoading) {
     return (
@@ -209,6 +228,20 @@ const PageViewer = () => {
               </div>
             </aside>
           </div>
+          
+          {/* Related Pages Section */}
+          {relatedPages.length > 0 && (
+            <div className="mt-16 pt-12 border-t border-(--border)">
+              <h2 className="text-2xl font-bold text-(--foreground) mb-8">
+                Read more about {relatedPages[0].parent.title}
+              </h2>
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                {relatedPages.map((rp) => (
+                  <PageCard key={rp._id} page={rp} basePath={basePath} />
+                ))}
+              </div>
+            </div>
+          )}
         </div>
       </article>
     </>
