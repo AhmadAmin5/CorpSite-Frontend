@@ -14,15 +14,7 @@ const LoginForm = () => {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm({
-    // TODO Remove this
-    defaultValues: import.meta.env.DEV
-      ? {
-          identifier: 'ahmad',
-          password: 'ahmad123',
-        }
-      : {},
-  });
+  } = useForm();
 
   const [errMsg, setErrMsg] = useState('');
 

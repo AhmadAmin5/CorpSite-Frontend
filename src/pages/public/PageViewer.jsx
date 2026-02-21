@@ -82,8 +82,6 @@ const PageViewer = () => {
     { skip: !parentValue }
   );
 
-  console.log(relatedData);
-
   const relatedPages = (relatedData?.data?.pages || relatedData?.pages || [])
     .filter((p) => p._id !== page?._id)
     .slice(0, 3);
