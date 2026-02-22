@@ -63,8 +63,7 @@ const App = () => {
             Server Unreachable
           </h1>
           <p className="text-(--secondary)">
-            We cannot connect to the backend server right now. It might be down
-            for maintenance or experiencing unexpected issues. Please try again.
+            The server is taking long to respond. Please try again.
           </p>
         </div>
         <Button
