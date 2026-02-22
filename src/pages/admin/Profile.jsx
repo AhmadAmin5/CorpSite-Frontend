@@ -281,7 +281,7 @@ const Profile = () => {
                     <textarea
                       rows={4}
                       placeholder="Tell us a little about yourself..."
-                      className="w-full pl-10 pr-3 py-2 border border-(--border) rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/20 bg-(--background) text-(--foreground) transition-colors resize-none"
+                      className="w-full pl-10 pr-3 py-2 border border-(--border) rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/20 bg-(--background) text-(--foreground) resize-none"
                       {...register('bio')}
                     />
                   </div>

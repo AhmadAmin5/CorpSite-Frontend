@@ -18,7 +18,7 @@ export const EditorCard = ({
     >
       {(title || Icon) && (
         <div
-          className={`px-4 py-3 border-b border-(--border) font-semibold text-sm flex items-center justify-between ${collapsible ? 'cursor-pointer hover:bg-(--secondary)/5 transition-colors' : ''}`}
+          className={`px-4 py-3 border-b border-(--border) font-semibold text-sm flex items-center justify-between ${collapsible ? 'cursor-pointer hover:bg-(--secondary)/5' : ''}`}
           onClick={() => collapsible && setIsOpen(!isOpen)}
         >
           <div className="flex items-center gap-2">

@@ -5,7 +5,7 @@ import ContactForm from '../../features/contact/components/ContactForm';
 
 const Contact = () => {
   return (
-    <div className="min-h-screen bg-(--background) pb-20 transition-colors duration-200">
+    <div className="min-h-screen bg-(--background) pb-20">
       <Hero
         title="Get in Touch"
         description="Have a question, need technical support, or want to discuss a new project? Our engineering team is ready to help you build the future."
@@ -82,7 +82,7 @@ const Contact = () => {
               </p>
               <a
                 href="tel:+18005559999"
-                className="inline-flex items-center gap-2 font-bold text-primary hover:text-primary/80 transition-colors"
+                className="inline-flex items-center gap-2 font-bold text-primary hover:text-primary/80"
               >
                 <Phone className="w-5 h-5" /> 1-800-555-9999
               </a>

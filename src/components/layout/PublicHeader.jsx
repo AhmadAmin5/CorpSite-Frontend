@@ -41,7 +41,7 @@ const PublicHeader = () => {
   }, [location]);
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b border-(--border) bg-(--background)/70 backdrop-blur-md transition-colors duration-300">
+    <header className="sticky top-0 z-50 w-full border-b border-(--border) bg-(--background)/70 backdrop-blur-md duration-300">
       <div className="container mx-auto px-4 h-16 flex items-center justify-between max-w-7xl">
         {/* --- Left: Logo --- */}
         <div className="shrink-0 flex items-center gap-2">
@@ -80,7 +80,7 @@ const PublicHeader = () => {
             )}
             <button
               onClick={() => setIsSearchOpen(!isSearchOpen)}
-              className="p-2 rounded-full hover:bg-(--secondary)/10 text-(--secondary) hover:text-(--foreground) transition-colors"
+              className="p-2 rounded-full hover:bg-(--secondary)/10 text-(--secondary) hover:text-(--foreground)"
               title="Search"
             >
               <Search className="w-5 h-5" />
@@ -90,7 +90,7 @@ const PublicHeader = () => {
           {/* Theme Toggle */}
           <button
             onClick={toggleTheme}
-            className="p-2 rounded-full hover:bg-(--secondary)/10 text-(--secondary) hover:text-(--foreground) transition-colors"
+            className="p-2 rounded-full hover:bg-(--secondary)/10 text-(--secondary) hover:text-(--foreground)"
             title="Toggle Theme"
           >
             {theme === 'dark' ? (
@@ -157,7 +157,7 @@ const DesktopMenuItem = ({ item }) => {
   const [isOpen, setIsOpen] = useState(false);
 
   const linkBase =
-    'px-4 py-2 text-sm font-medium rounded-full transition-colors flex items-center gap-1 cursor-pointer';
+    'px-4 py-2 text-sm font-medium rounded-full flex items-center gap-1 cursor-pointer';
   const activeClass = 'text-primary bg-primary/10';
   const inactiveClass =
     'text-(--secondary) hover:text-(--foreground) hover:bg-(--secondary)/5';
@@ -198,7 +198,7 @@ const DesktopMenuItem = ({ item }) => {
                 key={child._id}
                 to={getLinkPath(child.url)}
                 className={({ isActive }) => `
-                    block px-4 py-2.5 text-sm rounded-lg transition-colors
+                    block px-4 py-2.5 text-sm rounded-lg
                     ${isActive ? activeClass : inactiveClass}
                 `}
               >
@@ -271,7 +271,7 @@ const MobileMenuItem = ({ item, closeMenu }) => {
                 to={getLinkPath(child.url)}
                 onClick={closeMenu}
                 className={({ isActive }) => `
-                                  block py-2.5 px-3 rounded-md text-sm transition-colors
+                                  block py-2.5 px-3 rounded-md text-sm
                                   ${isActive ? 'text-primary font-medium bg-primary/5' : 'text-(--secondary) hover:text-(--foreground)'}
                                 `}
               >

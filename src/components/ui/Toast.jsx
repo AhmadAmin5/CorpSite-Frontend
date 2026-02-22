@@ -51,7 +51,7 @@ const Toast = ({ id, type = 'info', message, onClose, duration = 3000 }) => {
 
       <button
         onClick={() => onClose(id)}
-        className="shrink-0 ml-auto -mx-1.5 -my-1.5 rounded-lg p-1.5 inline-flex h-8 w-8 text-(--secondary) hover:text-(--foreground) transition-colors"
+        className="shrink-0 ml-auto -mx-1.5 -my-1.5 rounded-lg p-1.5 inline-flex h-8 w-8 text-(--secondary) hover:text-(--foreground)"
       >
         <X className="w-4 h-4" />
       </button>

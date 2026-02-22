@@ -170,7 +170,7 @@ const Table = ({
                 : data.map((row, rowIndex) => (
                     <tr
                       key={keyExtractor(row) || rowIndex}
-                      className="group hover:bg-(--secondary)/5 transition-colors"
+                      className="group hover:bg-(--secondary)/5"
                     >
                       {columns.map((col, colIndex) => (
                         <td

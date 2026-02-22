@@ -70,7 +70,7 @@ export const SeoSettingsCard = ({ siteUrl }) => {
       <button
         type="button"
         onClick={() => setIsOpen(!isOpen)}
-        className="w-full px-6 py-4 flex items-center justify-between text-left hover:bg-(--secondary)/5 transition-colors"
+        className="w-full px-6 py-4 flex items-center justify-between text-left hover:bg-(--secondary)/5"
       >
         <div className="flex items-center gap-2 font-semibold text-(--foreground)">
           <Search className="w-4 h-4 text-primary" />

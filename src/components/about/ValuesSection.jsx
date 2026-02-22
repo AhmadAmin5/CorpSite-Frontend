@@ -46,8 +46,8 @@ const ValuesSection = () => {
             key={idx}
             className="group p-8 bg-(--card) border border-(--border) rounded-2xl hover:border-primary/50 hover:shadow-lg transition-all duration-300 hover:-translate-y-1"
           >
-            <div className="w-14 h-14 bg-(--background) border border-(--border) rounded-xl flex items-center justify-center mb-6 group-hover:bg-primary/10 transition-colors">
-              <value.icon className="w-7 h-7 text-(--foreground) group-hover:text-primary transition-colors" />
+            <div className="w-14 h-14 bg-(--background) border border-(--border) rounded-xl flex items-center justify-center mb-6 group-hover:bg-primary/10">
+              <value.icon className="w-7 h-7 text-(--foreground) group-hover:text-primary" />
             </div>
             <h3 className="text-xl font-bold text-(--foreground) mb-3">
               {value.title}

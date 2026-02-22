@@ -62,7 +62,7 @@ const PostsTable = ({
               className="w-full h-full object-cover"
             />
           </div>
-          <span className="text-sm text-(--secondary) group-hover:text-blue-600 transition-colors">
+          <span className="text-sm text-(--secondary) group-hover:text-blue-600">
             {post.author?.fullName || 'Unknown'}
             {post.author?._id === thisUser?._id && ' (You)'}
           </span>

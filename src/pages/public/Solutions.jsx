@@ -15,7 +15,7 @@ const Solutions = () => {
   const childPages = data?.data?.pages || data?.pages || [];
 
   return (
-    <div className="min-h-screen bg-(--background) pb-20 transition-colors duration-200">
+    <div className="min-h-screen bg-(--background) pb-20">
       {/* Hero Section */}
       <Hero
         title="Our Solutions"

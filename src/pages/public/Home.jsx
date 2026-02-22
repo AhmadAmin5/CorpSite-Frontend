@@ -6,7 +6,7 @@ import { CtaBlock } from '../../components';
 
 const Home = () => {
   return (
-    <div className="min-h-screen bg-(--background) transition-colors duration-200">
+    <div className="min-h-screen bg-(--background)">
       <HomeHero />
       <FeaturesSection />
       <ServicesSection />

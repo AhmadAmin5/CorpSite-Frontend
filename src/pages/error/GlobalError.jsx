@@ -19,7 +19,7 @@ const GlobalError = () => {
         <div className="max-w-sm mx-auto mt-4 text-left">
           <button
             onClick={() => setShowDetails(!showDetails)}
-            className="text-xs flex items-center gap-1 text-(--secondary) hover:text-primary transition-colors mx-auto mb-2"
+            className="text-xs flex items-center gap-1 text-(--secondary) hover:text-primary mx-auto mb-2"
           >
             <Terminal className="w-3 h-3" />
             {showDetails ? 'Hide Technical Details' : 'Show Technical Details'}

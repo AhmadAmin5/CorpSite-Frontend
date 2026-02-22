@@ -1,6 +1,9 @@
 import { useEffect, useMemo, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
-import { useGetPostPublicQuery, useGetPostsPublicQuery } from '../../features/posts/postsApi';
+import {
+  useGetPostPublicQuery,
+  useGetPostsPublicQuery,
+} from '../../features/posts/postsApi';
 
 import { BlockNoteView } from '@blocknote/mantine';
 import { useCreateBlockNote } from '@blocknote/react';
@@ -116,7 +119,7 @@ const PostViewer = () => {
               {post.category && (
                 <Link
                   to={`/blog?category=${encodeURIComponent(post.category)}`}
-                  className="bg-(--secondary)/10 px-3 py-1 rounded-full text-(--foreground) font-medium hover:bg-(--secondary)/20 hover:text-primary transition-colors"
+                  className="bg-(--secondary)/10 px-3 py-1 rounded-full text-(--foreground) font-medium hover:bg-(--secondary)/20 hover:text-primary"
                 >
                   {post.category}
                 </Link>
@@ -150,7 +153,7 @@ const PostViewer = () => {
                     />
                   </div>
                   <div className="text-left">
-                    <p className="font-medium text-(--foreground) group-hover:text-primary transition-colors">
+                    <p className="font-medium text-(--foreground) group-hover:text-primary">
                       {post.author.fullName || 'Unknown Author'}
                     </p>
                     {post.author.role && (

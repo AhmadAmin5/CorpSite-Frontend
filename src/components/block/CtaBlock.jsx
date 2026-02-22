@@ -13,7 +13,7 @@ const CtaBlock = ({
   const navigate = useNavigate();
 
   return (
-    <section className="relative overflow-hidden rounded-3xl bg-(--card) border border-(--border) px-6 py-16 md:py-20 md:px-12 text-center shadow-sm w-full my-12 transition-colors duration-300">
+    <section className="relative overflow-hidden rounded-3xl bg-(--card) border border-(--border) px-6 py-16 md:py-20 md:px-12 text-center shadow-sm w-full my-12 duration-300">
       {/* Background visual accents - tailored to look great in both light and dark modes */}
       <div className="absolute -top-32 -left-32 w-96 h-96 bg-primary/10 rounded-full blur-3xl pointer-events-none"></div>
       <div className="absolute -bottom-32 -right-32 w-96 h-96 bg-accent/10 rounded-full blur-3xl pointer-events-none"></div>

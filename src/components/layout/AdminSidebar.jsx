@@ -89,7 +89,7 @@ const AdminSidebar = ({ isOpen, onClose }) => {
               to={item.path}
               onClick={onClose}
               className={({ isActive }) =>
-                `flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition-colors ${
+                `flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium ${
                   isActive
                     ? 'bg-primary/10 text-primary'
                     : 'text-(--secondary) hover:bg-primary/5 hover:text-(--foreground)'
@@ -105,7 +105,7 @@ const AdminSidebar = ({ isOpen, onClose }) => {
         <div className="p-4 border-t border-(--border) shrink-0 bg-(--card)">
           <button
             onClick={handleLogout}
-            className="flex items-center gap-3 w-full px-3 py-2.5 rounded-lg text-sm font-medium text-error hover:bg-error/10 transition-colors"
+            className="flex items-center gap-3 w-full px-3 py-2.5 rounded-lg text-sm font-medium text-error hover:bg-error/10"
           >
             {isLoading ? <Spinner /> : <LogOut className="w-5 h-5" />}
             Logout

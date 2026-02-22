@@ -17,7 +17,7 @@ const Services = () => {
   const childPages = data?.data?.pages || data?.pages || [];
 
   return (
-    <div className="min-h-screen bg-(--background) pb-20 transition-colors duration-200">
+    <div className="min-h-screen bg-(--background) pb-20">
       <Hero
         title="Our Services"
         description="We engineer robust, scalable, and secure digital solutions tailored to complex business needs. Explore our core service offerings below."

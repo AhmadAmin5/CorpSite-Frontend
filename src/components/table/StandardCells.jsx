@@ -28,7 +28,7 @@ export const InfoCell = ({
 
       <div className="min-w-0">
         <div
-          className={`font-medium text-(--foreground) truncate max-w-50 ${onClick ? 'cursor-pointer hover:text-primary transition-colors' : ''}`}
+          className={`font-medium text-(--foreground) truncate max-w-50 ${onClick ? 'cursor-pointer hover:text-primary' : ''}`}
           onClick={onClick}
           title={title}
         >

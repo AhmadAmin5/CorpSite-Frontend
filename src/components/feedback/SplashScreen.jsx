@@ -3,7 +3,7 @@ import { Spinner } from '../';
 
 const SplashScreen = ({ message = 'Loading...', subMessage }) => {
   return (
-    <div className="fixed inset-0 z-9999 flex flex-col items-center justify-center bg-(--background) transition-colors duration-300">
+    <div className="fixed inset-0 z-9999 flex flex-col items-center justify-center bg-(--background) duration-300">
       <div className="flex flex-col items-center gap-8 animate-in fade-in zoom-in-95 duration-500">
         <div className="relative">
           <div className="absolute inset-0 bg-primary/20 blur-xl rounded-full animate-pulse" />

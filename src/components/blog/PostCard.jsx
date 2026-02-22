@@ -57,7 +57,7 @@ const PostCard = ({ post }) => {
 
         <Link
           to={`/blog/${post?.slug}`}
-          className="block group-hover:text-primary transition-colors"
+          className="block group-hover:text-primary"
         >
           <h2 className="text-xl font-bold leading-snug mb-3 line-clamp-2 text-(--foreground)">
             {post?.title}

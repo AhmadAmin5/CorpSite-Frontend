@@ -49,7 +49,7 @@ const BlogSidebar = ({
           <button
             onClick={() => setSelectedCategory('')}
             className={`
-              text-left px-3 py-2 rounded-lg text-sm transition-colors cursor-pointer
+              text-left px-3 py-2 rounded-lg text-sm cursor-pointer
               ${
                 !selectedCategory
                   ? 'bg-primary/10 text-primary font-medium'
@@ -69,7 +69,7 @@ const BlogSidebar = ({
                   key={cat._id}
                   onClick={() => setSelectedCategory(cat.name)}
                   className={`
-                  text-left px-3 py-2 rounded-lg text-sm transition-colors flex justify-between items-center cursor-pointer
+                  text-left px-3 py-2 rounded-lg text-sm flex justify-between items-center cursor-pointer
                   ${
                     selectedCategory === cat.name
                       ? 'bg-primary/10 text-primary font-medium'

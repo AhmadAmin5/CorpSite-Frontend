@@ -20,7 +20,7 @@ const AdminHeader = ({ onMenuClick, isOpen }) => {
         {onMenuClick && (
           <button
             onClick={onMenuClick}
-            className="md:hidden p-2 -ml-2 rounded-lg hover:bg-primary/10 text-(--foreground) transition-colors"
+            className="md:hidden p-2 -ml-2 rounded-lg hover:bg-primary/10 text-(--foreground)"
             aria-label={isOpen ? 'Close Menu' : 'Open Menu'}
           >
             {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
@@ -33,7 +33,7 @@ const AdminHeader = ({ onMenuClick, isOpen }) => {
       <div className="flex items-center gap-4">
         <button
           onClick={toggleTheme}
-          className="p-2 rounded-full hover:bg-primary/10 text-(--foreground) transition-colors"
+          className="p-2 rounded-full hover:bg-primary/10 text-(--foreground)"
           title="Toggle Theme"
         >
           {theme === 'dark' ? (
@@ -57,7 +57,7 @@ const AdminHeader = ({ onMenuClick, isOpen }) => {
                     {user.role}
                   </span>
                 </div>
-                <div className="w-10 h-10 rounded-full overflow-hidden border-2 border-(--border) group-hover:border-primary transition-colors">
+                <div className="w-10 h-10 rounded-full overflow-hidden border-2 border-(--border) group-hover:border-primary">
                   {!imgError && user.profilePicture ? (
                     <Img
                       src={user.profilePicture}

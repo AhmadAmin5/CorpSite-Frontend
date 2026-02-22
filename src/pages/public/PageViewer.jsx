@@ -1,6 +1,9 @@
 import { useEffect, useMemo, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
-import { useGetPagePublicQuery, useGetPagesPublicQuery } from '../../features/pages/pagesApi';
+import {
+  useGetPagePublicQuery,
+  useGetPagesPublicQuery,
+} from '../../features/pages/pagesApi';
 
 import { BlockNoteView } from '@blocknote/mantine';
 import { useCreateBlockNote } from '@blocknote/react';
@@ -76,7 +79,7 @@ const PageViewer = () => {
 
   // Fetch related pages by the same parent
   const parentValue = page?.parent?._id || page?.parent;
-  
+
   const { data: relatedData } = useGetPagesPublicQuery(
     { parent: parentValue, limit: 4 },
     { skip: !parentValue }
@@ -86,8 +89,8 @@ const PageViewer = () => {
     .filter((p) => p._id !== page?._id)
     .slice(0, 3);
 
-  const rawBasePath = page?.fullPath 
-    ? '/' + page.fullPath.split('/').slice(0, -1).join('/') 
+  const rawBasePath = page?.fullPath
+    ? '/' + page.fullPath.split('/').slice(0, -1).join('/')
     : '';
   const basePath = rawBasePath === '/' ? '' : rawBasePath;
 
@@ -159,7 +162,7 @@ const PageViewer = () => {
             <aside className="space-y-6">
               {/* Support CTA Card */}
               <div className="bg-(--card) border border-(--border) rounded-2xl p-6 shadow-sm relative overflow-hidden group">
-                <div className="absolute inset-0 bg-primary/5 group-hover:bg-primary/10 transition-colors duration-300"></div>
+                <div className="absolute inset-0 bg-primary/5 group-hover:bg-primary/10 duration-300"></div>
                 <div className="relative z-10">
                   <h3 className="text-xl font-bold text-(--foreground) mb-2">
                     Need Assistance?
@@ -198,7 +201,7 @@ const PageViewer = () => {
                   <li>
                     <Link
                       to="/services"
-                      className="text-(--secondary) hover:text-primary flex items-center justify-between group transition-colors"
+                      className="text-(--secondary) hover:text-primary flex items-center justify-between group"
                     >
                       Our Services
                       <ArrowRight className="w-4 h-4 opacity-0 group-hover:opacity-100 -translate-x-2 group-hover:translate-x-0 transition-all duration-300" />
@@ -207,7 +210,7 @@ const PageViewer = () => {
                   <li>
                     <Link
                       to="/solutions"
-                      className="text-(--secondary) hover:text-primary flex items-center justify-between group transition-colors"
+                      className="text-(--secondary) hover:text-primary flex items-center justify-between group"
                     >
                       Industry Solutions
                       <ArrowRight className="w-4 h-4 opacity-0 group-hover:opacity-100 -translate-x-2 group-hover:translate-x-0 transition-all duration-300" />
@@ -216,7 +219,7 @@ const PageViewer = () => {
                   <li>
                     <Link
                       to="/about"
-                      className="text-(--secondary) hover:text-primary flex items-center justify-between group transition-colors"
+                      className="text-(--secondary) hover:text-primary flex items-center justify-between group"
                     >
                       About Us
                       <ArrowRight className="w-4 h-4 opacity-0 group-hover:opacity-100 -translate-x-2 group-hover:translate-x-0 transition-all duration-300" />
@@ -226,7 +229,7 @@ const PageViewer = () => {
               </div>
             </aside>
           </div>
-          
+
           {/* Related Pages Section */}
           {relatedPages.length > 0 && (
             <div className="mt-16 pt-12 border-t border-(--border)">

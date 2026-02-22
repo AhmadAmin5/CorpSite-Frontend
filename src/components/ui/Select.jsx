@@ -125,7 +125,7 @@ const Select = ({
                     key={option.value}
                     onClick={() => handleSelect(option.value)}
                     className={`
-                      flex items-center justify-between px-3 py-2 rounded-md text-sm cursor-pointer transition-colors
+                      flex items-center justify-between px-3 py-2 rounded-md text-sm cursor-pointer
                       ${
                         isSelected
                           ? 'bg-primary/10 text-primary font-medium'

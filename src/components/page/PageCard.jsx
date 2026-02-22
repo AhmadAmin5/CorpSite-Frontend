@@ -23,7 +23,7 @@ const PageCard = ({ page, basePath, icon: Icon }) => {
       )}
 
       <div className="relative z-10">
-        <h3 className="text-2xl font-bold text-(--foreground) group-hover:text-primary transition-colors duration-300">
+        <h3 className="text-2xl font-bold text-(--foreground) group-hover:text-primary">
           {page?.title}
         </h3>
         <p className="mt-4 text-base text-(--secondary) leading-relaxed line-clamp-3">

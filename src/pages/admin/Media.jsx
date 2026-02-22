@@ -155,7 +155,7 @@ const Media = () => {
                   <div className="flex gap-2">
                     <button
                       onClick={() => handleCopyLink(item.url, item._id)}
-                      className="p-2 bg-white/10 hover:bg-white/20 text-white rounded-full backdrop-blur-sm transition-colors"
+                      className="p-2 bg-white/10 hover:bg-white/20 text-white rounded-full backdrop-blur-sm"
                       title="Copy URL"
                     >
                       {copiedId === item._id ? (
@@ -167,7 +167,7 @@ const Media = () => {
 
                     <button
                       onClick={() => setDeleteId(item._id)}
-                      className="p-2 bg-red-500/20 hover:bg-red-500/40 text-red-400 rounded-full backdrop-blur-sm transition-colors"
+                      className="p-2 bg-red-500/20 hover:bg-red-500/40 text-red-400 rounded-full backdrop-blur-sm"
                       title="Delete Image"
                     >
                       <Trash2 className="w-4 h-4" />

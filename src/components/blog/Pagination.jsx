@@ -41,7 +41,7 @@ const Pagination = ({ currentPage, totalPages, onPageChange }) => {
             key={idx}
             onClick={() => onPageChange(page)}
             className={`
-              w-9 h-9 rounded-lg text-sm font-medium transition-colors
+              w-9 h-9 rounded-lg text-sm font-medium
               ${
                 currentPage === page
                   ? 'bg-primary text-primary-content shadow-sm'
