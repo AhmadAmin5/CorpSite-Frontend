@@ -47,7 +47,7 @@ const App = () => {
     return (
       <SplashScreen
         message="Waking up the backend server..."
-        subMessage="This site is using free servers for presentation purpose, which sleeps after inactivity. It usually takes 30-50 seconds to spin up. Thank you for your patience!"
+        subMessage="This site is using free servers for presentation purpose, which sleeps after inactivity. It usually takes 1 minute to spin up. Thank you for your patience!"
       />
     );
   }
