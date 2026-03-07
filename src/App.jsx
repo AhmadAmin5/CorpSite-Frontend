@@ -21,7 +21,7 @@ const App = () => {
       }, 5000);
 
       try {
-        await axiosInstance.get('/health', { timeout: 40000 });
+        await axiosInstance.get('/health', { timeout: 60000 });
 
         clearTimeout(sleepTimer);
         if (isMounted) setServerState('ready');
