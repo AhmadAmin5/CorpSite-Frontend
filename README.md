@@ -56,13 +56,19 @@ Make sure you have the following installed:
 - Node.js
 - npm
 
-### 1. Install dependencies
+### 1. Clone Repo
+```bash
+git clone https://github.com/AhmadAmin5/CorpSite-Frontend
+cd CorpSite-Frontend
+```
+
+### 2. Install dependencies
 
 ```bash
 npm install
 ```
 
-### 2. Configure environment variables
+### 3. Configure environment variables
 
 Create a `.env` file in the project root and add:
 
@@ -70,24 +76,12 @@ Create a `.env` file in the project root and add:
 VITE_API_BASE_URL=your_backend_api_url
 ```
 
-You can copy the variable name from `.env.sample`.
+You may copy the variable name from `.env.sample`.
 
-### 3. Run the development server
+### 4. Run the development server
 
 ```bash
 npm run dev
-```
-
-### 4. Build for production
-
-```bash
-npm run build
-```
-
-### 5. Preview production build
-
-```bash
-npm run preview
 ```
 
 ## Available Scripts
